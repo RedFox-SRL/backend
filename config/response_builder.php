@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+use App\ApiCode;
+
 /**
  * Laravel API Response Builder - configuration file
  *
@@ -30,6 +32,8 @@ return [
     |-------------------------------------------------------------------------------------------------------------------
     */
     'map' => [
-        \App\ApiCode::INVALID_CREDENTIALS => 'api.invalid_credentials'
+        ApiCode::INVALID_CREDENTIALS => 'api.invalid_credentials',
+        ApiCode::SOMETHING_WENT_WRONG => 'api.something_went_wrong',
+        ApiCode::VALIDATION_ERROR => 'api.validation_error',
     ],
 ];
