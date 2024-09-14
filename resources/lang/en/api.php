@@ -6,4 +6,5 @@ return [
     'validation_error' => 'Validation error.',
     'invalid_email_verification_link' => 'Invalid/Expired url provider.',
     'email_already_verified' => 'Email already verified.',
+    'invalid_reset_password_token' => 'Invalid token provided'
 ];
