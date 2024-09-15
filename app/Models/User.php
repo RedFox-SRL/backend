@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Hash;
+use App\Models\Student;
+use App\Models\Teacher;
+
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -21,7 +24,9 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $fillable = [
         'name',
+        'last_name',
         'email',
+        'role',
         'password',
     ];
 
@@ -57,5 +62,15 @@ class User extends Authenticatable implements JWTSubject
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class);
     }
 }
