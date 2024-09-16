@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Student;
 use App\Models\Teacher;
 
