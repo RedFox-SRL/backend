@@ -10,4 +10,7 @@ class ApiCode
     public const INVALID_EMAIL_VERIFICATION_URL = 253;
     public const EMAIL_ALREADY_VERIFIED = 254;
     public const INVALID_RESET_PASSWORD_TOKEN = 255;
+    public const STUDENT_NOT_IN_GESTION = 256;
+    public const GROUP_CREATION_DISABLED = 257;
+    public const GROUP_ALREADY_EXISTS = 258;
 }
