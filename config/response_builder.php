@@ -41,5 +41,9 @@ return [
         ApiCode::STUDENT_NOT_IN_GESTION => 'api.student_not_in_gestion',
         ApiCode::GROUP_CREATION_DISABLED => 'api.group_creation_disabled',
         ApiCode::GROUP_ALREADY_EXISTS => 'api.group_already_exists',
+        ApiCode::USER_NOT_TEACHER => 'api.user_not_teacher',
+        ApiCode::GESTION_NOT_FOUND => 'api.gestion_not_found',
+        ApiCode::GESTION_ALREADY_EXISTS => 'api.gestion_already_exists',
+        ApiCode::GESTION_ACCESS_DENIED => 'api.gestion_access_denied',
     ],
 ];
