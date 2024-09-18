@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gestion extends Model
+class Management extends Model
 {
     use HasFactory;
 
@@ -25,6 +25,12 @@ class Gestion extends Model
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
+    }
+
+    // Relationship with groups
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
     }
 
     // Genera un código único
