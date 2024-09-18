@@ -27,7 +27,7 @@ class CreateManagementRequest extends FormRequest
             'semester' => 'required|in:first,second',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
-            'group_limit' => 'required|integer|min:1',
+            'group_limit' => 'integer|min:1',
         ];
     }
 }
