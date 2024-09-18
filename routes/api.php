@@ -7,6 +7,7 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +38,9 @@ Route::middleware(['api'])->group(function () {
     Route::post('password/reset', [ForgotPasswordController::class, 'reset']);
 
     Route::put('profile', [UserController::class, 'update']);
+
+    Route::get('managements', [ManagementController::class, 'index']);
+    Route::post('managements', [ManagementController::class, 'create']); 
+    Route::put('managements/{management}/toggle-code', [ManagementController::class, 'toggleCode']);
+    Route::put('managements/{management}/update-group-limit', [ManagementController::class, 'updateGroupLimit']);
 });
