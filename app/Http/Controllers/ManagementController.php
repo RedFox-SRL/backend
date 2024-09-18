@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Gestion;
+use App\Models\Management;
 use App\Http\Requests\CreateManagementRequest;
 use App\Http\Requests\UpdateGroupLimitRequest;
 use Illuminate\Support\Facades\Auth;
@@ -23,9 +23,9 @@ class ManagementController extends Controller
             return $this->respondBadRequest(ApiCode::GESTION_ALREADY_EXISTS);
         }
 
-        $gestion = Gestion::create($request->validated() + [
+        $gestion = Management::create($request->validated() + [
             'teacher_id' => $teacher->id,
-            'code' => Gestion::generateUniqueCode(),
+            'code' => Management::generateUniqueCode(),
         ]);
 
         return $this->respond(['gestion' => $gestion], 'Management created successfully.');
@@ -65,13 +65,13 @@ class ManagementController extends Controller
             return $teacher;
         }
 
-        $gestiones = Gestion::where('teacher_id', $teacher->id)->get();
+        $gestiones = Management::where('teacher_id', $teacher->id)->get();
         return $this->respond($gestiones);
     }
 
     private function gestionExistsForTeacher($teacherId, $semester, $startDate)
     {
-        return Gestion::where('teacher_id', $teacherId)
+        return Management::where('teacher_id', $teacherId)
             ->where('semester', $semester)
             ->whereYear('start_date', date('Y', strtotime($startDate)))
             ->exists();
@@ -94,7 +94,7 @@ class ManagementController extends Controller
 
     private function getGestion($gestionId)
     {
-        $gestion = Gestion::find($gestionId);
+        $gestion = Management::find($gestionId);
         if (!$gestion) {
             return $this->respondNotFound(ApiCode::GESTION_NOT_FOUND);
         }
