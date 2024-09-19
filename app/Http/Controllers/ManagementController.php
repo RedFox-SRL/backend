@@ -8,6 +8,7 @@ use App\Http\Requests\CreateManagementRequest;
 use App\Http\Requests\UpdateGroupLimitRequest;
 use Illuminate\Support\Facades\Auth;
 use App\ApiCode;
+use App\Models\StudentManagement;
 
 class ManagementController extends Controller
 {
