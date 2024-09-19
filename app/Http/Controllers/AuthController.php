@@ -20,7 +20,8 @@ class AuthController extends Controller
             return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
         }
 
-        return $this->respondWithToken($token);
+        $user = auth()->user();
+        return $this->respondWithTokenAndRole($token, $user->role);
     }
 
     private function respondWithToken($token)
@@ -46,5 +47,15 @@ class AuthController extends Controller
     public function me()
     {
         return $this->respond(auth()->user());
+    }
+
+    private function respondWithTokenAndRole($token, $role)
+    {
+        return $this->respond([
+            'token' => $token,
+            'access_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'role' => $role
+        ]);
     }
 }
