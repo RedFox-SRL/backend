@@ -9,6 +9,7 @@ use App\Http\Requests\CreateGroupRequest;
 use App\Http\Requests\JoinGroupRequest;
 use Illuminate\Support\Facades\Auth;
 use App\ApiCode;
+use App\Models\Management;
 
 class GroupController extends Controller
 {
@@ -25,6 +26,11 @@ class GroupController extends Controller
         }
 
         $student = $user->student;
+
+        $existingGroup = Group::where('creator_id', $student->id)->first();
+        if ($existingGroup) {
+            return $this->respondBadRequest(ApiCode::GROUP_ALREADY_EXISTS);
+        }
 
         $studentManagement = StudentManagement::where('student_id', $student->id)->first();
 
@@ -44,6 +50,7 @@ class GroupController extends Controller
         }
 
         $group = Group::create([
+            'creator_id' => $student->id,
             'management_id' => $management->id,
             'code' => Group::generateUniqueCode(),
             'short_name' => $request->short_name,
@@ -51,7 +58,7 @@ class GroupController extends Controller
             'contact_email' => $request->contact_email,
             'contact_phone' => $request->contact_phone,
             'logo' => $logoPath,
-            'max_members' => $management->group_limit,
+            'max_members' => $management->group_limit, // Usar el límite de la gestión
         ]);
 
         GroupName::create([
@@ -96,13 +103,17 @@ class GroupController extends Controller
             return $this->respondBadRequest(ApiCode::STUDENT_ALREADY_IN_GROUP);
         }
 
-        if ($this->isGroupFull($group)) {
+        $group->management->refresh();
+
+        if ($group->students()->count() >= $group->management->group_limit) {
             return $this->respondBadRequest(ApiCode::GROUP_FULL);
         }
 
         $group->students()->attach($student->id);
 
-        return $this->respond(['group' => $group], 'You have successfully joined the group.');
+        $group->load('students', 'creator.user');
+
+        return $this->respond(['group' => $group->makeHidden('management')]);
     }
 
     private function isStudentInAnyGroup($studentId)
@@ -132,6 +143,7 @@ class GroupController extends Controller
 
     private function isGroupFull($group)
     {
+        $group->refresh();
         return $group->students()->count() >= $group->max_members;
     }
 
@@ -200,6 +212,10 @@ class GroupController extends Controller
 
         if (!$group) {
             return $this->respondNotFound(ApiCode::GROUP_NOT_FOUND);
+        }
+
+        if (!$group->students()->where('student_id', $student->id)->exists()) {
+            return $this->respondBadRequest(ApiCode::GROUP_NOT_FOUND);
         }
 
         $group->students()->detach($student->id);
