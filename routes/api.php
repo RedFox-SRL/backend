@@ -50,7 +50,7 @@ Route::middleware(['api'])->group(function () {
     Route::post('managements/leave', [StudentManagementController::class, 'leaveManagement']);
     Route::post('groups', [GroupController::class, 'create']);
     Route::get('groups/details', [GroupController::class, 'getGroupDetails']);
-    Route::post('groups/{group}/leave', [GroupController::class, 'leaveGroup']);
+    Route::post('groups/leave', [GroupController::class, 'leaveGroup']);
     Route::get('managements/{management}/groups', [GroupController::class, 'getGroupsByManagement']);
     Route::post('groups/join', [GroupController::class, 'joinGroup']);
 });
