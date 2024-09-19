@@ -25,4 +25,5 @@ class ApiCode
     public const STUDENT_NOT_IN_MANAGEMENT = 270;
     public const ALREADY_ENROLLED_GROUP = 271;
     public const EMAIL_NOT_FOUND = 272;
+    public const GROUP_NAME_ALREADY_EXISTS = 273;
 }
