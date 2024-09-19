@@ -33,7 +33,6 @@ class GroupController extends Controller
         }
 
         $studentManagement = StudentManagement::where('student_id', $student->id)->first();
-
         if (!$studentManagement) {
             return $this->respondBadRequest(ApiCode::STUDENT_NOT_IN_MANAGEMENT);
         }
@@ -41,7 +40,7 @@ class GroupController extends Controller
         $management = $studentManagement->management;
 
         if ($this->isGroupNameTaken($request->short_name, $request->long_name)) {
-            return $this->respondBadRequest(ApiCode::GROUP_ALREADY_EXISTS);
+            return $this->respondBadRequest(ApiCode::GROUP_NAME_ALREADY_EXISTS);
         }
 
         $logoPath = null;
@@ -49,6 +48,7 @@ class GroupController extends Controller
             $logoPath = $request->file('logo')->store('logos', 'public');
         }
 
+        // Create the group
         $group = Group::create([
             'creator_id' => $student->id,
             'management_id' => $management->id,
@@ -58,7 +58,7 @@ class GroupController extends Controller
             'contact_email' => $request->contact_email,
             'contact_phone' => $request->contact_phone,
             'logo' => $logoPath,
-            'max_members' => $management->group_limit, // Usar el límite de la gestión
+            'max_members' => $management->group_limit,
         ]);
 
         GroupName::create([
@@ -131,10 +131,10 @@ class GroupController extends Controller
     }
 
     private function isGroupNameTaken($shortName, $longName)
-    {
-        return GroupName::whereRaw('LOWER(short_name) = ?', [strtolower($shortName)])->exists() ||
-            GroupName::whereRaw('LOWER(long_name) = ?', [strtolower($longName)])->exists();
-    }
+{
+    return GroupName::whereRaw('LOWER(short_name) = ?', [strtolower($shortName)])->exists() ||
+           GroupName::whereRaw('LOWER(long_name) = ?', [strtolower($longName)])->exists();
+}
 
     private function isStudentInGroup($studentId, $groupId)
     {
