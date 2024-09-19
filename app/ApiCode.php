@@ -10,11 +10,19 @@ class ApiCode
     public const INVALID_EMAIL_VERIFICATION_URL = 253;
     public const EMAIL_ALREADY_VERIFIED = 254;
     public const INVALID_RESET_PASSWORD_TOKEN = 255;
-    public const STUDENT_NOT_IN_GESTION = 256;
-    public const GROUP_CREATION_DISABLED = 257;
     public const GROUP_ALREADY_EXISTS = 258;
-    public const USER_NOT_TEACHER = 259; // Nuevo código de error
-    public const GESTION_NOT_FOUND = 260; // Nuevo código de error
-    public const GESTION_ALREADY_EXISTS = 261; // Nuevo código de error
-    public const GESTION_ACCESS_DENIED = 262; // Nuevo código de error
+    public const USER_NOT_TEACHER = 259;
+    public const MANAGEMENT_NOT_FOUND = 260;
+    public const MANAGEMENT_ALREADY_EXISTS = 261;
+    public const MANAGEMENT_ACCESS_DENIED = 262;
+    public const NOT_A_STUDENT = 263;
+    public const MANAGEMENT_CODE_INACTIVE = 264;
+    public const ALREADY_ENROLLED = 265;
+    public const NOT_PART_OF_MANAGEMENT = 266;
+    public const GROUP_NOT_FOUND = 267;
+    public const GROUP_FULL = 268;
+    public const STUDENT_ALREADY_IN_GROUP = 269;
+    public const STUDENT_NOT_IN_MANAGEMENT = 270;
+    public const ALREADY_ENROLLED_GROUP = 271;
+    public const EMAIL_NOT_FOUND = 272;
 }
