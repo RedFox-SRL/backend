@@ -132,4 +132,26 @@ class ManagementController extends Controller
 
         return $management;
     }
+
+    public function getStudentManagement()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
+        }
+
+        if (!$user->student) {
+            return $this->respondBadRequest(ApiCode::NOT_A_STUDENT);
+        }
+
+        $student = $user->student;
+        $studentManagement = StudentManagement::where('student_id', $student->id)->with('management')->first();
+
+        if (!$studentManagement) {
+            return $this->respondNotFound(ApiCode::MANAGEMENT_NOT_FOUND);
+        }
+
+        return $this->respond(['management' => $studentManagement->management], 'Management details retrieved successfully.');
+    }
 }
