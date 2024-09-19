@@ -7,11 +7,19 @@ return [
     'invalid_email_verification_link' => 'Invalid/Expired url provider.',
     'email_already_verified' => 'Email already verified.',
     'invalid_reset_password_token' => 'Invalid token provided',
-    'student_not_in_gestion' => 'The student does not belong to this gestion.',
-    'group_creation_disabled' => 'Group creation is not enabled for this gestion.',
     'group_already_exists' => 'You have already created a group in this gestion.',
-    'user_not_teacher' => 'The user is not a teacher.', // Nuevo mensaje de error
-    'gestion_not_found' => 'Gestion not found.', // Nuevo mensaje de error
-    'gestion_already_exists' => 'A gestion with the same semester and year already exists for this teacher.', // Nuevo mensaje de error
-    'gestion_access_denied' => 'You are not allowed to access this gestion.', // Nuevo mensaje de error
+    'user_not_teacher' => 'The user is not a teacher.',
+    'management_not_found' => 'Management not found.',
+    'management_already_exists' => 'A gestion with the same semester and year already exists for this teacher.',
+    'management_access_denied' => 'You are not allowed to access this gestion.',
+    'not_a_student' => 'You are not a student.',
+    'management_code_inactive' => 'The management code is not active yet. You cannot join at this time.',
+    'already_enrolled' => 'You are already enrolled in another management.',
+    'not_part_of_management' => 'You are not part of any management.',
+    'group_not_found' => 'Group not found.',
+    'group_full' => 'The group has reached the maximum number of members.',
+    'student_already_in_group' => 'You are already a member of group.',
+    'student_not_in_management' => 'You are not part of the management of the group.',
+    'already_enrolled_group' => 'You are already enrolled in another group.',
+    'email_not_found' => 'Email not found.',
 ];

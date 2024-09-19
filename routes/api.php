@@ -8,6 +8,8 @@ use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\StudentManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(['api'])->group(function () {
-    Route::post('login', [AuthController::class, 'login']);
+    Route::post('login', [AuthController::class, 'login'])->name('login');
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::get('me', [AuthController::class, 'me'])->middleware('log.route');
@@ -40,7 +42,15 @@ Route::middleware(['api'])->group(function () {
     Route::put('profile', [UserController::class, 'update']);
 
     Route::get('managements', [ManagementController::class, 'index']);
-    Route::post('managements', [ManagementController::class, 'create']); 
+    Route::post('managements', [ManagementController::class, 'create']);
+    Route::get('student/management', [ManagementController::class, 'getStudentManagement']);
     Route::put('managements/{management}/toggle-code', [ManagementController::class, 'toggleCode']);
     Route::put('managements/{management}/update-group-limit', [ManagementController::class, 'updateGroupLimit']);
+    Route::post('managements/join', [StudentManagementController::class, 'join']);
+    Route::post('managements/leave', [StudentManagementController::class, 'leaveManagement']);
+    Route::post('groups', [GroupController::class, 'create']);
+    Route::get('groups/details', [GroupController::class, 'getGroupDetails']);
+    Route::post('groups/{group}/leave', [GroupController::class, 'leaveGroup']);
+    Route::get('managements/{management}/groups', [GroupController::class, 'getGroupsByManagement']);
+    Route::post('groups/join', [GroupController::class, 'joinGroup']);
 });
