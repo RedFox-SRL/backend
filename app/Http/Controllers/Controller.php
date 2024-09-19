@@ -42,5 +42,8 @@ class Controller extends BaseController
         return $this->respondWithError($api_code, 404);
     }
 
-
+    public function respondUnAuthorizedRequest($api_code)
+    {
+        return $this->respondWithError($api_code, 403);
+    }
 }
