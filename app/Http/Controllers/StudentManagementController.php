@@ -69,8 +69,17 @@ class StudentManagementController extends Controller
             return $this->respondBadRequest(ApiCode::NOT_PART_OF_MANAGEMENT);
         }
 
+        $group = $student->groups()->first();
+        if ($group) {
+            if ($group->creator_id === $student->id) {
+                $group->delete();
+            } else {
+                $group->students()->detach($student->id);
+            }
+        }
+
         $studentManagement->delete();
 
-        return $this->respondWithMessage('You have successfully left the management.');
+        return $this->respondWithMessage('You have successfully left the management and the group.');
     }
 }
