@@ -13,7 +13,11 @@ class ForgotPasswordController extends Controller
     {
         $credentials = request()->validate(['email' => 'required|email']);
 
-        Password::sendResetLink($credentials);
+        $response = Password::sendResetLink($credentials);
+
+        if ($response == Password::INVALID_USER) {
+            return $this->respondBadRequest(ApiCode::EMAIL_NOT_FOUND);
+        }
 
         return $this->respondWithMessage('Reset password link sent on your email id.');
     }
@@ -25,7 +29,7 @@ class ForgotPasswordController extends Controller
             $user->save();
         });
 
-        if($email_password_status == Password::INVALID_TOKEN) {
+        if ($email_password_status == Password::INVALID_TOKEN) {
             return $this->respondBadRequest(ApiCode::INVALID_RESET_PASSWORD_TOKEN);
         }
 
