@@ -26,11 +26,17 @@ class VerificationController extends Controller
 
     public function resend()
     {
-        if (auth()->user()->hasVerifiedEmail()) {
+        $user = auth()->user();
+
+        if (!$user) {
+            return $this->respondUnAuthorizedRequest(ApiCode::INVALID_CREDENTIALS);
+        }
+
+        if ($user->hasVerifiedEmail()) {
             return $this->respondBadRequest(ApiCode::EMAIL_ALREADY_VERIFIED);
         }
 
-        auth()->user()->sendEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
 
         return $this->respondWithMessage('Email verification link sent on your email id');
     }

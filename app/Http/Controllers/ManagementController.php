@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Gestion;
+use App\Models\Management;
 use App\Http\Requests\CreateManagementRequest;
 use App\Http\Requests\UpdateGroupLimitRequest;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +11,6 @@ use App\ApiCode;
 
 class ManagementController extends Controller
 {
-    // Método para crear una nueva gestión
     public function create(CreateManagementRequest $request)
     {
         $teacher = $this->getAuthenticatedTeacher();
@@ -19,43 +18,42 @@ class ManagementController extends Controller
             return $teacher;
         }
 
-        if ($this->gestionExistsForTeacher($teacher->id, $request->input('semester'), $request->input('start_date'))) {
-            return $this->respondBadRequest(ApiCode::GESTION_ALREADY_EXISTS);
+        if ($this->managementExistsForTeacher($teacher->id, $request->input('semester'), $request->input('start_date'))) {
+            return $this->respondBadRequest(ApiCode::MANAGEMENT_ALREADY_EXISTS);
         }
 
-        $gestion = Gestion::create($request->validated() + [
-            'teacher_id' => $teacher->id,
-            'code' => Gestion::generateUniqueCode(),
-        ]);
+        $management = Management::create($request->validated() + [
+                'teacher_id' => $teacher->id,
+                'code' => Management::generateUniqueCode(),
+            ]);
 
-        return $this->respond(['gestion' => $gestion], 'Management created successfully.');
+        return $this->respond(['management' => $management], 'Management created successfully.');
     }
 
-    // Método para activar/desactivar el código
-    public function toggleCode($gestionId)
+    public function toggleCode($managementId)
     {
-        $gestion = $this->getGestionForAuthenticatedTeacher($gestionId);
-        if ($gestion instanceof \Illuminate\Http\JsonResponse) {
-            return $gestion;
+        $management = $this->getManagementForAuthenticatedTeacher($managementId);
+        if ($management instanceof \Illuminate\Http\JsonResponse) {
+            return $management;
         }
 
-        $gestion->is_code_active = !$gestion->is_code_active;
-        $gestion->save();
+        $management->is_code_active = !$management->is_code_active;
+        $management->save();
 
-        return $this->respond(['gestion' => $gestion], 'Management code status updated successfully.');
+        return $this->respond(['management' => $management], 'Management code status updated successfully.');
     }
 
-    public function updateGroupLimit(UpdateGroupLimitRequest $request, $gestionId)
+    public function updateGroupLimit(UpdateGroupLimitRequest $request, $managementId)
     {
-        $gestion = $this->getGestionForAuthenticatedTeacher($gestionId);
-        if ($gestion instanceof \Illuminate\Http\JsonResponse) {
-            return $gestion;
+        $management = $this->getManagementForAuthenticatedTeacher($managementId);
+        if ($management instanceof \Illuminate\Http\JsonResponse) {
+            return $management;
         }
 
-        $gestion->group_limit = $request->input('group_limit');
-        $gestion->save();
+        $management->group_limit = $request->input('group_limit');
+        $management->save();
 
-        return $this->respond(['gestion' => $gestion], 'Group limit updated successfully.');
+        return $this->respond(['management' => $management], 'Group limit updated successfully.');
     }
 
     public function index()
@@ -65,13 +63,17 @@ class ManagementController extends Controller
             return $teacher;
         }
 
-        $gestiones = Gestion::where('teacher_id', $teacher->id)->get();
-        return $this->respond($gestiones);
+        $managements = Management::where('teacher_id', $teacher->id)->get();
+        if ($managements->isEmpty()) {
+            return $this->respondNotFound(ApiCode::MANAGEMENT_NOT_FOUND);
+        }
+
+        return $this->respond($managements);
     }
 
-    private function gestionExistsForTeacher($teacherId, $semester, $startDate)
+    private function managementExistsForTeacher($teacherId, $semester, $startDate)
     {
-        return Gestion::where('teacher_id', $teacherId)
+        return Management::where('teacher_id', $teacherId)
             ->where('semester', $semester)
             ->whereYear('start_date', date('Y', strtotime($startDate)))
             ->exists();
@@ -92,31 +94,30 @@ class ManagementController extends Controller
         return $teacher;
     }
 
-    private function getGestion($gestionId)
+    private function getManagement($managementId)
     {
-        $gestion = Gestion::find($gestionId);
-        if (!$gestion) {
-            return $this->respondNotFound(ApiCode::GESTION_NOT_FOUND);
+        $management = Management::find($managementId);
+        if (!$management) {
+            return $this->respondNotFound(ApiCode::MANAGEMENT_NOT_FOUND);
         }
 
-        return $gestion;
+        return $management;
     }
 
-    // Método auxiliar para validar que el docente autenticado sea el propietario de la gestión
-    private function validateTeacherForGestion($gestion, $teacher)
+    private function validateTeacherForManagement($management, $teacher)
     {
-        if ($gestion->teacher_id !== $teacher->id) {
-            return $this->respondUnAuthenticated(ApiCode::GESTION_ACCESS_DENIED);
+        if ($management->teacher_id !== $teacher->id) {
+            return $this->respondUnAuthenticated(ApiCode::MANAGEMENT_ACCESS_DENIED);
         }
 
         return true;
     }
 
-    private function getGestionForAuthenticatedTeacher($gestionId)
+    private function getManagementForAuthenticatedTeacher($managementId)
     {
-        $gestion = $this->getGestion($gestionId);
-        if ($gestion instanceof \Illuminate\Http\JsonResponse) {
-            return $gestion;
+        $management = $this->getManagement($managementId);
+        if ($management instanceof \Illuminate\Http\JsonResponse) {
+            return $management;
         }
 
         $teacher = $this->getAuthenticatedTeacher();
@@ -124,11 +125,33 @@ class ManagementController extends Controller
             return $teacher;
         }
 
-        $isValid = $this->validateTeacherForGestion($gestion, $teacher);
+        $isValid = $this->validateTeacherForManagement($management, $teacher);
         if ($isValid instanceof \Illuminate\Http\JsonResponse) {
             return $isValid;
         }
 
-        return $gestion;
+        return $management;
+    }
+
+    public function getStudentManagement()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
+        }
+
+        if (!$user->student) {
+            return $this->respondBadRequest(ApiCode::NOT_A_STUDENT);
+        }
+
+        $student = $user->student;
+        $studentManagement = StudentManagement::where('student_id', $student->id)->with('management')->first();
+
+        if (!$studentManagement) {
+            return $this->respondNotFound(ApiCode::MANAGEMENT_NOT_FOUND);
+        }
+
+        return $this->respond(['management' => $studentManagement->management], 'Management details retrieved successfully.');
     }
 }

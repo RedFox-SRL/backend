@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateManagementRequest extends FormRequest
+class CreateGroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,11 @@ class CreateManagementRequest extends FormRequest
     public function rules()
     {
         return [
-            'semester' => 'required|in:first,second',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
-            'group_limit' => 'integer|min:1',
+            'short_name' => 'required|string|max:255',
+            'long_name' => 'required|string|max:255',
+            'contact_email' => 'required|email',
+            'contact_phone' => 'required|string',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }
