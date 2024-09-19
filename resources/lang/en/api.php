@@ -23,4 +23,5 @@ return [
     'already_enrolled_group' => 'You are already enrolled in another group.',
     'email_not_found' => 'Email not found.',
     "student_not_in_group_management" => "You are not part of the management of the group.",
+    "group_name_already_exists" => "A group with the same name already exists."
 ];

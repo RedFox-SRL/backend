@@ -53,5 +53,6 @@ return [
         ApiCode::STUDENT_NOT_IN_MANAGEMENT => 'api.student_not_in_group_management',
         ApiCode::ALREADY_ENROLLED_GROUP => 'api.already_enrolled_group',
         ApiCode::EMAIL_NOT_FOUND => 'api.email_not_found',
+        ApiCode::GROUP_NAME_ALREADY_EXISTS => 'api.group_name_already_exists',
     ],
 ];
