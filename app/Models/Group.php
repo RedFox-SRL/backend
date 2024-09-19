@@ -11,21 +11,20 @@ class Group extends Model
 
     protected $fillable = [
         'management_id',
-        'creator_id', // ID of the student who created the group
+        'creator_id',
         'code',
         'short_name',
         'long_name',
         'contact_email',
         'contact_phone',
         'logo',
-        'max_members',
     ];
 
     public static function generateUniqueCode()
     {
         do {
             $code = strtoupper(bin2hex(random_bytes(3)));
-        } while (self::where('codigo', $code)->exists());
+        } while (self::where('code', $code)->exists());
 
         return $code;
     }
@@ -35,10 +34,9 @@ class Group extends Model
         return $this->belongsTo(Management::class);
     }
 
-    public function student()
+    public function students()
     {
-        return $this->belongsToMany(Student::class, 'group_student')
-                    ->withTimestamps();
+        return $this->belongsToMany(Student::class, 'group_student');
     }
 
     public function creator()
