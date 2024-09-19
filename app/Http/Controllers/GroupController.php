@@ -48,7 +48,6 @@ class GroupController extends Controller
             $logoPath = $request->file('logo')->store('logos', 'public');
         }
 
-        // Create the group
         $group = Group::create([
             'creator_id' => $student->id,
             'management_id' => $management->id,
@@ -58,7 +57,6 @@ class GroupController extends Controller
             'contact_email' => $request->contact_email,
             'contact_phone' => $request->contact_phone,
             'logo' => $logoPath,
-            'max_members' => $management->group_limit,
         ]);
 
         GroupName::create([
@@ -139,12 +137,6 @@ class GroupController extends Controller
     private function isStudentInGroup($studentId, $groupId)
     {
         return Group::find($groupId)->students()->where('student_id', $studentId)->exists();
-    }
-
-    private function isGroupFull($group)
-    {
-        $group->refresh();
-        return $group->students()->count() >= $group->max_members;
     }
 
     public function getGroupDetails()
