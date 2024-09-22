@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\StudentManagementController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +54,10 @@ Route::middleware(['api'])->group(function () {
     Route::post('groups/leave', [GroupController::class, 'leaveGroup']);
     Route::get('managements/{management}/groups', [GroupController::class, 'getGroupsByManagement']);
     Route::post('groups/join', [GroupController::class, 'joinGroup']);
+
+    Route::get('/events', [EventController::class, 'index']);
+    Route::post('/events', [EventController::class, 'store']);
+    Route::get('/events/{id}', [EventController::class, 'show']);
+    Route::put('/events/{id}', [EventController::class, 'update']);
+    Route::delete('/events/{id}', [EventController::class, 'destroy']);
 });

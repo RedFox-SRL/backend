@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Calendar;
 use App\Models\Group;
 use App\Models\GroupName;
 use App\Models\StudentManagement;
@@ -57,6 +58,10 @@ class GroupController extends Controller
             'contact_email' => $request->contact_email,
             'contact_phone' => $request->contact_phone,
             'logo' => $logoPath,
+        ]);
+
+        Calendar::create([
+            'group_id' => $group->id,
         ]);
 
         GroupName::create([
