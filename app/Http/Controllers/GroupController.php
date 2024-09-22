@@ -134,10 +134,10 @@ class GroupController extends Controller
     }
 
     private function isGroupNameTaken($shortName, $longName)
-{
-    return GroupName::whereRaw('LOWER(short_name) = ?', [strtolower($shortName)])->exists() ||
-           GroupName::whereRaw('LOWER(long_name) = ?', [strtolower($longName)])->exists();
-}
+    {
+        return GroupName::whereRaw('LOWER(short_name) = ?', [strtolower($shortName)])->exists() ||
+            GroupName::whereRaw('LOWER(long_name) = ?', [strtolower($longName)])->exists();
+    }
 
     private function isStudentInGroup($studentId, $groupId)
     {
@@ -157,7 +157,7 @@ class GroupController extends Controller
         }
 
         $student = $user->student;
-        $group = $student->groups()->with('students', 'creator.user')->first();
+        $group = $student->groups()->with('students', 'creator.user', 'management.teacher.user', 'calendar')->first();
 
         if (!$group) {
             return $this->respondNotFound(ApiCode::GROUP_NOT_FOUND);
@@ -179,6 +179,11 @@ class GroupController extends Controller
             ];
         });
 
+        $management = [
+            'teacher_name' => $group->management->teacher->user->name,
+            'teacher_last_name' => $group->management->teacher->user->last_name,
+        ];
+
         return $this->respond([
             'group' => [
                 'short_name' => $group->short_name,
@@ -188,6 +193,8 @@ class GroupController extends Controller
                 'logo' => asset('storage/' . $group->logo),
                 'representative' => $representative,
                 'members' => $members,
+                'management' => $management,
+                'calendar_id' => $group->calendar->id,
             ]
         ]);
     }
