@@ -155,4 +155,36 @@ class ManagementController extends Controller
 
         return $this->respond(['management' => $studentManagement->management], 'Management details retrieved successfully.');
     }
+
+    public function getManagementDetails($id)
+    {
+        $management = Management::with(['teacher.user', 'groups.students.user'])->find($id);
+
+        if (!$management) {
+            return response()->json(['message' => 'Management not found'], 404);
+        }
+
+        $teacher = [
+            'id' => $management->teacher->id,
+            'name' => $management->teacher->user->name,
+            'last_name' => $management->teacher->user->last_name,
+            'email' => $management->teacher->user->email,
+        ];
+
+        $students = $management->groups->flatMap(function ($group) {
+            return $group->students->map(function ($student) {
+                return [
+                    'id' => $student->id,
+                    'name' => $student->user->name,
+                    'last_name' => $student->user->last_name,
+                    'email' => $student->user->email,
+                ];
+            });
+        });
+
+        return response()->json([
+            'teacher' => $teacher,
+            'students' => $students,
+        ]);
+    }
 }

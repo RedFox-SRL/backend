@@ -45,6 +45,7 @@ Route::middleware(['api'])->group(function () {
     Route::get('managements', [ManagementController::class, 'index']);
     Route::post('managements', [ManagementController::class, 'create']);
     Route::get('student/management', [ManagementController::class, 'getStudentManagement']);
+    Route::get('managements/{id}/students', [ManagementController::class, 'getManagementDetails']);
     Route::put('managements/{management}/toggle-code', [ManagementController::class, 'toggleCode']);
     Route::put('managements/{management}/update-group-limit', [ManagementController::class, 'updateGroupLimit']);
     Route::post('managements/join', [StudentManagementController::class, 'join']);
