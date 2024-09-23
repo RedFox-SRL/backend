@@ -158,7 +158,7 @@ class ManagementController extends Controller
 
     public function getManagementDetails($id)
     {
-        $management = Management::with(['teacher.user', 'groups.students.user'])->find($id);
+        $management = Management::with(['teacher.user'])->find($id);
 
         if (!$management) {
             return response()->json(['message' => 'Management not found'], 404);
@@ -171,16 +171,17 @@ class ManagementController extends Controller
             'email' => $management->teacher->user->email,
         ];
 
-        $students = $management->groups->flatMap(function ($group) {
-            return $group->students->map(function ($student) {
+        $students = StudentManagement::where('management_id', $id)
+            ->with('student.user')
+            ->get()
+            ->map(function ($studentManagement) {
                 return [
-                    'id' => $student->id,
-                    'name' => $student->user->name,
-                    'last_name' => $student->user->last_name,
-                    'email' => $student->user->email,
+                    'id' => $studentManagement->student->id,
+                    'name' => $studentManagement->student->user->name,
+                    'last_name' => $studentManagement->student->user->last_name,
+                    'email' => $studentManagement->student->user->email,
                 ];
             });
-        });
 
         return response()->json([
             'teacher' => $teacher,
