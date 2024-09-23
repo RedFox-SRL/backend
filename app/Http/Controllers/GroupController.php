@@ -191,6 +191,7 @@ class GroupController extends Controller
                 'contact_email' => $group->contact_email,
                 'contact_phone' => $group->contact_phone,
                 'logo' => asset('storage/' . $group->logo),
+                'code' => $group->code,
                 'representative' => $representative,
                 'members' => $members,
                 'management' => $management,
