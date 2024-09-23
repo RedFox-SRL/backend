@@ -252,15 +252,15 @@ class GroupController extends Controller
                 'last_name' => $group->creator->user->last_name,
             ];
 
-            $members = $group->students->filter(function ($student) use ($group) {
-                return $student->id !== $group->creator->id;
-            })->map(function ($student) {
+            $members = $group->students->map(function ($student) {
                 return [
                     'id' => $student->id,
                     'name' => $student->user->name,
                     'last_name' => $student->user->last_name,
                 ];
             });
+
+            $members->push($representative);
 
             return [
                 'short_name' => $group->short_name,
