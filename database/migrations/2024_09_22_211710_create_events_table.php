@@ -18,7 +18,8 @@ class CreateEventsTable extends Migration
             $table->unsignedBigInteger('calendar_id');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->date('event_date');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->foreign('calendar_id')->references('id')->on('calendars')->onDelete('cascade');
             $table->timestamps();
         });
