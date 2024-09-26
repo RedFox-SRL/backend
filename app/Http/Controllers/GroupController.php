@@ -186,6 +186,7 @@ class GroupController extends Controller
 
         return $this->respond([
             'group' => [
+                'id' => $group->id,
                 'short_name' => $group->short_name,
                 'long_name' => $group->long_name,
                 'contact_email' => $group->contact_email,

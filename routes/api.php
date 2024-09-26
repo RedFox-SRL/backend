@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SprintController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -61,4 +63,16 @@ Route::middleware(['api'])->group(function () {
     Route::get('/events/{id}', [EventController::class, 'show']);
     Route::put('/events/{id}', [EventController::class, 'update']);
     Route::delete('/events/{id}', [EventController::class, 'destroy']);
+
+    Route::get('/sprints', [SprintController::class, 'index']);
+    Route::post('/sprints', [SprintController::class, 'store']);
+    Route::get('/sprints/{id}', [SprintController::class, 'show']);
+    Route::put('/sprints/{id}', [SprintController::class, 'update']);
+    Route::delete('/sprints/{id}', [SprintController::class, 'destroy']);
+
+    Route::get('/tasks', [TaskController::class, 'index']);
+    Route::post('/tasks', [TaskController::class, 'store']);
+    Route::get('/tasks/{id}', [TaskController::class, 'show']);
+    Route::put('/tasks/{id}', [TaskController::class, 'update']);
+    Route::delete('/tasks/{id}', [TaskController::class, 'destroy']);
 });
