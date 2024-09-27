@@ -75,4 +75,6 @@ Route::middleware(['api'])->group(function () {
     Route::get('/tasks/{id}', [TaskController::class, 'show']);
     Route::put('/tasks/{id}', [TaskController::class, 'update']);
     Route::delete('/tasks/{id}', [TaskController::class, 'destroy']);
+
+    Route::get('/group-names', [GroupController::class, 'getGroupNames']);
 });

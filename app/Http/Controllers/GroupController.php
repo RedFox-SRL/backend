@@ -277,4 +277,10 @@ class GroupController extends Controller
 
         return $this->respond(['groups' => $groups]);
     }
+
+    public function getGroupNames()
+    {
+        $groupNames = GroupName::select('short_name', 'long_name')->get();
+        return response()->json($groupNames);
+    }
 }
