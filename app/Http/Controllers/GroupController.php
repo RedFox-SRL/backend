@@ -262,8 +262,6 @@ class GroupController extends Controller
                 ];
             });
 
-            $members->push($representative);
-
             return [
                 'short_name' => $group->short_name,
                 'long_name' => $group->long_name,
