@@ -77,4 +77,8 @@ Route::middleware(['api'])->group(function () {
     Route::delete('/tasks/{id}', [TaskController::class, 'destroy']);
 
     Route::get('/group-names', [GroupController::class, 'getGroupNames']);
+
+    Route::get('/sprints/{id}/evaluation-template', [SprintController::class, 'getEvaluationTemplate']);
+    Route::post('/sprints/{id}/submit-evaluation', [SprintController::class, 'submitEvaluation']);
+    Route::get('/sprints/{id}/evaluated-tasks', [SprintController::class, 'getEvaluatedTasks']);
 });
