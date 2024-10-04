@@ -54,5 +54,8 @@ return [
         ApiCode::ALREADY_ENROLLED_GROUP => 'api.already_enrolled_group',
         ApiCode::EMAIL_NOT_FOUND => 'api.email_not_found',
         ApiCode::GROUP_NAME_ALREADY_EXISTS => 'api.group_name_already_exists',
+        ApiCode::NOT_GROUP_REPRESENTATIVE => 'api.not_group_representative',
+        ApiCode::MEMBER_NOT_FOUND => 'api.member_not_found',
+        ApiCode::CANNOT_REMOVE_SELF => 'api.cannot_remove_self',
     ],
 ];

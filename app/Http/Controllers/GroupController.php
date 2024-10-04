@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\ApiCode;
+use App\Http\Requests\CreateGroupRequest;
+use App\Http\Requests\JoinGroupRequest;
 use App\Models\Calendar;
 use App\Models\Group;
 use App\Models\GroupName;
-use App\Models\StudentManagement;
-use App\Http\Requests\CreateGroupRequest;
-use App\Http\Requests\JoinGroupRequest;
-use Illuminate\Support\Facades\Auth;
-use App\ApiCode;
 use App\Models\Management;
+use App\Models\StudentManagement;
+use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
 {
@@ -280,5 +280,109 @@ class GroupController extends Controller
     {
         $groupNames = GroupName::select('short_name', 'long_name')->get();
         return response()->json($groupNames);
+    }
+
+    public function removeMember($memberId)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
+        }
+
+        if (!$user->student) {
+            return $this->respondBadRequest(ApiCode::NOT_A_STUDENT);
+        }
+
+        $student = $user->student;
+        $group = $student->groups()->first();
+
+        if (!$group) {
+            return $this->respondNotFound(ApiCode::GROUP_NOT_FOUND);
+        }
+
+        if ($group->creator_id !== $student->id) {
+            return $this->respondBadRequest(ApiCode::NOT_GROUP_REPRESENTATIVE);
+        }
+
+        if ($group->creator_id == $memberId) {
+            return $this->respondBadRequest(ApiCode::CANNOT_REMOVE_SELF);
+        }
+
+        $member = $group->students()->where('student_id', $memberId)->first();
+
+        if (!$member) {
+            return $this->respondNotFound(ApiCode::MEMBER_NOT_FOUND);
+        }
+
+        $group->students()->detach($memberId);
+
+        return $this->respondWithMessage('Member removed successfully.');
+    }
+
+    public function assignRole($memberId)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
+        }
+
+        if (!$user->student) {
+            return $this->respondBadRequest(ApiCode::NOT_A_STUDENT);
+        }
+
+        $student = $user->student;
+        $group = $student->groups()->first();
+
+        if (!$group) {
+            return $this->respondNotFound(ApiCode::GROUP_NOT_FOUND);
+        }
+
+        if ($group->creator_id !== $student->id) {
+            return $this->respondBadRequest(ApiCode::NOT_GROUP_REPRESENTATIVE);
+        }
+
+        $member = $group->students()->where('student_id', $memberId)->first();
+
+        if (!$member) {
+            return $this->respondNotFound(ApiCode::MEMBER_NOT_FOUND);
+        }
+
+        $role = request()->input('role');
+        $member->pivot->role = $role;
+        $member->pivot->save();
+
+        return $this->respondWithMessage('Role assigned successfully.');
+    }
+
+    public function getGroupMembersWithRoles($groupId)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
+        }
+
+        if (!$user->student) {
+            return $this->respondBadRequest(ApiCode::NOT_A_STUDENT);
+        }
+
+        $group = Group::find($groupId);
+
+        if (!$group) {
+            return $this->respondNotFound(ApiCode::GROUP_NOT_FOUND);
+        }
+
+        $members = $group->students()->withPivot('role')->get()->map(function ($student) {
+            return [
+                'id' => $student->id,
+                'name' => $student->user->name,
+                'last_name' => $student->user->last_name,
+                'role' => $student->pivot->role,
+            ];
+        });
+
+        return $this->respond(['members' => $members]);
     }
 }

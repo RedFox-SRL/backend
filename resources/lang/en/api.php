@@ -23,5 +23,8 @@ return [
     'already_enrolled_group' => 'You are already enrolled in another group.',
     'email_not_found' => 'Email not found.',
     "student_not_in_group_management" => "You are not part of the management of the group.",
-    "group_name_already_exists" => "A group with the same name already exists."
+    "group_name_already_exists" => "A group with the same name already exists.",
+    "not_group_representative" => 'You are not the representative of the group.',
+    "member_not_found" => "Member not found.",
+    "cannot_remove_self" => "You cannot remove yourself from the group."
 ];

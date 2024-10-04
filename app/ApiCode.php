@@ -26,4 +26,7 @@ class ApiCode
     public const ALREADY_ENROLLED_GROUP = 271;
     public const EMAIL_NOT_FOUND = 272;
     public const GROUP_NAME_ALREADY_EXISTS = 273;
+    public const NOT_GROUP_REPRESENTATIVE = 274;
+    public const MEMBER_NOT_FOUND = 275;
+    public const CANNOT_REMOVE_SELF = 276;
 }

@@ -1,18 +1,18 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SprintController;
+use App\Http\Controllers\StudentManagementController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VerificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\RegistrationController;
-use App\Http\Controllers\VerificationController;
-use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ManagementController;
-use App\Http\Controllers\GroupController;
-use App\Http\Controllers\StudentManagementController;
-use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,4 +81,8 @@ Route::middleware(['api'])->group(function () {
     Route::get('/sprints/{id}/evaluation-template', [SprintController::class, 'getEvaluationTemplate']);
     Route::post('/sprints/{id}/submit-evaluation', [SprintController::class, 'submitEvaluation']);
     Route::get('/sprints/{id}/evaluated-tasks', [SprintController::class, 'getEvaluatedTasks']);
+
+    Route::post('groups/remove-member/{memberId}', [GroupController::class, 'removeMember']);
+    Route::post('groups/assign-role/{memberId}', [GroupController::class, 'assignRole']);
+    Route::get('groups/{groupId}/members', [GroupController::class, 'getGroupMembersWithRoles']);
 });
