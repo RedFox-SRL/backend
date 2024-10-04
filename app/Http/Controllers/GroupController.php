@@ -378,6 +378,7 @@ class GroupController extends Controller
             return [
                 'id' => $student->id,
                 'name' => $student->user->name,
+                'email' => $student->user->email,
                 'last_name' => $student->user->last_name,
                 'role' => $student->pivot->role,
             ];

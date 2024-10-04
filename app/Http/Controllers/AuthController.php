@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\ApiCode;
-use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -46,7 +45,30 @@ class AuthController extends Controller
 
     public function me()
     {
-        return $this->respond(auth()->user());
+        $user = auth()->user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
+        }
+
+        $data = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'last_name' => $user->last_name,
+            'email' => $user->email,
+            'email_verified_at' => $user->email_verified_at,
+            'created_at' => $user->created_at,
+            'updated_at' => $user->updated_at,
+            'role' => $user->role,
+        ];
+
+        if ($user->role === 'teacher' && $user->teacher) {
+            $data['teacher_id'] = $user->teacher->id;
+        } elseif ($user->role === 'student' && $user->student) {
+            $data['student_id'] = $user->student->id;
+        }
+
+        return $this->respond(['item' => $data]);
     }
 
     private function respondWithTokenAndRole($token, $role)
