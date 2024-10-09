@@ -85,4 +85,6 @@ Route::middleware(['api'])->group(function () {
     Route::post('groups/remove-member/{memberId}', [GroupController::class, 'removeMember']);
     Route::post('groups/assign-role/{memberId}', [GroupController::class, 'assignRole']);
     Route::get('groups/{groupId}/members', [GroupController::class, 'getGroupMembersWithRoles']);
+
+    Route::put('groups/contact-info', [GroupController::class, 'updateContactInfo']);
 });

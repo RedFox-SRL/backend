@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ApiCode;
 use App\Http\Requests\CreateGroupRequest;
 use App\Http\Requests\JoinGroupRequest;
+use App\Http\Requests\UpdateContactInfoRequest;
 use App\Models\Calendar;
 use App\Models\Group;
 use App\Models\GroupName;
@@ -386,5 +387,33 @@ class GroupController extends Controller
         });
 
         return $this->respond(['members' => $members]);
+    }
+
+    public function updateContactInfo(UpdateContactInfoRequest $request)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
+        }
+
+        if (!$user->student) {
+            return $this->respondBadRequest(ApiCode::NOT_A_STUDENT);
+        }
+
+        $student = $user->student;
+        $group = $student->groups()->first();
+
+        if (!$group) {
+            return $this->respondNotFound(ApiCode::GROUP_NOT_FOUND);
+        }
+
+        if ($group->creator_id !== $student->id) {
+            return $this->respondBadRequest(ApiCode::NOT_GROUP_REPRESENTATIVE);
+        }
+
+        $group->update($request->validated());
+
+        return $this->respondWithMessage('Contact information updated successfully.');
     }
 }
