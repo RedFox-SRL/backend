@@ -253,6 +253,7 @@ class GroupController extends Controller
                 'id' => $group->creator->id,
                 'name' => $group->creator->user->name,
                 'last_name' => $group->creator->user->last_name,
+                'email' => $group->creator->user->email,
             ];
 
             $members = $group->students->map(function ($student) {
@@ -260,6 +261,7 @@ class GroupController extends Controller
                     'id' => $student->id,
                     'name' => $student->user->name,
                     'last_name' => $student->user->last_name,
+                    'email' => $student->user->email,
                 ];
             });
 
