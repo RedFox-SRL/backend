@@ -238,7 +238,9 @@ class GroupController extends Controller
             return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
         }
 
-        $management = Management::with('groups.creator.user', 'groups.students.user')->find($managementId);
+        $management = Management::with(['groups.creator.user', 'groups.students' => function ($query) {
+            $query->withPivot('role')->with('user');
+        }])->find($managementId);
 
         if (!$management) {
             return $this->respondNotFound(ApiCode::MANAGEMENT_NOT_FOUND);
