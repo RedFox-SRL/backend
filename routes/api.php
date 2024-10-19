@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ForgotPasswordController;
@@ -87,4 +88,7 @@ Route::middleware(['api'])->group(function () {
     Route::get('groups/{groupId}/members', [GroupController::class, 'getGroupMembersWithRoles']);
 
     Route::put('groups/contact-info', [GroupController::class, 'updateContactInfo']);
+
+    Route::post('/announcements', [AnnouncementController::class, 'store']);
+    Route::get('/management/{managementId}/announcements', [AnnouncementController::class, 'index']);
 });
