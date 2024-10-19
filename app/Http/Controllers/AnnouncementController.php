@@ -20,23 +20,12 @@ class AnnouncementController extends Controller
             'announcement' => 'nullable|string|max:2000',
             'files' => 'nullable|array',
             'files.*' => 'file|max:10240', // 10MB max
-            'links' => 'nullable|array',
-            'links.*.url' => 'required|url',
-            'youtube_videos' => 'nullable|array',
-            'youtube_videos.*.video_id' => 'required|string',
+            'links' => 'nullable|json',
+            'youtube_videos' => 'nullable|json',
         ]);
 
         $user = Auth::user();
         $management = Management::findOrFail($request->management_id);
-
-//        // Verificar si el usuario tiene permiso para crear anuncios en este management
-//        if ($user->teacher && $user->teacher->id === $management->teacher_id) {
-//            // El usuario es el profesor de este management
-//        } elseif ($user->student && $user->student->managements->contains($management->id)) {
-//            // El usuario es un estudiante en este management
-//        } else {
-//            return response()->json(['message' => 'No tienes permiso para crear anuncios en este management'], 403);
-//        }
 
         DB::beginTransaction();
 
@@ -63,32 +52,31 @@ class AnnouncementController extends Controller
 
             // Procesar enlaces
             if ($request->has('links')) {
-                foreach ($request->links as $link) {
+                $links = json_decode($request->links, true);
+                foreach ($links as $link) {
                     AnnouncementLink::create([
                         'announcement_id' => $announcement->id,
                         'url' => $link['url'],
                         'title' => $link['title'] ?? null,
-                        'description' => $link['description'] ?? null,
-                        'image' => $link['image'] ?? null,
                     ]);
                 }
             }
 
             // Procesar videos de YouTube
             if ($request->has('youtube_videos')) {
-                foreach ($request->youtube_videos as $video) {
+                $youtubeVideos = json_decode($request->youtube_videos, true);
+                foreach ($youtubeVideos as $video) {
                     AnnouncementYoutubeVideo::create([
                         'announcement_id' => $announcement->id,
                         'video_id' => $video['video_id'],
                         'title' => $video['title'] ?? null,
-                        'description' => $video['description'] ?? null,
-                        'thumbnail' => $video['thumbnail'] ?? null,
                     ]);
                 }
             }
 
             DB::commit();
 
+            $announcement->load('files', 'links', 'youtubeVideos');
             return response()->json(['message' => 'Anuncio creado con éxito', 'announcement' => $announcement], 201);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -96,19 +84,11 @@ class AnnouncementController extends Controller
         }
     }
 
+
     public function index(Request $request, $managementId)
     {
         $management = Management::findOrFail($managementId);
         $user = Auth::user();
-
-        // Verificar si el usuario tiene permiso para ver los anuncios de este management
-        if ($user->teacher && $user->teacher->id === $management->teacher_id) {
-            // El usuario es el profesor de este management
-        } elseif ($user->student && $user->student->managements->contains($management->id)) {
-            // El usuario es un estudiante en este management
-        } else {
-            return response()->json(['message' => 'No tienes permiso para ver los anuncios de este management'], 403);
-        }
 
         $announcements = Announcement::where('management_id', $managementId)
             ->with(['user', 'files', 'links', 'youtubeVideos'])
@@ -117,6 +97,4 @@ class AnnouncementController extends Controller
 
         return response()->json($announcements);
     }
-
-    // Otros métodos como update, delete, etc., pueden ser implementados aquí
 }
