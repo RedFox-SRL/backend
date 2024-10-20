@@ -16,6 +16,7 @@ class UpdateContactInfoRequest extends FormRequest
         return [
             'contact_email' => 'nullable|email',
             'contact_phone' => 'nullable|string',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ];
     }
 }

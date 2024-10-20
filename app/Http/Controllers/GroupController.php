@@ -12,6 +12,7 @@ use App\Models\GroupName;
 use App\Models\Management;
 use App\Models\StudentManagement;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class GroupController extends Controller
 {
@@ -417,8 +418,18 @@ class GroupController extends Controller
             return $this->respondBadRequest(ApiCode::NOT_GROUP_REPRESENTATIVE);
         }
 
-        $group->update($request->validated());
+        $data = $request->validated();
 
-        return $this->respondWithMessage('Contact information updated successfully.');
+        if ($request->hasFile('logo')) {
+            if ($group->logo && Storage::disk('public')->exists($group->logo)) {
+                Storage::disk('public')->delete($group->logo);
+            }
+
+            $data['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        $group->update($data);
+
+        return $this->respondWithMessage('Contact information and logo updated successfully.');
     }
 }

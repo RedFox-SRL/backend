@@ -28,7 +28,7 @@ class CreateGroupRequest extends FormRequest
             'long_name' => 'required|string|max:255',
             'contact_email' => 'required|email',
             'contact_phone' => 'required|string',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ];
     }
 }
