@@ -193,7 +193,7 @@ class GroupController extends Controller
                 'long_name' => $group->long_name,
                 'contact_email' => $group->contact_email,
                 'contact_phone' => $group->contact_phone,
-                'logo' => asset('storage/' . $group->logo),
+                'logo' => Storage::url($group->logo),
                 'code' => $group->code,
                 'representative' => $representative,
                 'members' => $members,
@@ -275,7 +275,7 @@ class GroupController extends Controller
                 'long_name' => $group->long_name,
                 'contact_email' => $group->contact_email,
                 'contact_phone' => $group->contact_phone,
-                'logo' => asset('storage/' . $group->logo),
+                'logo' => Storage::url($group->logo),
                 'representative' => $representative,
                 'members' => $members,
             ];
