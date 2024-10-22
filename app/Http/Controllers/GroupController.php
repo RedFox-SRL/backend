@@ -48,7 +48,7 @@ class GroupController extends Controller
 
         $logoPath = null;
         if ($request->hasFile('logo')) {
-            $logoPath = $request->file('logo')->store('logos', 'public');
+            $logoPath = $request->file('logo')->store('logos');
         }
 
         $group = Group::create([
@@ -421,11 +421,11 @@ class GroupController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('logo')) {
-            if ($group->logo && Storage::disk('public')->exists($group->logo)) {
-                Storage::disk('public')->delete($group->logo);
+            if ($group->logo && Storage::exists($group->logo)) {
+                Storage::delete($group->logo);
             }
 
-            $data['logo'] = $request->file('logo')->store('logos', 'public');
+            $data['logo'] = $request->file('logo')->store('logos');
         }
 
         $group->update($data);
