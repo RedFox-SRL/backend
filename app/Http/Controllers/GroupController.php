@@ -6,7 +6,6 @@ use App\ApiCode;
 use App\Http\Requests\CreateGroupRequest;
 use App\Http\Requests\JoinGroupRequest;
 use App\Http\Requests\UpdateContactInfoRequest;
-use App\Models\Calendar;
 use App\Models\Group;
 use App\Models\GroupName;
 use App\Models\Management;
@@ -60,10 +59,6 @@ class GroupController extends Controller
             'contact_email' => $request->contact_email,
             'contact_phone' => $request->contact_phone,
             'logo' => $logoPath,
-        ]);
-
-        Calendar::create([
-            'group_id' => $group->id,
         ]);
 
         GroupName::create([
@@ -159,7 +154,7 @@ class GroupController extends Controller
         }
 
         $student = $user->student;
-        $group = $student->groups()->with('students', 'creator.user', 'management.teacher.user', 'calendar')->first();
+        $group = $student->groups()->with('students', 'creator.user', 'management.teacher.user')->first();
 
         if (!$group) {
             return $this->respondNotFound(ApiCode::GROUP_NOT_FOUND);
@@ -198,7 +193,6 @@ class GroupController extends Controller
                 'representative' => $representative,
                 'members' => $members,
                 'management' => $management,
-                'calendar_id' => $group->calendar->id,
             ]
         ]);
     }

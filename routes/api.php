@@ -59,12 +59,6 @@ Route::middleware(['api'])->group(function () {
     Route::get('managements/{management}/groups', [GroupController::class, 'getGroupsByManagement']);
     Route::post('groups/join', [GroupController::class, 'joinGroup']);
 
-    Route::get('/events', [EventController::class, 'index']);
-    Route::post('/events', [EventController::class, 'store']);
-    Route::get('/events/{id}', [EventController::class, 'show']);
-    Route::put('/events/{id}', [EventController::class, 'update']);
-    Route::delete('/events/{id}', [EventController::class, 'destroy']);
-
     Route::get('/sprints', [SprintController::class, 'index']);
     Route::post('/sprints', [SprintController::class, 'store']);
     Route::get('/sprints/{id}', [SprintController::class, 'show']);
