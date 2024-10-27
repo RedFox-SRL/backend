@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes; // Add this line
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model
 {
-    use HasFactory, SoftDeletes; // Add SoftDeletes here
+    use HasFactory, SoftDeletes;
 
-    protected $fillable = ['sprint_id', 'assigned_to', 'title', 'description', 'status'];
+    protected $fillable = ['sprint_id', 'title', 'description', 'status'];
 
     public function sprint()
     {
@@ -19,7 +19,7 @@ class Task extends Model
 
     public function assignedTo()
     {
-        return $this->belongsTo(Student::class, 'assigned_to');
+        return $this->belongsToMany(Student::class, 'task_student')->withTimestamps();
     }
 
     public function evaluation()

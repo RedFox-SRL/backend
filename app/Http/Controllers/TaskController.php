@@ -10,25 +10,32 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $sprintId = $request->query('sprint_id');
-        return Task::where('sprint_id', $sprintId)->get();
+        return Task::where('sprint_id', $sprintId)->with('assignedTo')->get();
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'sprint_id' => 'required|exists:sprints,id',
-            'assigned_to' => 'nullable|exists:students,id',
+            'assigned_to' => 'nullable|array',
+            'assigned_to.*' => 'exists:students,id',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'status' => 'required|in:todo,in_progress,done',
         ]);
 
-        return Task::create($request->all());
+        $task = Task::create($request->except('assigned_to'));
+
+        if ($request->has('assigned_to')) {
+            $task->assignedTo()->attach($request->assigned_to);
+        }
+
+        return $task->load('assignedTo');
     }
 
     public function show($id)
     {
-        return Task::findOrFail($id);
+        return Task::with('assignedTo')->findOrFail($id);
     }
 
     public function update(Request $request, $id)
@@ -43,10 +50,17 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'status' => 'required|in:todo,in_progress,done',
+            'assigned_to' => 'nullable|array',
+            'assigned_to.*' => 'exists:students,id',
         ]);
-        $task->update($request->all());
 
-        return $task;
+        $task->update($request->except('assigned_to'));
+
+        if ($request->has('assigned_to')) {
+            $task->assignedTo()->sync($request->assigned_to);
+        }
+
+        return $task->load('assignedTo');
     }
 
     public function destroy($id)
