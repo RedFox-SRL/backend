@@ -134,6 +134,9 @@ class SprintController extends Controller
                     'comment' => $evaluation['comment'],
                     'evaluated_by' => auth()->id()
                 ]);
+
+                $task = $sprint->tasks()->findOrFail($taskId);
+                $task->reviewed = true;
             }
 
             DB::commit();

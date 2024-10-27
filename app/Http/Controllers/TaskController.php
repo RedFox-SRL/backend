@@ -34,6 +34,11 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
         $task = Task::findOrFail($id);
+
+        if ($task->reviewed) {
+            return response()->json(['message' => 'This task has been reviewed and cannot be edited'], 403);
+        }
+
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -47,6 +52,11 @@ class TaskController extends Controller
     public function destroy($id)
     {
         $task = Task::findOrFail($id);
+
+        if ($task->reviewed) {
+            return response()->json(['message' => 'This task has been reviewed and cannot be deleted'], 403);
+        }
+
         $task->delete();
 
         return response()->noContent();
