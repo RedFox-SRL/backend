@@ -137,6 +137,7 @@ class SprintController extends Controller
 
                 $task = $sprint->tasks()->findOrFail($taskId);
                 $task->reviewed = true;
+                $task->status = 'done';
             }
 
             DB::commit();
