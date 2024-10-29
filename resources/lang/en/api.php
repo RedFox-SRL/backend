@@ -31,4 +31,5 @@ return [
     'task_already_reviewed' => 'This task has been reviewed and cannot be modified.',
     'task_update_failed' => 'Failed to update the task.',
     'task_delete_failed' => 'Failed to delete the task.',
+    'sprint_not_found' => 'Sprint not found.',
 ];

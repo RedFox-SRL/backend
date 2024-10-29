@@ -61,5 +61,6 @@ return [
         ApiCode::TASK_ALREADY_REVIEWED => 'api.task_already_reviewed',
         ApiCode::TASK_UPDATE_FAILED => 'api.task_update_failed',
         ApiCode::TASK_DELETE_FAILED => 'api.task_delete_failed',
+        ApiCode::SPRINT_NOT_FOUND => 'api.sprint_not_found',
     ],
 ];

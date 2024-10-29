@@ -21,7 +21,7 @@ class UpdateTaskRequest extends FormRequest
             'assigned_to.*' => 'exists:students,id',
             'links' => 'nullable|array',
             'links.*.id' => 'nullable|exists:task_links,id',
-            'links.*.url' => 'required|url',
+            'links.*.url' => 'required|string',
             'links.*.description' => 'nullable|string',
         ];
     }

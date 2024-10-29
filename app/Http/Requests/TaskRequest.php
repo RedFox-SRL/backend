@@ -21,7 +21,7 @@ class TaskRequest extends FormRequest
             'assigned_to' => 'nullable|array',
             'assigned_to.*' => 'exists:students,id',
             'links' => 'nullable|array',
-            'links.*.url' => 'required|url',
+            'links.*.url' => 'required|string',
             'links.*.description' => 'nullable|string',
         ];
     }

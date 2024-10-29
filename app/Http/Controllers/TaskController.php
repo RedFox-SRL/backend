@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sprint;
 use App\Models\Task;
 use App\Models\TaskLink;
 use App\Http\Requests\TaskRequest;
@@ -14,6 +15,12 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $sprintId = $request->query('sprint_id');
+        $sprintExists = Sprint::where('id', $sprintId)->exists();
+
+        if (!$sprintId || !$sprintExists) {
+            return $this->respondNotFound(ApiCode::SPRINT_NOT_FOUND);
+        }
+
         $tasks = Task::where('sprint_id', $sprintId)->with(['assignedTo', 'links'])->get();
         return $this->respond(['items' => $tasks]);
     }

@@ -33,4 +33,5 @@ class ApiCode
     public const TASK_ALREADY_REVIEWED = 281;
     public const TASK_UPDATE_FAILED = 282;
     public const TASK_DELETE_FAILED = 283;
+    public const SPRINT_NOT_FOUND = 284;
 }
