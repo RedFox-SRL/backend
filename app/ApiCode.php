@@ -29,4 +29,8 @@ class ApiCode
     public const NOT_GROUP_REPRESENTATIVE = 274;
     public const MEMBER_NOT_FOUND = 275;
     public const CANNOT_REMOVE_SELF = 276;
+    public const TASK_NOT_FOUND = 280;
+    public const TASK_ALREADY_REVIEWED = 281;
+    public const TASK_UPDATE_FAILED = 282;
+    public const TASK_DELETE_FAILED = 283;
 }

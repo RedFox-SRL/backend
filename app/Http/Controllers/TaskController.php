@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\TaskLink;
+use App\Http\Requests\TaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
+use App\ApiCode;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -10,69 +14,97 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $sprintId = $request->query('sprint_id');
-        return Task::where('sprint_id', $sprintId)->with('assignedTo')->get();
+        $tasks = Task::where('sprint_id', $sprintId)->with(['assignedTo', 'links'])->get();
+        return $this->respond(['items' => $tasks]);
     }
 
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
-        $request->validate([
-            'sprint_id' => 'required|exists:sprints,id',
-            'assigned_to' => 'nullable|array',
-            'assigned_to.*' => 'exists:students,id',
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status' => 'required|in:todo,in_progress,done',
-        ]);
-
-        $task = Task::create($request->except('assigned_to'));
+        $task = Task::create($request->except(['assigned_to', 'links']));
 
         if ($request->has('assigned_to')) {
             $task->assignedTo()->attach($request->assigned_to);
         }
 
-        return $task->load('assignedTo');
+        if ($request->has('links')) {
+            foreach ($request->links as $link) {
+                $task->links()->create($link);
+            }
+        }
+
+        return $this->respond(['item' => $task->load(['assignedTo', 'links'])]);
     }
 
     public function show($id)
     {
-        return Task::with('assignedTo')->findOrFail($id);
+        $task = Task::with(['assignedTo', 'links'])->find($id);
+
+        if (!$task) {
+            return $this->respondNotFound(ApiCode::TASK_NOT_FOUND);
+        }
+
+        return $this->respond(['item' => $task]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateTaskRequest $request, $id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::find($id);
+
+        if (!$task) {
+            return $this->respondNotFound(ApiCode::TASK_NOT_FOUND);
+        }
 
         if ($task->reviewed) {
-            return response()->json(['message' => 'This task has been reviewed and cannot be edited'], 403);
+            return $this->respondUnAuthorizedRequest(ApiCode::TASK_ALREADY_REVIEWED);
         }
 
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status' => 'required|in:todo,in_progress,done',
-            'assigned_to' => 'nullable|array',
-            'assigned_to.*' => 'exists:students,id',
-        ]);
+        try {
+            $task->update($request->except(['assigned_to', 'links']));
 
-        $task->update($request->except('assigned_to'));
+            if ($request->has('assigned_to')) {
+                $task->assignedTo()->sync($request->assigned_to);
+            }
 
-        if ($request->has('assigned_to')) {
-            $task->assignedTo()->sync($request->assigned_to);
+            if ($request->has('links')) {
+                $existingLinkIds = $task->links->pluck('id')->toArray();
+                $newLinkIds = collect($request->links)->pluck('id')->filter()->toArray();
+                $linksToDelete = array_diff($existingLinkIds, $newLinkIds);
+
+                TaskLink::destroy($linksToDelete);
+
+                foreach ($request->links as $link) {
+                    if (isset($link['id'])) {
+                        $task->links()->where('id', $link['id'])->update($link);
+                    } else {
+                        $task->links()->create($link);
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            return $this->respondBadRequest(ApiCode::TASK_UPDATE_FAILED);
         }
 
-        return $task->load('assignedTo');
+        return $this->respond(['item' => $task->load(['assignedTo', 'links'])]);
     }
 
     public function destroy($id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::find($id);
 
-        if ($task->reviewed) {
-            return response()->json(['message' => 'This task has been reviewed and cannot be deleted'], 403);
+        if (!$task) {
+            return $this->respondNotFound(ApiCode::TASK_NOT_FOUND);
         }
 
-        $task->delete();
+        if ($task->reviewed) {
+            return $this->respondUnAuthorizedRequest(ApiCode::TASK_ALREADY_REVIEWED);
+        }
 
-        return response()->noContent();
+        try {
+            $task->delete();
+        } catch (\Exception $e) {
+            return $this->respondBadRequest(ApiCode::TASK_DELETE_FAILED);
+        }
+
+        return $this->respondWithMessage('Task successfully deleted');
     }
 }

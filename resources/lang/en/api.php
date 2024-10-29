@@ -26,5 +26,9 @@ return [
     "group_name_already_exists" => "A group with the same name already exists.",
     "not_group_representative" => 'You are not the representative of the group.',
     "member_not_found" => "Member not found.",
-    "cannot_remove_self" => "You cannot remove yourself from the group."
+    "cannot_remove_self" => "You cannot remove yourself from the group.",
+    'task_not_found' => 'Task not found.',
+    'task_already_reviewed' => 'This task has been reviewed and cannot be modified.',
+    'task_update_failed' => 'Failed to update the task.',
+    'task_delete_failed' => 'Failed to delete the task.',
 ];
