@@ -62,5 +62,11 @@ return [
         ApiCode::TASK_UPDATE_FAILED => 'api.task_update_failed',
         ApiCode::TASK_DELETE_FAILED => 'api.task_delete_failed',
         ApiCode::SPRINT_NOT_FOUND => 'api.sprint_not_found',
+        ApiCode::UNAUTHORIZED => 'api.unauthorized',
+        ApiCode::EVALUATION_ALREADY_EXISTS => 'api.evaluation_already_exists',
+        ApiCode::EVALUATION_CREATION_FAILED => 'api.evaluation_creation_failed',
+        ApiCode::EVALUATION_NOT_FOUND => 'api.evaluation_not_found',
+        ApiCode::SPRINT_PERCENTAGE_EXCEEDED => 'api.sprint_percentage_exceeded',
+        ApiCode::EVALUATION_PERIOD_ENDED => 'api.evaluation_period_ended',
     ],
 ];

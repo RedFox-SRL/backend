@@ -32,4 +32,10 @@ return [
     'task_update_failed' => 'Failed to update the task.',
     'task_delete_failed' => 'Failed to delete the task.',
     'sprint_not_found' => 'Sprint not found.',
+    'unauthorized' => 'Unauthorized.',
+    'evaluation_already_exists' => 'Weekly evaluation already exists for this task.',
+    'evaluation_creation_failed' => 'Failed to create weekly evaluation.',
+    'evaluation_not_found' => 'Weekly evaluation not found.',
+    'sprint_percentage_exceeded' => 'The sum of the percentages of the tasks exceeds 100%.',
+    'evaluation_period_ended' => 'The evaluation period has ended.',
 ];

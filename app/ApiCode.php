@@ -34,4 +34,10 @@ class ApiCode
     public const TASK_UPDATE_FAILED = 282;
     public const TASK_DELETE_FAILED = 283;
     public const SPRINT_NOT_FOUND = 284;
+    public const UNAUTHORIZED = 285;
+    public const EVALUATION_ALREADY_EXISTS = 286;
+    public const EVALUATION_CREATION_FAILED = 287;
+    public const EVALUATION_NOT_FOUND = 288;
+    public const SPRINT_PERCENTAGE_EXCEEDED = 289;
+    public const EVALUATION_PERIOD_ENDED = 290;
 }
