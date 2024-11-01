@@ -9,7 +9,7 @@ class WeeklyEvaluation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sprint_id', 'week_number', 'evaluation_date'];
+    protected $fillable = ['sprint_id', 'evaluator_id', 'week_number', 'evaluation_date'];
 
     protected $casts = [
         'evaluation_date' => 'date',
@@ -18,6 +18,11 @@ class WeeklyEvaluation extends Model
     public function sprint()
     {
         return $this->belongsTo(Sprint::class);
+    }
+
+    public function evaluator()
+    {
+        return $this->belongsTo(User::class, 'evaluator_id');
     }
 
     public function tasks()

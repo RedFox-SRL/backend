@@ -44,4 +44,6 @@ class ApiCode
     public const INVALID_WEEK_NUMBER = 292;
     public const INVALID_TASKS = 293;
     public const EVALUATION_RETRIEVAL_FAILED = 294;
+    public const MAX_EVALUATIONS_REACHED = 295;
+    public const SPRINT_ENDED = 296;
 }

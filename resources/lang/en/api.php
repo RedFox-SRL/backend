@@ -42,4 +42,6 @@ return [
     'invalid_week_number' => 'Invalid week number.',
     'invalid_tasks' => 'Invalid tasks.',
     'evaluation_retrieval_failed' => 'Failed to retrieve weekly evaluation.',
+    'max_evaluations_reached' => 'Cannot create more evaluations than allowed for this sprint.',
+    'sprint_ended' => 'Cannot create evaluations after the sprint end date.',
 ];
