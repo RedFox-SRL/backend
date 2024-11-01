@@ -16,9 +16,9 @@ class StoreSprintRequest extends FormRequest
         return [
             'group_id' => 'required|exists:groups,id',
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
             'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date',
+            'end_date' => 'required|date|after:start_date',
+            'percentage' => 'required|numeric|min:0|max:100',
         ];
     }
 }

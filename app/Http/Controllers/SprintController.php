@@ -2,149 +2,106 @@
 
 namespace App\Http\Controllers;
 
+use App\ApiCode;
+use App\Models\Group;
+use App\Models\Sprint;
+use App\Models\Task;
 use App\Http\Requests\StoreSprintRequest;
 use App\Http\Requests\UpdateSprintRequest;
-use App\Models\Sprint;
-use App\Models\TaskEvaluation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class SprintController extends Controller
 {
     public function index(Request $request)
     {
         $groupId = $request->query('group_id');
-        return Sprint::where('group_id', $groupId)->with('tasks')->get();
+        $sprints = Sprint::where('group_id', $groupId)
+            ->with(['tasks', 'weeklyEvaluations', 'sprintEvaluation'])
+            ->get();
+        return response()->json($sprints);
     }
 
     public function store(StoreSprintRequest $request)
     {
-        return Sprint::create($request->all());
+        $group = Group::findOrFail($request->group_id);
+
+        $totalPercentage = $group->sprints()->sum('percentage') + $request->percentage;
+
+        if ($totalPercentage > 100) {
+            return $this->respondBadRequest(ApiCode::SPRINT_PERCENTAGE_EXCEEDED);
+        }
+
+        $sprint = Sprint::create($request->validated());
+        return response()->json($sprint, 201);
     }
 
     public function show($id)
     {
-        return Sprint::with('tasks')->findOrFail($id);
+        $sprint = Sprint::with(['tasks', 'weeklyEvaluations', 'sprintEvaluation'])
+            ->findOrFail($id);
+        return response()->json($sprint);
     }
 
     public function update(UpdateSprintRequest $request, $id)
     {
         $sprint = Sprint::findOrFail($id);
-        $sprint->update($request->all());
-
-        return $sprint;
+        $sprint->update($request->validated());
+        return response()->json($sprint);
     }
 
     public function destroy($id)
     {
         $sprint = Sprint::findOrFail($id);
         $sprint->delete();
-
-        return response()->noContent();
+        return response()->json(null, 204);
     }
 
-
-    public function getEvaluationTemplate($id)
+    public function getTasks($id)
     {
-        $management = $this->getManagementForAuthenticatedTeacherBySprint($id);
-        if ($management instanceof \Illuminate\Http\JsonResponse) {
-            return $management;
-        }
-
-        $sprint = Sprint::with(['tasks' => function ($query) {
-            $query->where('status', 'done')
-                ->whereNull('deleted_at')
-                ->whereDoesntHave('evaluation')
-                ->with('assignedTo:id,user_id', 'assignedTo.user:id,name,last_name');
-        }])->findOrFail($id);
-
-        return response()->json($sprint);
-    }
-
-    private function getManagementForAuthenticatedTeacherBySprint($sprintId)
-    {
-        $sprint = Sprint::findOrFail($sprintId);
-        $group = $sprint->group;
-        $management = $group->management;
-
-        $teacher = $this->getAuthenticatedTeacher();
-        if ($teacher instanceof \Illuminate\Http\JsonResponse) {
-            return $teacher;
-        }
-
-        $isValid = $this->validateTeacherForManagement($management, $teacher);
-        if ($isValid instanceof \Illuminate\Http\JsonResponse) {
-            return $isValid;
-        }
-
-        return $management;
-    }
-
-    private function getAuthenticatedTeacher()
-    {
-        $user = auth()->user();
-        if (!$user) {
-            return response()->json(['message' => 'Unauthorized'], 403);
-        }
-
-        $teacher = $user->teacher;
-        if (!$teacher) {
-            return response()->json(['message' => 'User is not a teacher'], 403);
-        }
-
-        return $teacher;
-    }
-
-    private function validateTeacherForManagement($management, $teacher)
-    {
-        if ($management->teacher_id !== $teacher->id) {
-            return response()->json(['message' => 'Unauthorized'], 403);
-        }
-
-        return true;
-    }
-
-    public function getEvaluatedTasks($id)
-    {
-        $sprint = Sprint::with(['tasks' => function ($query) {
-            $query->has('evaluation')
-                ->with('evaluation.evaluatedBy:id,name,last_name', 'assignedTo:id,user_id', 'assignedTo.user:id,name,last_name');
-        }])->findOrFail($id);
-
-        return response()->json($sprint);
-    }
-
-    public function submitEvaluation(Request $request, $id)
-    {
-        $management = $this->getManagementForAuthenticatedTeacherBySprint($id);
-        if ($management instanceof \Illuminate\Http\JsonResponse) {
-            return $management;
-        }
-
         $sprint = Sprint::findOrFail($id);
-        $evaluations = $request->input('evaluations');
+        $tasks = $sprint->tasks()
+            ->with(['weeklyEvaluations' => function ($query) {
+                $query->orderBy('evaluation_date', 'desc');
+            }])
+            ->get();
+        return response()->json($tasks);
+    }
 
-        DB::beginTransaction();
+    public function getEvaluationSummary($id)
+    {
+        $sprint = Sprint::with([
+            'weeklyEvaluations.tasks',
+            'sprintEvaluation.studentGrades.student.user'
+        ])->findOrFail($id);
 
-        try {
-            foreach ($evaluations as $taskId => $evaluation) {
-                TaskEvaluation::create([
-                    'task_id' => $taskId,
-                    'grade' => $evaluation['grade'],
-                    'comment' => $evaluation['comment'],
-                    'evaluated_by' => auth()->id()
-                ]);
+        $summary = [
+            'sprint' => $sprint->only(['id', 'title', 'start_date', 'end_date', 'percentage']),
+            'weekly_evaluations' => $sprint->weeklyEvaluations->map(function ($weeklyEval) {
+                return [
+                    'week_number' => $weeklyEval->week_number,
+                    'evaluation_date' => $weeklyEval->evaluation_date,
+                    'tasks' => $weeklyEval->tasks->map(function ($task) use ($weeklyEval) {
+                        return [
+                            'id' => $task->id,
+                            'title' => $task->title,
+                            'comments' => $task->pivot->comments,
+                            'satisfaction_level' => $task->pivot->satisfaction_level,
+                        ];
+                    }),
+                ];
+            }),
+            'final_evaluation' => $sprint->sprintEvaluation ? [
+                'summary' => $sprint->sprintEvaluation->summary,
+                'student_grades' => $sprint->sprintEvaluation->studentGrades->map(function ($grade) {
+                    return [
+                        'student_name' => $grade->student->user->name . ' ' . $grade->student->user->last_name,
+                        'grade' => $grade->grade,
+                        'comments' => $grade->comments,
+                    ];
+                }),
+            ] : null,
+        ];
 
-                $task = $sprint->tasks()->findOrFail($taskId);
-                $task->reviewed = true;
-                $task->status = 'done';
-            }
-
-            DB::commit();
-            return response()->json(['message' => 'Evaluations submitted successfully']);
-        } catch (\Exception $e) {
-            DB::rollback();
-            return response()->json(['message' => 'Error submitting evaluations'], 500);
-        }
+        return response()->json($summary);
     }
 }

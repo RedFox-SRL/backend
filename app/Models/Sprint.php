@@ -9,7 +9,17 @@ class Sprint extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['group_id', 'title', 'features', 'start_date', 'end_date'];
+    protected $fillable = ['group_id', 'title', 'features', 'start_date', 'end_date', 'percentage'];
+
+    public function sprintEvaluation()
+    {
+        return $this->hasOne(SprintEvaluation::class);
+    }
+
+    public function weeklyEvaluations()
+    {
+        return $this->hasMany(WeeklyEvaluation::class);
+    }
 
     protected $casts = [
         'features' => 'array',

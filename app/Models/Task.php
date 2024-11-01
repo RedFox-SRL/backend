@@ -22,14 +22,11 @@ class Task extends Model
         return $this->belongsToMany(Student::class, 'task_student')->withTimestamps();
     }
 
-    public function evaluation()
+    public function weeklyEvaluations()
     {
-        return $this->hasOne(TaskEvaluation::class)->latest();
-    }
-
-    public function evaluations()
-    {
-        return $this->hasMany(TaskEvaluation::class);
+        return $this->belongsToMany(WeeklyEvaluation::class, 'task_weekly_evaluation')
+            ->withPivot('comments', 'satisfaction_level')
+            ->withTimestamps();
     }
 
     public function links()
