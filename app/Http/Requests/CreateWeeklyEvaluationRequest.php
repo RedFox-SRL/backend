@@ -33,6 +33,9 @@ class CreateWeeklyEvaluationRequest extends FormRequest
                     if (!$task) {
                         $fail('The task does not belong to this sprint.');
                     }
+                    if ($task->weeklyEvaluations()->exists()) {
+                        $fail('The task has already been evaluated in a previous week.');
+                    }
                 },
             ],
             'tasks.*.comments' => 'required|string',

@@ -18,9 +18,7 @@ class WeeklyEvaluationController extends Controller
         try {
             $sprint = Sprint::with(['tasks' => function ($query) {
                 $query->where('status', 'done')
-                    ->whereDoesntHave('weeklyEvaluations', function ($query) {
-                        $query->where('week_number', Carbon::now()->weekOfYear);
-                    });
+                    ->whereDoesntHave('weeklyEvaluations');
             }, 'tasks.assignedTo.user'])
                 ->findOrFail($sprintId);
 
@@ -143,11 +141,11 @@ class WeeklyEvaluationController extends Controller
         foreach ($requestTasks as $taskData) {
             $task = $sprintTasks->firstWhere('id', $taskData['id']);
 
-            if ($task->weeklyEvaluations()->where('week_number', $weekNumber)->exists()) {
+            if ($task->weeklyEvaluations()->exists()) {
                 $skippedTasks[] = [
                     'id' => $task->id,
                     'title' => $task->title,
-                    'reason' => 'Already reviewed for this week'
+                    'reason' => 'Already reviewed in a previous week'
                 ];
                 continue;
             }
