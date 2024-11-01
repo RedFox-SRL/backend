@@ -43,10 +43,6 @@ class WeeklyEvaluationController extends Controller
             $tasksToEvaluate = collect($request->tasks)->pluck('id');
             $sprintTasks = $this->getSprintTasks($sprint->id, $tasksToEvaluate);
 
-            if ($sprintTasks->count() !== $tasksToEvaluate->count()) {
-                return $this->respondBadRequest(ApiCode::INVALID_TASKS);
-            }
-
             DB::beginTransaction();
 
             try {
@@ -154,6 +150,8 @@ class WeeklyEvaluationController extends Controller
                 'comments' => $taskData['comments'],
                 'satisfaction_level' => $taskData['satisfaction_level'],
             ]);
+
+            $task->update(['reviewed' => true]);
 
             $processedTasks[] = [
                 'id' => $task->id,
