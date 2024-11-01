@@ -40,4 +40,8 @@ class ApiCode
     public const EVALUATION_NOT_FOUND = 288;
     public const SPRINT_PERCENTAGE_EXCEEDED = 289;
     public const EVALUATION_PERIOD_ENDED = 290;
+    public const EVALUATION_TEMPLATE_RETRIEVAL_FAILED = 291;
+    public const INVALID_WEEK_NUMBER = 292;
+    public const INVALID_TASKS = 293;
+    public const EVALUATION_RETRIEVAL_FAILED = 294;
 }

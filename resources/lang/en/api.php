@@ -38,4 +38,8 @@ return [
     'evaluation_not_found' => 'Weekly evaluation not found.',
     'sprint_percentage_exceeded' => 'The sum of the percentages of the tasks exceeds 100%.',
     'evaluation_period_ended' => 'The evaluation period has ended.',
+    'evaluation_template_retrieval_failed' => 'Failed to retrieve evaluation template.',
+    'invalid_week_number' => 'Invalid week number.',
+    'invalid_tasks' => 'Invalid tasks.',
+    'evaluation_retrieval_failed' => 'Failed to retrieve weekly evaluation.',
 ];

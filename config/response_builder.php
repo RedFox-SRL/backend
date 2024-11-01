@@ -68,5 +68,9 @@ return [
         ApiCode::EVALUATION_NOT_FOUND => 'api.evaluation_not_found',
         ApiCode::SPRINT_PERCENTAGE_EXCEEDED => 'api.sprint_percentage_exceeded',
         ApiCode::EVALUATION_PERIOD_ENDED => 'api.evaluation_period_ended',
+        ApiCode::EVALUATION_TEMPLATE_RETRIEVAL_FAILED => 'api.evaluation_template_retrieval_failed',
+        ApiCode::INVALID_WEEK_NUMBER => 'api.invalid_week_number',
+        ApiCode::INVALID_TASKS => 'api.invalid_tasks',
+        ApiCode::EVALUATION_RETRIEVAL_FAILED => 'api.evaluation_retrieval_failed',
     ],
 ];

@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class WeeklyEvaluation extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['sprint_id', 'week_number', 'evaluation_date'];
+
+    protected $casts = [
+        'evaluation_date' => 'date',
+    ];
 
     public function sprint()
     {
