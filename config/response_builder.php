@@ -81,5 +81,7 @@ return [
         ApiCode::INSUFFICIENT_COMPLETED_TASKS => 'api.insufficient_completed_tasks',
         ApiCode::STUDENT_NO_COMPLETED_TASKS => 'api.student_no_completed_tasks',
         ApiCode::GRADE_EXCEEDS_SPRINT_PERCENTAGE => 'api.grade_exceeds_sprint_percentage',
+        ApiCode::STUDENT_NOT_IN_GROUP => 'api.student_not_in_group',
+        ApiCode::SPRINT_EVALUATION_NOT_FOUND => 'api.sprint_evaluation_not_found',
     ],
 ];

@@ -51,4 +51,6 @@ return [
     'insufficient_completed_tasks' => 'The student did not complete any tasks in this sprint.',
     'student_no_completed_tasks' => 'The student did not complete any tasks in this sprint.',
     'grade_exceeds_sprint_percentage' => 'The grade cannot exceed the sprint\'s percentage value.',
+    'student_not_in_group' => 'The student are not part of the group.',
+    'sprint_evaluation_not_found' => 'Sprint evaluation not found.',
 ];
