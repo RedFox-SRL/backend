@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 use App\ApiCode;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Log;
 
 class SprintEvaluationController extends Controller
 {
@@ -23,7 +22,6 @@ class SprintEvaluationController extends Controller
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound(ApiCode::SPRINT_NOT_FOUND);
         } catch (Exception $e) {
-            Log::error('Error retrieving evaluation template: ' . $e->getMessage());
             return $this->respondBadRequest(ApiCode::EVALUATION_TEMPLATE_RETRIEVAL_FAILED);
         }
     }
@@ -98,7 +96,6 @@ class SprintEvaluationController extends Controller
             return $this->respondNotFound(ApiCode::SPRINT_NOT_FOUND);
         } catch (Exception $e) {
             DB::rollBack();
-            Log::error('Error creating sprint evaluation: ' . $e->getMessage());
             return $this->respondBadRequest(ApiCode::EVALUATION_CREATION_FAILED);
         }
     }
@@ -125,7 +122,6 @@ class SprintEvaluationController extends Controller
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound(ApiCode::SPRINT_NOT_FOUND);
         } catch (Exception $e) {
-            Log::error('Error retrieving final evaluation: ' . $e->getMessage());
             return $this->respondBadRequest(ApiCode::EVALUATION_RETRIEVAL_FAILED);
         }
     }
