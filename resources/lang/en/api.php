@@ -44,4 +44,11 @@ return [
     'evaluation_retrieval_failed' => 'Failed to retrieve weekly evaluation.',
     'max_evaluations_reached' => 'Cannot create more evaluations than allowed for this sprint.',
     'sprint_ended' => 'Cannot create evaluations after the sprint end date.',
+    'sprint_not_ended' => 'Cannot create evaluations before the sprint end date.',
+    'sprint_evaluation_already_exists' => 'Sprint evaluation already exists.',
+    'sprint_evaluation_too_early' => 'Sprint evaluation can only be created within 4 days of the sprint end date or after it has ended.',
+    'no_weekly_evaluations' => 'At least one weekly evaluation is required before creating the final sprint evaluation.',
+    'insufficient_completed_tasks' => 'The student did not complete any tasks in this sprint.',
+    'student_no_completed_tasks' => 'The student did not complete any tasks in this sprint.',
+    'grade_exceeds_sprint_percentage' => 'The grade cannot exceed the sprint\'s percentage value.',
 ];

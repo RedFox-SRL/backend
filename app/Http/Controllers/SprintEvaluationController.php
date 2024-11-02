@@ -4,75 +4,93 @@ namespace App\Http\Controllers;
 
 use App\Models\Sprint;
 use App\Models\SprintEvaluation;
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateSprintEvaluationRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\ApiCode;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class SprintEvaluationController extends Controller
 {
     public function getEvaluationTemplate($sprintId)
     {
-        $sprint = Sprint::with(['group.students.user', 'weeklyEvaluations.tasks'])
-            ->findOrFail($sprintId);
+        try {
+            $sprint = Sprint::with([
+                'group.students.user',
+                'weeklyEvaluations.tasks',
+                'tasks.assignedTo.user',
+                'tasks.weeklyEvaluations',
+                'tasks.links'
+            ])->findOrFail($sprintId);
 
-        $template = [
-            'sprint_id' => $sprint->id,
-            'sprint_title' => $sprint->title,
-            'features' => $sprint->features,
-            'percentage' => $sprint->percentage,
-            'group_members' => $sprint->group->students->map(function ($student) {
-                return [
-                    'id' => $student->id,
-                    'name' => $student->user->name,
-                    'last_name' => $student->user->last_name,
-                ];
-            }),
-            'weekly_evaluations_summary' => $sprint->weeklyEvaluations->map(function ($weeklyEval) {
-                return [
-                    'week_number' => $weeklyEval->week_number,
-                    'tasks_evaluated' => $weeklyEval->tasks->count(),
-                    'average_satisfaction' => $weeklyEval->tasks->avg('pivot.satisfaction_level'),
-                ];
-            }),
-        ];
+            $template = [
+                'sprint_id' => $sprint->id,
+                'sprint_title' => $sprint->title,
+                'start_date' => $sprint->start_date,
+                'end_date' => $sprint->end_date,
+                'percentage' => $sprint->percentage,
+                'planned_features' => $sprint->features,
+                'overall_progress' => $this->getOverallProgress($sprint),
+                'student_summaries' => $this->getStudentSummaries($sprint),
+                'weekly_evaluations_summary' => $this->getWeeklyEvaluationsSummary($sprint),
+            ];
 
-        return response()->json($template);
+            return $this->respond($template, 'Evaluation template retrieved successfully');
+        } catch (ModelNotFoundException $e) {
+            return $this->respondNotFound(ApiCode::SPRINT_NOT_FOUND);
+        } catch (Exception $e) {
+            return $this->respondBadRequest(ApiCode::EVALUATION_TEMPLATE_RETRIEVAL_FAILED);
+        }
     }
 
-    public function create(Request $request, $sprintId)
+    public function create(CreateSprintEvaluationRequest $request, $sprintId)
     {
-        $request->validate([
-            'summary' => 'required|string',
-            'student_grades' => 'required|array',
-            'student_grades.*.student_id' => 'required|exists:students,id',
-            'student_grades.*.grade' => 'required|numeric|min:0',
-            'student_grades.*.comments' => 'nullable|string',
-        ]);
-
-        $sprint = Sprint::findOrFail($sprintId);
-
-        if ($sprint->group->management->teacher_id !== auth()->user()->teacher->id) {
-            return $this->respondUnAuthorizedRequest(ApiCode::UNAUTHORIZED);
-        }
-
-        if ($sprint->sprintEvaluation) {
-            return $this->respondBadRequest(ApiCode::EVALUATION_ALREADY_EXISTS);
-        }
-
-        $maxGrade = $sprint->percentage;
-
         DB::beginTransaction();
-
         try {
+            $sprint = Sprint::findOrFail($sprintId);
+
+            if ($sprint->sprintEvaluation) {
+                return $this->respondBadRequest(ApiCode::SPRINT_EVALUATION_ALREADY_EXISTS);
+            }
+
+            $now = Carbon::now();
+            $sprintEndDate = Carbon::parse($sprint->end_date);
+            $evaluationStartDate = $sprintEndDate->copy()->subDays(4);
+
+            if ($now->lt($evaluationStartDate)) {
+                return $this->respondBadRequest(ApiCode::SPRINT_EVALUATION_TOO_EARLY);
+            }
+
+            if ($now->lt($sprintEndDate)) {
+                return $this->respondBadRequest(ApiCode::SPRINT_NOT_ENDED);
+            }
+
+            if ($sprint->weeklyEvaluations()->count() === 0) {
+                return $this->respondBadRequest(ApiCode::NO_WEEKLY_EVALUATIONS);
+            }
+
             $sprintEvaluation = SprintEvaluation::create([
                 'sprint_id' => $sprint->id,
                 'summary' => $request->summary,
             ]);
 
             foreach ($request->student_grades as $gradeData) {
-                if ($gradeData['grade'] > $maxGrade) {
-                    throw new \Exception("Grade cannot exceed the sprint's percentage value of {$maxGrade}");
+                $student = $sprint->group->students()->find($gradeData['student_id']);
+                if (!$student) {
+                    return $this->respondBadRequest(ApiCode::STUDENT_NOT_IN_MANAGEMENT);
+                }
+
+                $tasksCount = $sprint->tasks()->where('status', 'done')->whereHas('assignedTo', function ($query) use ($student) {
+                    $query->where('student_id', $student->id);
+                })->count();
+
+                if ($tasksCount === 0) {
+                    return $this->respondBadRequest(ApiCode::STUDENT_NO_COMPLETED_TASKS);
+                }
+
+                if ($gradeData['grade'] > $sprint->percentage) {
+                    return $this->respondBadRequest(ApiCode::GRADE_EXCEEDS_SPRINT_PERCENTAGE);
                 }
 
                 $sprintEvaluation->studentGrades()->create([
@@ -84,11 +102,14 @@ class SprintEvaluationController extends Controller
 
             DB::commit();
 
-            return $this->respond([
-                'message' => 'Sprint evaluation created successfully',
-                'evaluation' => $sprintEvaluation->load('studentGrades')
-            ]);
-        } catch (\Exception $e) {
+            return $this->respond(
+                ['evaluation' => $sprintEvaluation->load('studentGrades')],
+                'Sprint evaluation created successfully'
+            );
+        } catch (ModelNotFoundException $e) {
+            DB::rollBack();
+            return $this->respondNotFound(ApiCode::SPRINT_NOT_FOUND);
+        } catch (Exception $e) {
             DB::rollBack();
             return $this->respondBadRequest(ApiCode::EVALUATION_CREATION_FAILED, $e->getMessage());
         }
@@ -96,18 +117,129 @@ class SprintEvaluationController extends Controller
 
     public function getFinalEvaluation($sprintId)
     {
-        $sprint = Sprint::with('sprintEvaluation.studentGrades.student.user')
-            ->findOrFail($sprintId);
+        try {
+            $sprint = Sprint::with([
+                'sprintEvaluation.studentGrades.student.user',
+                'tasks.assignedTo.user',
+                'tasks.weeklyEvaluations',
+                'tasks.links',
+                'weeklyEvaluations.tasks'
+            ])->findOrFail($sprintId);
 
-        if (!$this->userCanViewEvaluation($sprint)) {
-            return $this->respondUnAuthorizedRequest(ApiCode::UNAUTHORIZED);
+            if (!$this->userCanViewEvaluation($sprint)) {
+                return $this->respondUnAuthorizedRequest(ApiCode::UNAUTHORIZED);
+            }
+
+            if (!$sprint->sprintEvaluation) {
+                return $this->respondNotFound(ApiCode::EVALUATION_NOT_FOUND);
+            }
+
+            $evaluation = $sprint->sprintEvaluation;
+            $evaluation->planned_features = $sprint->features;
+            $evaluation->overall_progress = $this->getOverallProgress($sprint);
+            $evaluation->student_summaries = $this->getStudentSummaries($sprint);
+            $evaluation->weekly_evaluations_summary = $this->getWeeklyEvaluationsSummary($sprint);
+
+            return $this->respond(['evaluation' => $evaluation], 'Final evaluation retrieved successfully');
+        } catch (ModelNotFoundException $e) {
+            return $this->respondNotFound(ApiCode::SPRINT_NOT_FOUND);
+        } catch (Exception $e) {
+            return $this->respondBadRequest(ApiCode::EVALUATION_RETRIEVAL_FAILED);
         }
+    }
 
-        if (!$sprint->sprintEvaluation) {
-            return $this->respondNotFound(ApiCode::EVALUATION_NOT_FOUND);
-        }
+    private function getOverallProgress($sprint)
+    {
+        $totalTasks = $sprint->tasks->count();
+        $completedTasks = $sprint->tasks->where('status', 'done')->count();
 
-        return $this->respond(['evaluation' => $sprint->sprintEvaluation]);
+        return [
+            'total_tasks' => $totalTasks,
+            'completed_tasks' => $completedTasks,
+            'in_progress_tasks' => $sprint->tasks->where('status', 'in_progress')->count(),
+            'todo_tasks' => $sprint->tasks->where('status', 'todo')->count(),
+            'completion_percentage' => $totalTasks > 0 ? ($completedTasks / $totalTasks) * 100 : 0,
+        ];
+    }
+
+    private function getStudentSummaries($sprint)
+    {
+        return $sprint->group->students->map(function ($student) use ($sprint) {
+            $studentTasks = $sprint->tasks->filter(function ($task) use ($student) {
+                return $task->assignedTo->contains($student);
+            });
+
+            $weeklyEvaluations = $sprint->weeklyEvaluations->flatMap->tasks->filter(function ($task) use ($student) {
+                return $task->assignedTo->contains($student);
+            });
+
+            return [
+                'id' => $student->id,
+                'name' => $student->user->name,
+                'last_name' => $student->user->last_name,
+                'tasks_summary' => [
+                    'total' => $studentTasks->count(),
+                    'completed' => $studentTasks->where('status', 'done')->count(),
+                    'in_progress' => $studentTasks->where('status', 'in_progress')->count(),
+                    'todo' => $studentTasks->where('status', 'todo')->count(),
+                ],
+                'satisfaction_levels' => [
+                    'average' => $weeklyEvaluations->avg('pivot.satisfaction_level'),
+                    'min' => $weeklyEvaluations->min('pivot.satisfaction_level'),
+                    'max' => $weeklyEvaluations->max('pivot.satisfaction_level'),
+                ],
+                'weekly_performance' => $this->getStudentWeeklyPerformance($student, $sprint),
+                'task_details' => $this->getStudentTaskDetails($student, $studentTasks),
+            ];
+        });
+    }
+
+    private function getStudentWeeklyPerformance($student, $sprint)
+    {
+        return $sprint->weeklyEvaluations->map(function ($weeklyEval) use ($student) {
+            $studentTasksInWeek = $weeklyEval->tasks->filter(function ($task) use ($student) {
+                return $task->assignedTo->contains($student);
+            });
+            return [
+                'week_number' => $weeklyEval->week_number,
+                'tasks_evaluated' => $studentTasksInWeek->count(),
+                'average_satisfaction' => $studentTasksInWeek->avg('pivot.satisfaction_level'),
+            ];
+        });
+    }
+
+    private function getStudentTaskDetails($student, $tasks)
+    {
+        return $tasks->map(function ($task) {
+            $weeklyEval = $task->weeklyEvaluations->sortByDesc('evaluation_date')->first();
+            return [
+                'id' => $task->id,
+                'title' => $task->title,
+                'status' => $task->status,
+                'satisfaction_level' => $weeklyEval ? $weeklyEval->pivot->satisfaction_level : null,
+                'comments' => $weeklyEval ? $weeklyEval->pivot->comments : null,
+                'links' => $task->links->map(function ($link) {
+                    return [
+                        'url' => $link->url,
+                        'description' => $link->description,
+                    ];
+                }),
+            ];
+        });
+    }
+
+    private function getWeeklyEvaluationsSummary($sprint)
+    {
+        return $sprint->weeklyEvaluations->map(function ($weeklyEval) {
+            return [
+                'week_number' => $weeklyEval->week_number,
+                'evaluation_date' => $weeklyEval->evaluation_date,
+                'tasks_evaluated' => $weeklyEval->tasks->count(),
+                'average_satisfaction' => $weeklyEval->tasks->avg('pivot.satisfaction_level'),
+                'min_satisfaction' => $weeklyEval->tasks->min('pivot.satisfaction_level'),
+                'max_satisfaction' => $weeklyEval->tasks->max('pivot.satisfaction_level'),
+            ];
+        });
     }
 
     private function userCanViewEvaluation($sprint)

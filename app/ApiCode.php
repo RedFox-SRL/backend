@@ -46,4 +46,11 @@ class ApiCode
     public const EVALUATION_RETRIEVAL_FAILED = 294;
     public const MAX_EVALUATIONS_REACHED = 295;
     public const SPRINT_ENDED = 296;
+    public const SPRINT_NOT_ENDED = 297;
+    public const SPRINT_EVALUATION_ALREADY_EXISTS = 298;
+    public const SPRINT_EVALUATION_TOO_EARLY = 299;
+    public const NO_WEEKLY_EVALUATIONS = 300;
+    public const INSUFFICIENT_COMPLETED_TASKS = 301;
+    public const STUDENT_NO_COMPLETED_TASKS = 302;
+    public const GRADE_EXCEEDS_SPRINT_PERCENTAGE = 303;
 }

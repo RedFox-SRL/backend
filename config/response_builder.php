@@ -74,5 +74,12 @@ return [
         ApiCode::EVALUATION_RETRIEVAL_FAILED => 'api.evaluation_retrieval_failed',
         ApiCode::MAX_EVALUATIONS_REACHED => 'api.sprint_percentage_exceeded',
         ApiCode::SPRINT_ENDED => 'api.sprint_ended',
+        ApiCode::SPRINT_NOT_ENDED => 'api.sprint_not_ended',
+        ApiCode::SPRINT_EVALUATION_ALREADY_EXISTS => 'api.sprint_evaluation_already_exists',
+        ApiCode::SPRINT_EVALUATION_TOO_EARLY => 'api.sprint_evaluation_too_early',
+        ApiCode::NO_WEEKLY_EVALUATIONS => 'api.no_weekly_evaluations',
+        ApiCode::INSUFFICIENT_COMPLETED_TASKS => 'api.insufficient_completed_tasks',
+        ApiCode::STUDENT_NO_COMPLETED_TASKS => 'api.student_no_completed_tasks',
+        ApiCode::GRADE_EXCEEDS_SPRINT_PERCENTAGE => 'api.grade_exceeds_sprint_percentage',
     ],
 ];
