@@ -18,6 +18,7 @@ class UpdateSprintRequest extends FormRequest
             'description' => 'nullable|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
+            'features' => 'required|string|min:1',
         ];
     }
 }
