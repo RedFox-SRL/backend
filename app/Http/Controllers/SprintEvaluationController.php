@@ -30,7 +30,7 @@ class SprintEvaluationController extends Controller
     {
         DB::beginTransaction();
         try {
-            $sprint = $this->getSprintWithRelations($sprintId);
+            $sprint = Sprint::findOrFail($sprintId);
 
             if ($sprint->sprintEvaluation) {
                 return $this->respondBadRequest(ApiCode::SPRINT_EVALUATION_ALREADY_EXISTS);
@@ -52,6 +52,11 @@ class SprintEvaluationController extends Controller
                 return $this->respondBadRequest(ApiCode::NO_WEEKLY_EVALUATIONS);
             }
 
+            $sprintEvaluation = SprintEvaluation::create([
+                'sprint_id' => $sprint->id,
+                'summary' => $request->summary,
+            ]);
+
             foreach ($request->student_grades as $gradeData) {
                 $student = $sprint->group->students()->find($gradeData['student_id']);
                 if (!$student) {
@@ -71,14 +76,7 @@ class SprintEvaluationController extends Controller
                 if ($completedTasksCount === 0) {
                     return $this->respondBadRequest(ApiCode::STUDENT_NO_COMPLETED_TASKS);
                 }
-            }
 
-            $sprintEvaluation = SprintEvaluation::create([
-                'sprint_id' => $sprint->id,
-                'summary' => $request->summary,
-            ]);
-
-            foreach ($request->student_grades as $gradeData) {
                 $sprintEvaluation->studentGrades()->create([
                     'student_id' => $gradeData['student_id'],
                     'grade' => $gradeData['grade'],
@@ -86,15 +84,26 @@ class SprintEvaluationController extends Controller
                 ]);
             }
 
+            foreach ($request->strengths as $strength) {
+                $sprintEvaluation->points()->create([
+                    'type' => 'strength',
+                    'description' => $strength,
+                ]);
+            }
+
+            foreach ($request->weaknesses as $weakness) {
+                $sprintEvaluation->points()->create([
+                    'type' => 'weakness',
+                    'description' => $weakness,
+                ]);
+            }
+
             DB::commit();
             return $this->respond(
-                ['evaluation' => $sprintEvaluation->load('studentGrades')],
+                ['evaluation' => $sprintEvaluation->load('studentGrades', 'points')],
                 'Sprint evaluation created successfully'
             );
-        } catch (ModelNotFoundException $e) {
-            DB::rollBack();
-            return $this->respondNotFound(ApiCode::SPRINT_NOT_FOUND);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             return $this->respondBadRequest(ApiCode::EVALUATION_CREATION_FAILED);
         }
@@ -134,7 +143,8 @@ class SprintEvaluationController extends Controller
             'tasks.assignedTo.user',
             'tasks.weeklyEvaluations',
             'tasks.links',
-            'sprintEvaluation.studentGrades.student.user'
+            'sprintEvaluation.studentGrades.student.user',
+            'sprintEvaluation.points'
         ])->findOrFail($sprintId);
     }
 
@@ -160,6 +170,8 @@ class SprintEvaluationController extends Controller
         $evaluation->overall_progress = $this->getOverallProgress($sprint);
         $evaluation->student_summaries = $this->getStudentSummaries($sprint);
         $evaluation->weekly_evaluations_summary = $this->getWeeklyEvaluationsSummary($sprint);
+        $evaluation->strengths = $evaluation->points->where('type', 'strength')->pluck('description');
+        $evaluation->weaknesses = $evaluation->points->where('type', 'weakness')->pluck('description');
 
         return $evaluation;
     }

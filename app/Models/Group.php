@@ -43,4 +43,9 @@ class Group extends Model
     {
         return $this->belongsTo(Student::class, 'creator_id');
     }
+
+    public function sprints()
+    {
+        return $this->hasMany(Sprint::class);
+    }
 }
