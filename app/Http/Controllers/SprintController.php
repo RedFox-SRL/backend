@@ -75,7 +75,7 @@ class SprintController extends Controller
         ])->findOrFail($id);
 
         $summary = [
-            'sprint' => $sprint->only(['id', 'title', 'start_date', 'end_date', 'percentage']),
+            'sprint' => $sprint->only(['id', 'title', 'start_date', 'end_date', 'percentage', 'features']),
             'weekly_evaluations' => $sprint->weeklyEvaluations->map(function ($weeklyEval) {
                 return [
                     'week_number' => $weeklyEval->week_number,
