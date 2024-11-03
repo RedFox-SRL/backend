@@ -10,6 +10,7 @@ use App\Models\Management;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class AnnouncementController extends Controller
 {
@@ -84,7 +85,6 @@ class AnnouncementController extends Controller
         }
     }
 
-
     public function index(Request $request, $managementId)
     {
         $management = Management::findOrFail($managementId);
@@ -95,6 +95,57 @@ class AnnouncementController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        return response()->json($announcements);
+        $formattedAnnouncements = $announcements->through(function ($announcement) {
+            return $this->formatAnnouncement($announcement);
+        });
+
+        return response()->json($formattedAnnouncements);
+    }
+
+    private function formatAnnouncement($announcement)
+    {
+        return [
+            'id' => $announcement->id,
+            'management_id' => $announcement->management_id,
+            'user_id' => $announcement->user_id,
+            'content' => $announcement->content,
+            'created_at' => $announcement->created_at,
+            'updated_at' => $announcement->updated_at,
+            'user' => $announcement->user,
+            'files' => $this->formatFiles($announcement->files),
+            'links' => $announcement->links,
+            'youtube_videos' => $this->formatYoutubeVideos($announcement->youtubeVideos),
+        ];
+    }
+
+    private function formatFiles($files)
+    {
+        return $files->map(function ($file) {
+            return [
+                'id' => $file->id,
+                'name' => $file->name,
+                'url' => $this->getFileUrl($file->path),
+                'mime_type' => $file->mime_type,
+                'size' => $file->size,
+            ];
+        });
+    }
+
+    private function formatYoutubeVideos($youtubeVideos)
+    {
+        return $youtubeVideos->map(function ($video) {
+            return [
+                'id' => $video->id,
+                'video_id' => $video->video_id,
+                'title' => $video->title,
+                'embed_url' => "https://www.youtube.com/embed/{$video->video_id}",
+                'thumbnail_url' => "https://img.youtube.com/vi/{$video->video_id}/0.jpg",
+            ];
+        });
+    }
+
+    private function getFileUrl($path)
+    {
+        return Storage::url($path);
     }
 }
