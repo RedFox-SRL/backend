@@ -39,4 +39,9 @@ class Management extends Model
 
         return $code;
     }
+
+    public function evaluationTemplates()
+    {
+        return $this->hasMany(EvaluationTemplate::class);
+    }
 }

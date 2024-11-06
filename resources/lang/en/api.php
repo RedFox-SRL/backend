@@ -53,4 +53,7 @@ return [
     'grade_exceeds_sprint_percentage' => 'The grade cannot exceed the sprint\'s percentage value.',
     'student_not_in_group' => 'The student are not part of the group.',
     'sprint_evaluation_not_found' => 'Sprint evaluation not found.',
+    'template_already_exists' => 'An evaluation template of this type already exists for this management.',
+    'template_creation_failed' => 'Failed to create the evaluation template.',
+    'template_update_failed' => 'Failed to update the evaluation template.',
 ];
