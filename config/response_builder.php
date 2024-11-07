@@ -83,5 +83,8 @@ return [
         ApiCode::GRADE_EXCEEDS_SPRINT_PERCENTAGE => 'api.grade_exceeds_sprint_percentage',
         ApiCode::STUDENT_NOT_IN_GROUP => 'api.student_not_in_group',
         ApiCode::SPRINT_EVALUATION_NOT_FOUND => 'api.sprint_evaluation_not_found',
+        ApiCode::TEMPLATE_ALREADY_EXISTS => 'api.template_already_exists',
+        ApiCode::TEMPLATE_CREATION_FAILED => 'api.template_creation_failed',
+        ApiCode::TEMPLATE_UPDATE_FAILED => 'api.template_update_failed',
     ],
 ];

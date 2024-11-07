@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EvaluationTemplateController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ManagementController;
@@ -79,4 +80,9 @@ Route::middleware(['api'])->group(function () {
     Route::get('/sprints/{id}/sprint-evaluation-template', [SprintEvaluationController::class, 'getEvaluationTemplate']);
     Route::post('/sprints/{id}/sprint-evaluation', [SprintEvaluationController::class, 'create']);
     Route::get('/sprints/{id}/sprint-evaluation', [SprintEvaluationController::class, 'getFinalEvaluation']);
+
+    Route::post('/evaluation-templates', [EvaluationTemplateController::class, 'create']);
+    Route::put('/evaluation-templates/{id}', [EvaluationTemplateController::class, 'update']);
+    Route::get('/evaluation-templates/{id}', [EvaluationTemplateController::class, 'show']);
+    Route::get('/evaluation-templates', [EvaluationTemplateController::class, 'index']);
 });
