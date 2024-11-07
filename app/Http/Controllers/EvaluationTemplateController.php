@@ -7,11 +7,22 @@ use App\Models\Management;
 use Illuminate\Http\Request;
 use App\ApiCode;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class EvaluationTemplateController extends Controller
 {
     public function create(Request $request)
     {
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
+        }
+
+        if (!$user->teacher) {
+            return $this->respondBadRequest(ApiCode::USER_NOT_TEACHER);
+        }
+
         $request->validate([
             'management_id' => 'required|exists:management,id',
             'type' => 'required|in:self,peer,cross',
@@ -24,6 +35,10 @@ class EvaluationTemplateController extends Controller
         ]);
 
         $management = Management::findOrFail($request->management_id);
+
+        if ($management->teacher_id !== $user->teacher->id) {
+            return $this->respondUnAuthorizedRequest(ApiCode::MANAGEMENT_ACCESS_DENIED);
+        }
 
         if ($management->evaluationTemplates()->where('type', $request->type)->exists()) {
             return $this->respondBadRequest(ApiCode::TEMPLATE_ALREADY_EXISTS);
@@ -64,6 +79,16 @@ class EvaluationTemplateController extends Controller
 
     public function update(Request $request, $id)
     {
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
+        }
+
+        if (!$user->teacher) {
+            return $this->respondBadRequest(ApiCode::USER_NOT_TEACHER);
+        }
+
         $request->validate([
             'name' => 'required|string|max:255',
             'sections' => 'required|array|min:1',
@@ -76,6 +101,10 @@ class EvaluationTemplateController extends Controller
         ]);
 
         $template = EvaluationTemplate::findOrFail($id);
+
+        if ($template->management->teacher_id !== $user->teacher->id) {
+            return $this->respondUnAuthorizedRequest(ApiCode::MANAGEMENT_ACCESS_DENIED);
+        }
 
         DB::beginTransaction();
 
@@ -123,11 +152,9 @@ class EvaluationTemplateController extends Controller
                     $updatedCriteriaIds[] = $criterion->id;
                 }
 
-                // Delete criteria that are not in the updated list
                 $section->criteria()->whereNotIn('id', $updatedCriteriaIds)->delete();
             }
 
-            // Delete sections that are not in the updated list
             $template->sections()->whereNotIn('id', $updatedSectionIds)->delete();
 
             DB::commit();
@@ -141,15 +168,56 @@ class EvaluationTemplateController extends Controller
 
     public function show($id)
     {
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
+        }
+
         $template = EvaluationTemplate::with('sections.criteria')->findOrFail($id);
+
+        if ($user->teacher) {
+            if ($template->management->teacher_id !== $user->teacher->id) {
+                return $this->respondUnAuthorizedRequest(ApiCode::MANAGEMENT_ACCESS_DENIED);
+            }
+        } elseif ($user->student) {
+            $studentManagement = $user->student->studentManagements()->where('management_id', $template->management_id)->first();
+            if (!$studentManagement) {
+                return $this->respondUnAuthorizedRequest(ApiCode::MANAGEMENT_ACCESS_DENIED);
+            }
+        } else {
+            return $this->respondUnAuthorizedRequest(ApiCode::UNAUTHORIZED);
+        }
+
         return $this->respond(['template' => $template]);
     }
 
     public function index(Request $request)
     {
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
+        }
+
         $request->validate([
             'management_id' => 'required|exists:management,id',
         ]);
+
+        $management = Management::findOrFail($request->management_id);
+
+        if ($user->teacher) {
+            if ($management->teacher_id !== $user->teacher->id) {
+                return $this->respondUnAuthorizedRequest(ApiCode::MANAGEMENT_ACCESS_DENIED);
+            }
+        } elseif ($user->student) {
+            $studentManagement = $user->student->studentManagements()->where('management_id', $management->id)->first();
+            if (!$studentManagement) {
+                return $this->respondUnAuthorizedRequest(ApiCode::MANAGEMENT_ACCESS_DENIED);
+            }
+        } else {
+            return $this->respondUnAuthorizedRequest(ApiCode::UNAUTHORIZED);
+        }
 
         $templates = EvaluationTemplate::where('management_id', $request->management_id)
             ->with('sections.criteria')
