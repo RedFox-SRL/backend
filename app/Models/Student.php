@@ -28,4 +28,9 @@ class Student extends Model
     {
         return $this->belongsToMany(Task::class, 'task_student');
     }
+
+    public function invitations()
+    {
+        return $this->hasMany(Invitation::class, 'invited_student_id');
+    }
 }

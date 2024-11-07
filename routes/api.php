@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EvaluationTemplateController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SprintController;
@@ -85,4 +86,11 @@ Route::middleware(['api'])->group(function () {
     Route::put('/evaluation-templates/{id}', [EvaluationTemplateController::class, 'update']);
     Route::get('/evaluation-templates/{id}', [EvaluationTemplateController::class, 'show']);
     Route::get('/evaluation-templates', [EvaluationTemplateController::class, 'index']);
+
+    Route::post('/invitations/send', [InvitationController::class, 'send']);
+    Route::get('/invitations/accept/{token}', [InvitationController::class, 'accept']);
+    Route::get('/invitations/reject/{token}', [InvitationController::class, 'reject']);
+    Route::delete('/invitations/{id}', [InvitationController::class, 'cancel']);
+    Route::get('/groups/{groupId}/invitations', [InvitationController::class, 'listForGroup']);
+    Route::get('/student/invitations', [InvitationController::class, 'listForStudent']);
 });
