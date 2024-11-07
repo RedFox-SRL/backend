@@ -58,4 +58,10 @@ class ApiCode
     public const TEMPLATE_ALREADY_EXISTS = 306;
     public const TEMPLATE_CREATION_FAILED = 307;
     public const TEMPLATE_UPDATE_FAILED = 308;
+    public const MAX_INVITATIONS_REACHED = 309;
+    public const INVITATION_ALREADY_SENT = 310;
+    public const INVITATION_EXPIRED = 311;
+    public const INVITATION_ALREADY_PROCESSED = 312;
+    public const STUDENT_NOT_FOUND = 313;
+    public const STUDENT_NOT_IN_SAME_MANAGEMENT = 314;
 }

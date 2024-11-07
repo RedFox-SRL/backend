@@ -48,4 +48,9 @@ class Group extends Model
     {
         return $this->hasMany(Sprint::class);
     }
+
+    public function invitations()
+    {
+        return $this->hasMany(Invitation::class);
+    }
 }

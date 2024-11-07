@@ -86,5 +86,11 @@ return [
         ApiCode::TEMPLATE_ALREADY_EXISTS => 'api.template_already_exists',
         ApiCode::TEMPLATE_CREATION_FAILED => 'api.template_creation_failed',
         ApiCode::TEMPLATE_UPDATE_FAILED => 'api.template_update_failed',
+        ApiCode::MAX_INVITATIONS_REACHED => 'api.max_invitations_reached',
+        ApiCode::INVITATION_ALREADY_SENT => 'api.invitation_already_sent',
+        ApiCode::INVITATION_EXPIRED => 'api.invitation_expired',
+        ApiCode::INVITATION_ALREADY_PROCESSED => 'api.invitation_already_processed',
+        ApiCode::STUDENT_NOT_FOUND => 'api.student_not_found',
+        ApiCode::STUDENT_NOT_IN_SAME_MANAGEMENT => 'api.student_not_in_same_management',
     ],
 ];

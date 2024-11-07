@@ -56,4 +56,10 @@ return [
     'template_already_exists' => 'An evaluation template of this type already exists for this management.',
     'template_creation_failed' => 'Failed to create the evaluation template.',
     'template_update_failed' => 'Failed to update the evaluation template.',
+    'max_invitations_reached' => 'Se ha alcanzado el número máximo de invitaciones para este grupo.',
+    'invitation_already_sent' => 'Ya se ha enviado una invitación a este estudiante.',
+    'invitation_expired' => 'La invitación ha expirado.',
+    'invitation_already_processed' => 'Esta invitación ya ha sido procesada.',
+    'student_not_found' => 'Student not found.',
+    'student_not_in_same_management' => 'The student is not part of the same management as the group.',
 ];
