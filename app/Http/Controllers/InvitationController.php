@@ -7,6 +7,7 @@ use App\Models\Group;
 use App\Models\Student;
 use App\Http\Requests\SendInvitationRequest;
 use App\Mail\GroupInvitation;
+use App\Models\StudentManagement;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -38,7 +39,11 @@ class InvitationController extends Controller
         }
 
         // Check if the invited student is in the same management as the group
-        if ($invitedStudent->management_id !== $group->management_id) {
+        $invitedStudentManagement = StudentManagement::where('student_id', $invitedStudent->id)
+            ->where('management_id', $group->management_id)
+            ->exists();
+
+        if (!$invitedStudentManagement) {
             return $this->respondBadRequest(ApiCode::STUDENT_NOT_IN_SAME_MANAGEMENT);
         }
 

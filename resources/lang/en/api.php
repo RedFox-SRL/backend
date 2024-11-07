@@ -61,4 +61,5 @@ return [
     'invitation_expired' => 'La invitación ha expirado.',
     'invitation_already_processed' => 'Esta invitación ya ha sido procesada.',
     'student_not_found' => 'Student not found.',
+    'student_not_in_same_management' => 'The student is not part of the same management as the group.',
 ];
