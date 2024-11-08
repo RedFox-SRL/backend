@@ -83,22 +83,26 @@ class InvitationController extends Controller
 
     public function accept($token)
     {
-        $invitation = Invitation::where('token', $token)->firstOrFail();
+        $invitation = Invitation::where('token', $token)->first();
+
+        if (!$invitation) {
+            return view('invitations.canceled');
+        }
 
         if ($invitation->isExpired()) {
             $invitation->update(['status' => 'expired']);
-            return $this->respondBadRequest(ApiCode::INVITATION_EXPIRED);
+            return view('invitations.expired');
         }
 
         if ($invitation->status !== 'pending') {
-            return $this->respondBadRequest(ApiCode::INVITATION_ALREADY_PROCESSED);
+            return view('invitations.already-processed');
         }
 
         $group = $invitation->group;
 
         if ($group->students()->count() >= $group->management->group_limit) {
             $invitation->update(['status' => 'rejected']);
-            return $this->respondBadRequest(ApiCode::GROUP_FULL);
+            return view('invitations.group-full');
         }
 
         $invitation->update(['status' => 'accepted']);
@@ -109,25 +113,29 @@ class InvitationController extends Controller
             ->where('status', 'pending')
             ->update(['status' => 'rejected']);
 
-        return $this->respondWithMessage('Invitation accepted successfully.');
+        return view('invitations.accepted');
     }
 
     public function reject($token)
     {
-        $invitation = Invitation::where('token', $token)->firstOrFail();
+        $invitation = Invitation::where('token', $token)->first();
+
+        if (!$invitation) {
+            return view('invitations.canceled');
+        }
 
         if ($invitation->isExpired()) {
             $invitation->update(['status' => 'expired']);
-            return $this->respondBadRequest(ApiCode::INVITATION_EXPIRED);
+            return view('invitations.expired');
         }
 
         if ($invitation->status !== 'pending') {
-            return $this->respondBadRequest(ApiCode::INVITATION_ALREADY_PROCESSED);
+            return view('invitations.already-processed');
         }
 
         $invitation->update(['status' => 'rejected']);
 
-        return $this->respondWithMessage('Invitation rejected successfully.');
+        return view('invitations.rejected');
     }
 
     public function cancel($id)
