@@ -46,4 +46,9 @@ class Management extends Model
     {
         return $this->hasMany(EvaluationTemplate::class);
     }
+
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d');
+    }
 }
