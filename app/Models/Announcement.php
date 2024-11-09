@@ -13,6 +13,11 @@ class Announcement extends Model
         'management_id',
         'user_id',
         'content',
+        'is_global',
+    ];
+
+    protected $casts = [
+        'is_global' => 'boolean',
     ];
 
     public function management()

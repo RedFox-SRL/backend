@@ -11,72 +11,55 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\ApiCode;
 
 class AnnouncementController extends Controller
 {
     public function store(Request $request)
     {
+        $user = Auth::user();
+
+        if ($user->role !== 'teacher') {
+            return $this->respondUnAuthorizedRequest(ApiCode::UNAUTHORIZED);
+        }
+
         $request->validate([
             'management_id' => 'required|exists:management,id',
-            'announcement' => 'nullable|string|max:2000',
+            'announcement' => 'required|string|max:2000',
             'files' => 'nullable|array',
             'files.*' => 'file|max:10240', // 10MB max
             'links' => 'nullable|json',
             'youtube_videos' => 'nullable|json',
+            'is_global' => 'boolean',
         ]);
 
-        $user = Auth::user();
         $management = Management::findOrFail($request->management_id);
 
         DB::beginTransaction();
 
         try {
-            $announcement = Announcement::create([
-                'management_id' => $request->management_id,
+            $announcementData = [
                 'user_id' => $user->id,
-                'content' => $request->announcement ?? '',
-            ]);
+                'content' => $request->announcement,
+                'is_global' => $request->is_global ?? false,
+            ];
 
-            // Procesar archivos
-            if ($request->hasFile('files')) {
-                foreach ($request->file('files') as $file) {
-                    $path = $file->store('announcement_files');
-                    AnnouncementFile::create([
-                        'announcement_id' => $announcement->id,
-                        'name' => $file->getClientOriginalName(),
-                        'path' => $path,
-                        'mime_type' => $file->getMimeType(),
-                        'size' => $file->getSize(),
-                    ]);
-                }
+            if ($request->is_global) {
+                $announcements = $this->createGlobalAnnouncements($announcementData, $management);
+            } else {
+                $announcementData['management_id'] = $request->management_id;
+                $announcements = [Announcement::create($announcementData)];
             }
 
-            // Procesar enlaces
-            if ($request->has('links')) {
-                $links = json_decode($request->links, true);
-                foreach ($links as $link) {
-                    AnnouncementLink::create([
-                        'announcement_id' => $announcement->id,
-                        'url' => $link['url'],
-                        'title' => $link['title'] ?? null,
-                    ]);
-                }
-            }
-
-            // Procesar videos de YouTube
-            if ($request->has('youtube_videos')) {
-                $youtubeVideos = json_decode($request->youtube_videos, true);
-                foreach ($youtubeVideos as $video) {
-                    AnnouncementYoutubeVideo::create([
-                        'announcement_id' => $announcement->id,
-                        'video_id' => $video['video_id'],
-                        'title' => $video['title'] ?? null,
-                    ]);
-                }
+            foreach ($announcements as $announcement) {
+                $this->processFiles($request, $announcement);
+                $this->processLinks($request, $announcement);
+                $this->processYoutubeVideos($request, $announcement);
             }
 
             DB::commit();
 
+            $announcement = $announcements[0];
             $announcement->load('files', 'links', 'youtubeVideos');
             return response()->json(['message' => 'Anuncio creado con éxito', 'announcement' => $announcement], 201);
         } catch (\Exception $e) {
@@ -85,12 +68,80 @@ class AnnouncementController extends Controller
         }
     }
 
+    private function createGlobalAnnouncements($announcementData, $management)
+    {
+        $announcements = [];
+        $relatedManagements = Management::where('semester', $management->semester)
+            ->whereYear('start_date', $management->start_date->year)
+            ->get();
+
+        foreach ($relatedManagements as $relatedManagement) {
+            $announcementData['management_id'] = $relatedManagement->id;
+            $announcements[] = Announcement::create($announcementData);
+        }
+
+        return $announcements;
+    }
+
+    private function processFiles($request, $announcement)
+    {
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $path = $file->store('announcement_files');
+                AnnouncementFile::create([
+                    'announcement_id' => $announcement->id,
+                    'name' => $file->getClientOriginalName(),
+                    'path' => $path,
+                    'mime_type' => $file->getMimeType(),
+                    'size' => $file->getSize(),
+                ]);
+            }
+        }
+    }
+
+    private function processLinks($request, $announcement)
+    {
+        if ($request->has('links')) {
+            $links = json_decode($request->links, true);
+            foreach ($links as $link) {
+                AnnouncementLink::create([
+                    'announcement_id' => $announcement->id,
+                    'url' => $link['url'],
+                    'title' => $link['title'] ?? null,
+                ]);
+            }
+        }
+    }
+
+    private function processYoutubeVideos($request, $announcement)
+    {
+        if ($request->has('youtube_videos')) {
+            $youtubeVideos = json_decode($request->youtube_videos, true);
+            foreach ($youtubeVideos as $video) {
+                AnnouncementYoutubeVideo::create([
+                    'announcement_id' => $announcement->id,
+                    'video_id' => $video['video_id'],
+                    'title' => $video['title'] ?? null,
+                ]);
+            }
+        }
+    }
+
     public function index(Request $request, $managementId)
     {
         $management = Management::findOrFail($managementId);
         $user = Auth::user();
 
-        $announcements = Announcement::where('management_id', $managementId)
+        $announcements = Announcement::where(function ($query) use ($managementId, $management) {
+            $query->where('management_id', $managementId)
+                ->orWhere(function ($q) use ($management) {
+                    $q->where('is_global', true)
+                        ->whereHas('management', function ($subQ) use ($management) {
+                            $subQ->where('semester', $management->semester)
+                                ->whereYear('start_date', $management->start_date->year);
+                        });
+                });
+        })
             ->with(['user', 'files', 'links', 'youtubeVideos'])
             ->orderBy('created_at', 'desc')
             ->paginate(10);
@@ -111,6 +162,7 @@ class AnnouncementController extends Controller
             'content' => $announcement->content,
             'created_at' => $announcement->created_at,
             'updated_at' => $announcement->updated_at,
+            'is_global' => $announcement->is_global,
             'user' => $announcement->user,
             'files' => $this->formatFiles($announcement->files),
             'links' => $announcement->links,
