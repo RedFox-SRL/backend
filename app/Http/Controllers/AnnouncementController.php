@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\ApiCode;
+use Carbon\Carbon;
 
 class AnnouncementController extends Controller
 {
@@ -23,7 +24,7 @@ class AnnouncementController extends Controller
             return $this->respondUnAuthorizedRequest(ApiCode::UNAUTHORIZED);
         }
 
-        $request->validate([
+        $validatedData = $request->validate([
             'management_id' => 'required|exists:management,id',
             'announcement' => 'required|string|max:2000',
             'files' => 'nullable|array',
@@ -33,28 +34,28 @@ class AnnouncementController extends Controller
             'is_global' => 'boolean',
         ]);
 
-        $management = Management::findOrFail($request->management_id);
+        $management = Management::findOrFail($validatedData['management_id']);
 
         DB::beginTransaction();
 
         try {
             $announcementData = [
                 'user_id' => $user->id,
-                'content' => $request->announcement,
-                'is_global' => $request->is_global ?? false,
+                'content' => $validatedData['announcement'],
+                'is_global' => $validatedData['is_global'] ?? false,
             ];
 
-            if ($request->is_global) {
+            if ($validatedData['is_global'] ?? false) {
                 $announcements = $this->createGlobalAnnouncements($announcementData, $management);
             } else {
-                $announcementData['management_id'] = $request->management_id;
+                $announcementData['management_id'] = $validatedData['management_id'];
                 $announcements = [Announcement::create($announcementData)];
             }
 
             foreach ($announcements as $announcement) {
                 $this->processFiles($request, $announcement);
-                $this->processLinks($request, $announcement);
-                $this->processYoutubeVideos($request, $announcement);
+                $this->processLinks($validatedData, $announcement);
+                $this->processYoutubeVideos($validatedData, $announcement);
             }
 
             DB::commit();
@@ -71,8 +72,12 @@ class AnnouncementController extends Controller
     private function createGlobalAnnouncements($announcementData, $management)
     {
         $announcements = [];
+        $startDate = $management->start_date instanceof Carbon
+            ? $management->start_date
+            : Carbon::parse($management->start_date);
+
         $relatedManagements = Management::where('semester', $management->semester)
-            ->whereYear('start_date', $management->start_date->year)
+            ->whereYear('start_date', $startDate->year)
             ->get();
 
         foreach ($relatedManagements as $relatedManagement) {
@@ -99,30 +104,34 @@ class AnnouncementController extends Controller
         }
     }
 
-    private function processLinks($request, $announcement)
+    private function processLinks($validatedData, $announcement)
     {
-        if ($request->has('links')) {
-            $links = json_decode($request->links, true);
+        $links = json_decode($validatedData['links'] ?? '[]', true);
+        if (is_array($links)) {
             foreach ($links as $link) {
-                AnnouncementLink::create([
-                    'announcement_id' => $announcement->id,
-                    'url' => $link['url'],
-                    'title' => $link['title'] ?? null,
-                ]);
+                if (isset($link['url'])) {
+                    AnnouncementLink::create([
+                        'announcement_id' => $announcement->id,
+                        'url' => $link['url'],
+                        'title' => $link['title'] ?? null,
+                    ]);
+                }
             }
         }
     }
 
-    private function processYoutubeVideos($request, $announcement)
+    private function processYoutubeVideos($validatedData, $announcement)
     {
-        if ($request->has('youtube_videos')) {
-            $youtubeVideos = json_decode($request->youtube_videos, true);
+        $youtubeVideos = json_decode($validatedData['youtube_videos'] ?? '[]', true);
+        if (is_array($youtubeVideos)) {
             foreach ($youtubeVideos as $video) {
-                AnnouncementYoutubeVideo::create([
-                    'announcement_id' => $announcement->id,
-                    'video_id' => $video['video_id'],
-                    'title' => $video['title'] ?? null,
-                ]);
+                if (isset($video['video_id'])) {
+                    AnnouncementYoutubeVideo::create([
+                        'announcement_id' => $announcement->id,
+                        'video_id' => $video['video_id'],
+                        'title' => $video['title'] ?? null,
+                    ]);
+                }
             }
         }
     }
@@ -138,7 +147,7 @@ class AnnouncementController extends Controller
                     $q->where('is_global', true)
                         ->whereHas('management', function ($subQ) use ($management) {
                             $subQ->where('semester', $management->semester)
-                                ->whereYear('start_date', $management->start_date->year);
+                                ->whereYear('start_date', Carbon::parse($management->start_date)->year);
                         });
                 });
         })

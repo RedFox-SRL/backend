@@ -21,6 +21,8 @@ class Management extends Model
 
     protected $table = 'management';
 
+    protected $dates = ['start_date', 'end_date'];
+
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
