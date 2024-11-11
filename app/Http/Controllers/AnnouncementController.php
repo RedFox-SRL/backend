@@ -26,7 +26,7 @@ class AnnouncementController extends Controller
 
         $validatedData = $request->validate([
             'management_id' => 'required|exists:management,id',
-            'announcement' => 'required|string|max:2000',
+            'announcement' => 'nullable|string|max:2000',
             'files' => 'nullable|array',
             'files.*' => 'file|max:10240', // 10MB max
             'links' => 'nullable|json',
