@@ -27,7 +27,7 @@ class AnnouncementController extends Controller
         $validatedData = $request->validate([
             'management_id' => 'required|exists:management,id',
             'announcement' => 'nullable|string|max:2000',
-            'files' => 'nullable|array',
+            'files' => 'required_without:announcement|array|min:1',
             'files.*' => 'file|max:10240', // 10MB max
             'links' => 'nullable|json',
             'youtube_videos' => 'nullable|json',
@@ -41,7 +41,7 @@ class AnnouncementController extends Controller
         try {
             $announcementData = [
                 'user_id' => $user->id,
-                'content' => $validatedData['announcement'],
+                'content' => $validatedData['announcement'] ?? '',
                 'is_global' => $validatedData['is_global'] ?? false,
             ];
 
