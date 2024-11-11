@@ -25,7 +25,7 @@ class EvaluationTemplateController extends Controller
 
         $request->validate([
             'management_id' => 'required|exists:management,id',
-            'type' => 'required|in:self,peer,cross',
+            'type' => 'required|in:self,peer,cross,final',
             'name' => 'required|string|max:255',
             'sections' => 'required|array|min:1',
             'sections.*.title' => 'required|string|max:255',
