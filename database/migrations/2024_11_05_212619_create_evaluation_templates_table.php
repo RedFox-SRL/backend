@@ -11,7 +11,7 @@ class CreateEvaluationTemplatesTable extends Migration
         Schema::create('evaluation_templates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('management_id')->constrained()->onDelete('cascade');
-            $table->enum('type', ['self', 'peer', 'cross']);
+            $table->enum('type', ['self', 'peer', 'cross', 'final']);
             $table->string('name');
             $table->timestamps();
 
