@@ -92,5 +92,6 @@ return [
         ApiCode::INVITATION_ALREADY_PROCESSED => 'api.invitation_already_processed',
         ApiCode::STUDENT_NOT_FOUND => 'api.student_not_found',
         ApiCode::STUDENT_NOT_IN_SAME_MANAGEMENT => 'api.student_not_in_same_management',
+        ApiCode::EVALUATION_ALREADY_COMPLETED => 'api.evaluation_already_completed',
     ],
 ];

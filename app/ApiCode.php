@@ -64,4 +64,5 @@ class ApiCode
     public const INVITATION_ALREADY_PROCESSED = 312;
     public const STUDENT_NOT_FOUND = 313;
     public const STUDENT_NOT_IN_SAME_MANAGEMENT = 314;
+    public const EVALUATION_ALREADY_COMPLETED = 315;
 }
