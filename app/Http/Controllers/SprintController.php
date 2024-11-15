@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ApiCode;
+use App\Jobs\ActivateSprintEvaluations;
 use App\Models\Group;
 use App\Models\Sprint;
 use App\Models\Task;
@@ -103,5 +104,16 @@ class SprintController extends Controller
         ];
 
         return response()->json($summary);
+    }
+
+    public function finishSprint(Sprint $sprint)
+    {
+        if ($sprint->end_date->isFuture()) {
+            return $this->respondBadRequest(ApiCode::SPRINT_NOT_ENDED);
+        }
+
+        ActivateSprintEvaluations::dispatch($sprint);
+
+        return $this->respondWithMessage('Sprint finished and evaluations activated.');
     }
 }
