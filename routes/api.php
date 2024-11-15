@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\EvaluationTemplateController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GroupController;
@@ -93,4 +94,8 @@ Route::middleware(['api'])->group(function () {
     Route::delete('/invitations/{id}', [InvitationController::class, 'cancel']);
     Route::get('/groups/{groupId}/invitations', [InvitationController::class, 'listForGroup']);
     Route::get('/student/invitations', [InvitationController::class, 'listForStudent']);
+
+    Route::get('/evaluations/active', [EvaluationController::class, 'getActiveEvaluations']);
+    Route::post('/evaluations/{evaluation}/submit', [EvaluationController::class, 'submitEvaluation']);
+    Route::post('/sprints/{sprint}/finish', [SprintController::class, 'finishSprint']);
 });
