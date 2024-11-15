@@ -68,7 +68,7 @@ class EvaluationService
                 })
                 ->get();
 
-            Mail::to($student->user)->send(new EvaluationActivationMail($evaluations));
+            Mail::to($student->user->email)->send(new EvaluationActivationMail($evaluations, $student));
         }
     }
 
