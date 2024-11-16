@@ -52,7 +52,8 @@
             font-size: 0.9rem;
         }
         input[type="email"],
-        input[type="password"] {
+        input[type="password"],
+        input[type="text"] {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #d1d5db;
@@ -62,8 +63,7 @@
         input[type="email"]:read-only {
             background-color: #f3f4f6;
         }
-        input[type="email"]:focus,
-        input[type="password"]:focus {
+        input:focus {
             outline: none;
             border-color: #8b5cf6;
             box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
@@ -83,7 +83,27 @@
         button:hover {
             background-color: #7c3aed;
         }
-
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            margin-top: 10px;
+        }
+        ul li {
+            font-size: 0.9rem;
+            color: red;
+        }
+        ul li.valid {
+            color: green;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .checkbox-container input {
+            margin-right: 8px;
+        }
         @media (max-width: 480px) {
             body {
                 padding: 10px;
@@ -97,8 +117,7 @@
             p {
                 font-size: 0.8rem;
             }
-            input[type="email"],
-            input[type="password"] {
+            input {
                 font-size: 0.9rem;
             }
             button {
@@ -108,31 +127,93 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Recuperar Contraseña</h2>
-        <p>Ingresa tu nueva contraseña para recuperar tu cuenta</p>
+<div class="container">
+    <h2>Recuperar Contraseña</h2>
+    <p>Ingresa tu nueva contraseña para recuperar tu cuenta</p>
 
-        <form action="{{ url('api/password/reset') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="email">Correo Electrónico</label>
-                <input type="email" id="email" name="email" value="{{ request()->get('email') }}" readonly>
+    <form action="{{ url('api/password/reset') }}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" name="email" value="{{ request()->get('email') }}" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Nueva Contraseña</label>
+            <input type="password" id="password" name="password" required placeholder="Nueva contraseña">
+            <div class="checkbox-container">
+                <input type="checkbox" id="show-password">
+                <label for="show-password">Mostrar contraseña</label>
             </div>
+            <ul id="password-rules">
+                <li id="length" class="invalid">Debe tener al menos 8 caracteres</li>
+                <li id="uppercase" class="invalid">Debe contener al menos una letra mayúscula</li>
+                <li id="lowercase" class="invalid">Debe contener al menos una letra minúscula</li>
+                <li id="number" class="invalid">Debe contener al menos un número</li>
+                <li id="special" class="invalid">Debe contener al menos un carácter especial</li>
+            </ul>
+        </div>
 
-            <div class="form-group">
-                <label for="password">Nueva Contraseña</label>
-                <input type="password" id="password" name="password" required placeholder="Nueva contraseña">
+        <div class="form-group">
+            <label for="password_confirmation">Confirmar Contraseña</label>
+            <input type="password" id="password_confirmation" name="password_confirmation" required placeholder="Confirmar nueva contraseña">
+            <div class="checkbox-container">
+                <input type="checkbox" id="show-confirm-password">
+                <label for="show-confirm-password">Mostrar contraseña</label>
             </div>
+            <span id="confirm-password-error" style="color: red; font-size: 0.9rem;"></span>
+        </div>
 
-            <div class="form-group">
-                <label for="password_confirmation">Confirmar Contraseña</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" required placeholder="Confirmar nueva contraseña">
-            </div>
+        <input type="hidden" name="token" value="{{ request()->get('token') }}">
 
-            <input type="hidden" name="token" value="{{ request()->get('token') }}">
+        <button type="submit">Restablecer Contraseña</button>
+    </form>
+</div>
 
-            <button type="submit">Restablecer Contraseña</button>
-        </form>
-    </div>
+<script>
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('password_confirmation');
+    const passwordRules = {
+        length: document.getElementById('length'),
+        uppercase: document.getElementById('uppercase'),
+        lowercase: document.getElementById('lowercase'),
+        number: document.getElementById('number'),
+        special: document.getElementById('special'),
+    };
+    const confirmPasswordError = document.getElementById('confirm-password-error');
+
+    document.getElementById('show-password').addEventListener('change', function () {
+        passwordInput.type = this.checked ? 'text' : 'password';
+    });
+
+    document.getElementById('show-confirm-password').addEventListener('change', function () {
+        confirmPasswordInput.type = this.checked ? 'text' : 'password';
+    });
+
+    passwordInput.addEventListener('input', () => {
+        const value = passwordInput.value;
+
+        passwordRules.length.classList.toggle('valid', value.length >= 8);
+        passwordRules.length.classList.toggle('invalid', value.length < 8);
+
+        passwordRules.uppercase.classList.toggle('valid', /[A-Z]/.test(value));
+        passwordRules.uppercase.classList.toggle('invalid', !/[A-Z]/.test(value));
+
+        passwordRules.lowercase.classList.toggle('valid', /[a-z]/.test(value));
+        passwordRules.lowercase.classList.toggle('invalid', !/[a-z]/.test(value));
+
+        passwordRules.number.classList.toggle('valid', /\d/.test(value));
+        passwordRules.number.classList.toggle('invalid', !/\d/.test(value));
+
+        passwordRules.special.classList.toggle('valid', /[!@#$%^&*(),.?":{}|<>]/.test(value));
+        passwordRules.special.classList.toggle('invalid', !/[!@#$%^&*(),.?":{}|<>]/.test(value));
+    });
+
+    confirmPasswordInput.addEventListener('input', () => {
+        confirmPasswordError.textContent = passwordInput.value !== confirmPasswordInput.value
+            ? 'Las contraseñas no coinciden'
+            : '';
+    });
+</script>
 </body>
 </html>
