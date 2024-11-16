@@ -24,6 +24,10 @@ class EvaluationActivationMail extends Mailable
     public function build()
     {
         return $this->view('emails.evaluation-activation')
+            ->with([
+                'studentName' => $this->student->user->name,
+                'evaluations' => $this->evaluations
+            ])
             ->subject('Evaluaciones Activadas');
     }
 }

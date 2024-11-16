@@ -108,6 +108,8 @@ return [
 
     'faker_locale' => 'en_US',
 
+    'cron_secret' => env('CRON_SECRET'),
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key

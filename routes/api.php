@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CronController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\EvaluationTemplateController;
 use App\Http\Controllers\ForgotPasswordController;
@@ -21,6 +22,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('cron')->group(function () {
+    Route::get('/check-sprints', [CronController::class, 'checkSprints']);
+    Route::get('/send-reminders', [CronController::class, 'sendReminders']);
 });
 
 Route::middleware(['api'])->group(function () {

@@ -19,13 +19,13 @@ class Kernel extends ConsoleKernel
             foreach ($sprints as $sprint) {
                 Http::post("/api/sprints/{$sprint->id}/finish");
             }
-        })->everyMinute();
+        })->daily();
 
         // Enviar recordatorios de evaluaciones
         $schedule->call(function () {
             $evaluationService = app(EvaluationService::class);
             $evaluationService->sendReminders();
-        })->everyMinute();
+        })->daily();
     }
 
     protected function commands()

@@ -53,7 +53,7 @@
         <h1>¡Evaluaciones Activadas!</h1>
     </div>
     <div class="content">
-        <p>Hola {{ $student->name }},</p>
+        <p>Hola {{ $studentName }},</p>
         <p>Las evaluaciones para el sprint actual han sido activadas. Es momento de reflexionar sobre tu desempeño y el
             de tus compañeros.</p>
         <img
