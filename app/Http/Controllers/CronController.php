@@ -47,6 +47,6 @@ class CronController extends Controller
     protected function validateCronRequest(Request $request)
     {
         $token = $request->header('X-Cron-Token');
-        return $token && Hash::check(config('app.cron_secret'), $token);
+        return $token && $token === env('CRON_SECRET');
     }
 }
