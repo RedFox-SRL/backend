@@ -76,4 +76,9 @@ class Sprint extends Model
         $weeksPassed = $nextMonday->diffInWeeks($currentDate);
         return min($weeksPassed + 2, $this->max_evaluations);
     }
+
+    public function evaluationPeriods()
+    {
+        return $this->hasMany(EvaluationPeriod::class);
+    }
 }
