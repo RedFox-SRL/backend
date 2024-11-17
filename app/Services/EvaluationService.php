@@ -16,24 +16,29 @@ use Illuminate\Support\Facades\Mail;
 
 class EvaluationService
 {
-    public function createEvaluationPeriods(Sprint $sprint)
+    public function createAndActivateEvaluations(Sprint $sprint)
+    {
+        DB::transaction(function () use ($sprint) {
+            $this->createEvaluationPeriods($sprint);
+            $this->sendActivationNotifications($sprint);
+        });
+    }
+
+    private function createEvaluationPeriods(Sprint $sprint)
     {
         $management = $sprint->group->management;
         $selfTemplate = $management->evaluationTemplates()->where('type', 'self')->first();
         $peerTemplate = $management->evaluationTemplates()->where('type', 'peer')->first();
 
+        if (!$selfTemplate || !$peerTemplate) {
+            return;
+        }
+
         $startDate = $sprint->end_date;
         $endDate = $startDate->copy()->addDays(4);
 
-        DB::transaction(function () use ($sprint, $selfTemplate, $peerTemplate, $startDate, $endDate) {
-            if ($selfTemplate) {
-                $this->createEvaluationPeriod($sprint, $selfTemplate, 'self', $startDate, $endDate);
-            }
-
-            if ($peerTemplate) {
-                $this->createEvaluationPeriod($sprint, $peerTemplate, 'peer', $startDate, $endDate);
-            }
-        });
+        $this->createEvaluationPeriod($sprint, $selfTemplate, 'self', $startDate, $endDate);
+        $this->createEvaluationPeriod($sprint, $peerTemplate, 'peer', $startDate, $endDate);
     }
 
     private function createEvaluationPeriod(Sprint $sprint, $template, $type, $startDate, $endDate)
@@ -58,7 +63,7 @@ class EvaluationService
         }
     }
 
-    public function sendActivationNotifications(Sprint $sprint)
+    private function sendActivationNotifications(Sprint $sprint)
     {
         $students = $sprint->group->students;
         foreach ($students as $student) {
@@ -68,26 +73,33 @@ class EvaluationService
                 })
                 ->get();
 
-            Mail::to($student->user->email)->send(new EvaluationActivationMail($evaluations, $student));
+            if ($evaluations->isNotEmpty()) {
+                Mail::to($student->user->email)->send(new EvaluationActivationMail($evaluations, $student, $sprint));
+            }
         }
     }
 
     public function sendReminders()
     {
         $now = Carbon::now();
-
-        StudentEvaluation::where('is_completed', false)
+        $remindersToSend = StudentEvaluation::where('is_completed', false)
             ->whereHas('evaluationPeriod', function ($query) use ($now) {
                 $query->where('starts_at', '<=', $now)
                     ->where('ends_at', '>=', $now)
                     ->where('is_active', true);
             })
-            ->each(function ($evaluation) use ($now) {
-                if ($evaluation->evaluationPeriod->starts_at->isToday() ||
-                    $evaluation->evaluationPeriod->starts_at->addDays(3)->isToday()) {
-                    Mail::to($evaluation->evaluator->user)->send(new EvaluationReminderMail($evaluation));
-                }
-            });
+            ->whereDoesntHave('reminders', function ($query) use ($now) {
+                $query->whereDate('sent_at', $now->toDateString());
+            })
+            ->get();
+
+        foreach ($remindersToSend as $evaluation) {
+            if ($evaluation->evaluationPeriod->starts_at->isToday() ||
+                $evaluation->evaluationPeriod->starts_at->addDays(3)->isToday()) {
+                Mail::to($evaluation->evaluator->user)->send(new EvaluationReminderMail($evaluation));
+                $evaluation->reminders()->create(['sent_at' => $now]);
+            }
+        }
     }
 
     private function createStudentEvaluation(EvaluationPeriod $period, Student $evaluator, Student $evaluated = null)
@@ -113,12 +125,6 @@ class EvaluationService
         $this->createStudentEvaluation($period, $evaluator, Student::find($evaluatedId));
     }
 
-    public function sendTeacherSummary(Sprint $sprint)
-    {
-        $teacher = $sprint->group->teacher;
-        Mail::to($teacher->user)->send(new TeacherSummaryMail($sprint));
-    }
-
     public function getActiveEvaluations(Student $student)
     {
         $now = Carbon::now();
@@ -129,7 +135,7 @@ class EvaluationService
                     ->where('ends_at', '>=', $now)
                     ->where('is_active', true);
             })
-            ->with(['evaluationPeriod.evaluationTemplate.sections.criteria', 'evaluated'])
+            ->with(['evaluationPeriod.evaluationTemplate.sections.criteria', 'evaluated', 'evaluationPeriod.sprint'])
             ->get();
     }
 
@@ -147,6 +153,29 @@ class EvaluationService
                 'is_completed' => true,
                 'completed_at' => Carbon::now(),
             ]);
+
+            $this->checkAndSendTeacherSummary($evaluation->evaluationPeriod->sprint);
         });
+    }
+
+    private function checkAndSendTeacherSummary(Sprint $sprint)
+    {
+        $allCompleted = $sprint->evaluationPeriods()
+            ->with('studentEvaluations')
+            ->get()
+            ->every(function ($period) {
+                return $period->studentEvaluations->every->is_completed;
+            });
+
+        if ($allCompleted && !$sprint->teacher_summary_sent) {
+            $this->sendTeacherSummary($sprint);
+            $sprint->update(['teacher_summary_sent' => true]);
+        }
+    }
+
+    private function sendTeacherSummary(Sprint $sprint)
+    {
+        $teacher = $sprint->group->teacher;
+        Mail::to($teacher->user)->send(new TeacherSummaryMail($sprint));
     }
 }

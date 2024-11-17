@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\EvaluationService;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Sprint;
+use Carbon\Carbon;
 
 class CronController extends Controller
 {
@@ -17,31 +19,32 @@ class CronController extends Controller
 
     public function checkSprints(Request $request)
     {
-        // Verificar token secreto
         if (!$this->validateCronRequest($request)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
         $today = now()->startOfDay();
-        $sprints = \App\Models\Sprint::where('end_date', $today)->get();
+        $sprints = Sprint::where('end_date', $today)
+            ->whereDoesntHave('evaluationPeriods')
+            ->whereHas('weeklyEvaluations')
+            ->get();
 
         foreach ($sprints as $sprint) {
-            \App\Jobs\ActivateSprintEvaluations::dispatch($sprint);
+            $this->evaluationService->createAndActivateEvaluations($sprint);
         }
 
-        return response()->json(['message' => 'Sprints checked successfully']);
+        return response()->json(['mensaje' => 'Sprints verificados exitosamente'], 200);
     }
 
     public function sendReminders(Request $request)
     {
-        // Verificar token secreto
         if (!$this->validateCronRequest($request)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['mensaje' => 'No autorizado'], 200);
         }
 
         $this->evaluationService->sendReminders();
 
-        return response()->json(['message' => 'Reminders sent successfully']);
+        return response()->json(['mensaje' => 'Recordatorios enviados exitosamente'], 200);
     }
 
     protected function validateCronRequest(Request $request)

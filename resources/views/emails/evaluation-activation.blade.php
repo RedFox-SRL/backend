@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluaciones Activadas</title>
+    <title>Evaluaciones Activadas para Sprint {{ $sprint->name }} - Grupo {{ $groupName }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -50,12 +50,12 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>¡Evaluaciones Activadas!</h1>
+        <h1>¡Evaluaciones Activadas para Sprint {{ $sprint->name }} - Grupo {{ $groupName }}!</h1>
     </div>
     <div class="content">
         <p>Hola {{ $studentName }},</p>
-        <p>Las evaluaciones para el sprint actual han sido activadas. Es momento de reflexionar sobre tu desempeño y el
-            de tus compañeros.</p>
+        <p>Las evaluaciones para el sprint "{{ $sprint->name }}" del grupo "{{ $groupName }}" han sido activadas. Es
+            momento de reflexionar sobre tu desempeño y el de tus compañeros.</p>
         <img
             src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             alt="Evaluación iniciada" class="image">
@@ -67,7 +67,7 @@
             @endforeach
         </ul>
         <p>
-            <a href="{{ config('app.url') }}/evaluations" class="button">Ir a las Evaluaciones</a>
+            <a href="{{ config('app.url') }}" class="button">Ir a las Evaluaciones</a>
         </p>
     </div>
 </div>

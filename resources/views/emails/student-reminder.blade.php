@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recordatorio de Evaluación</title>
+    <title>Recordatorio de Evaluación Pendiente - Sprint {{ $sprint->name }} - Grupo {{ $groupName }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -80,12 +80,9 @@
             <li><strong>Fecha de Finalización:</strong> {{ $evaluation->evaluationPeriod->ends_at->format('d/m/Y') }}
             </li>
         </ul>
-        <p>Tiempo restante:</p>
-        <div class="progress">
-            <div class="progress-bar">50% completado</div>
-        </div>
+        <p>Por favor, completa tu evaluación lo antes posible.</p>
         <p>
-            <a href="{{ config('app.url') }}/evaluations/{{ $evaluation->id }}" class="button">Ir a la Evaluación</a>
+            <a href="{{ config('app.url') }}" class="button">Ir a la Evaluación</a>
         </p>
     </div>
 </div>

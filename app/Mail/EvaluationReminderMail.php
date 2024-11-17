@@ -2,10 +2,10 @@
 
 namespace App\Mail;
 
+use App\Models\StudentEvaluation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\StudentEvaluation;
 
 class EvaluationReminderMail extends Mailable
 {
@@ -20,7 +20,16 @@ class EvaluationReminderMail extends Mailable
 
     public function build()
     {
+        $sprint = $this->evaluation->evaluationPeriod->sprint;
+        $group = $sprint->group;
+
         return $this->view('emails.student-reminder')
-                    ->subject('Recordatorio de Evaluación Pendiente');
+            ->with([
+                'studentName' => $this->evaluation->evaluator->user->name,
+                'evaluation' => $this->evaluation,
+                'sprint' => $sprint,
+                'groupName' => $group->short_name
+            ])
+            ->subject('Recordatorio: Evaluación pendiente para Sprint ' . $sprint->name . ' - Grupo ' . $group->short_name);
     }
 }
