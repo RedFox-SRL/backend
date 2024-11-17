@@ -12,15 +12,17 @@ class TeacherSummaryMail extends Mailable
     use Queueable, SerializesModels;
 
     public $sprint;
+    public $summary;
 
-    public function __construct(Sprint $sprint)
+    public function __construct(Sprint $sprint, array $summary)
     {
         $this->sprint = $sprint;
+        $this->summary = $summary;
     }
 
     public function build()
     {
         return $this->view('emails.teacher-summary')
-                    ->subject('Resumen de Evaluaciones del Sprint');
+            ->subject('Resumen Detallado de Evaluaciones del Sprint ' . $this->sprint->name);
     }
 }

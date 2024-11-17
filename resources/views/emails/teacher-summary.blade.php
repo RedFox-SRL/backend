@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resumen de Evaluaciones</title>
+    <title>Resumen de Evaluaciones del Sprint {{ $sprint->name }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,22 +12,14 @@
         }
 
         .container {
+            width: 100%;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        .header {
-            background-color: #800080;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .content {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 5px;
+        h1, h2, h3 {
+            color: #4a5568;
         }
 
         table {
@@ -37,90 +29,58 @@
         }
 
         th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 10px;
             text-align: left;
         }
 
         th {
-            background-color: #800080;
-            color: white;
-        }
-
-        .chart {
-            width: 100%;
-            height: 300px;
-            margin-bottom: 20px;
-        }
-
-        .image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            margin: 20px 0;
+            background-color: #edf2f7;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="container">
-    <div class="header">
-        <h1>Resumen de Evaluaciones para {{ $teacher->name }}</h1>
-    </div>
-    <div class="content">
-        <p>Estimado/a {{ $teacher->name }},</p>
-        <p>Aquí tiene un resumen detallado de las evaluaciones de sus estudiantes:</p>
-        <img
-            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-            alt="Resumen de evaluaciones" class="image">
+    <h1>Resumen de Evaluaciones del Sprint {{ $sprint->name }}</h1>
+    <p>Grupo: {{ $sprint->group->name }}</p>
+    <p>Fecha de finalización del sprint: {{ $sprint->end_date->format('d/m/Y') }}</p>
 
-        @foreach($evaluationPeriods as $period)
-            <h2>Período de Evaluación: {{ $period->starts_at->format('d/m/Y') }}
-                - {{ $period->ends_at->format('d/m/Y') }}</h2>
-
-            <h3>Progreso de Evaluaciones</h3>
-            <div class="chart">
-                <canvas id="chart{{ $period->id }}"></canvas>
-            </div>
-            <script>
-                var ctx = document.getElementById('chart{{ $period->id }}').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Completadas', 'Pendientes'],
-                        datasets: [{
-                            data: [{{ $period->completed_evaluations_count }}, {{ $period->total_evaluations_count - $period->completed_evaluations_count }}],
-                            backgroundColor: ['#800080', '#e74c3c']
-                        }]
-                    }
-                });
-            </script>
-
-            <h3>Detalle de Evaluaciones</h3>
-            <table>
-                <thead>
+    <h2>Autoevaluaciones</h2>
+    @foreach ($summary['self'] as $studentId => $data)
+        <h3>{{ $data['name'] }}</h3>
+        <table>
+            <tr>
+                <th>Criterio</th>
+                <th>Puntuación</th>
+            </tr>
+            @foreach ($data['evaluations'][0]['scores'] as $criterion => $score)
                 <tr>
-                    <th>Estudiante</th>
-                    <th>Tipo de Evaluación</th>
-                    <th>Estado</th>
-                    <th>Fecha de Completado</th>
+                    <td>{{ $criterion }}</td>
+                    <td>{{ $score }}</td>
                 </tr>
-                </thead>
-                <tbody>
-                @foreach($period->studentEvaluations as $evaluation)
+            @endforeach
+        </table>
+    @endforeach
+
+    <h2>Evaluaciones de Pares</h2>
+    @foreach ($summary['peer'] as $studentId => $data)
+        <h3>Evaluaciones realizadas por {{ $data['name'] }}</h3>
+        @foreach ($data['evaluations'] as $evaluation)
+            <h4>Evaluación para: {{ $evaluation['evaluated'] }}</h4>
+            <table>
+                <tr>
+                    <th>Criterio</th>
+                    <th>Puntuación</th>
+                </tr>
+                @foreach ($evaluation['scores'] as $criterion => $score)
                     <tr>
-                        <td>{{ $evaluation->evaluator->name }}</td>
-                        <td>{{ ucfirst($evaluation->evaluationPeriod->type) }}</td>
-                        <td>{{ $evaluation->is_completed ? 'Completada' : 'Pendiente' }}</td>
-                        <td>{{ $evaluation->completed_at ? $evaluation->completed_at->format('d/m/Y H:i') : 'N/A' }}</td>
+                        <td>{{ $criterion }}</td>
+                        <td>{{ $score }}</td>
                     </tr>
                 @endforeach
-                </tbody>
             </table>
         @endforeach
-
-        <p>Gracias por su atención. Si necesita más información, no dude en contactarnos.</p>
-    </div>
+    @endforeach
 </div>
 </body>
 </html>

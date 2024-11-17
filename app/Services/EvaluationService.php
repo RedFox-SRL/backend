@@ -176,6 +176,45 @@ class EvaluationService
     private function sendTeacherSummary(Sprint $sprint)
     {
         $teacher = $sprint->group->teacher;
-        Mail::to($teacher->user)->send(new TeacherSummaryMail($sprint));
+        $summary = $this->generateEvaluationSummary($sprint);
+        Mail::to($teacher->user)->send(new TeacherSummaryMail($sprint, $summary));
+    }
+
+    private function generateEvaluationSummary(Sprint $sprint)
+    {
+        $evaluations = StudentEvaluation::whereHas('evaluationPeriod', function ($query) use ($sprint) {
+            $query->where('sprint_id', $sprint->id);
+        })->with(['evaluator', 'evaluated', 'responses.templateCriterion', 'evaluationPeriod'])->get();
+
+        $summary = [
+            'self' => [],
+            'peer' => [],
+        ];
+
+        foreach ($evaluations as $evaluation) {
+            $type = $evaluation->evaluationPeriod->type;
+            $studentId = $evaluation->evaluator_id;
+
+            if (!isset($summary[$type][$studentId])) {
+                $summary[$type][$studentId] = [
+                    'name' => $evaluation->evaluator->user->name,
+                    'evaluations' => [],
+                ];
+            }
+
+            $evaluationData = [
+                'evaluated' => $evaluation->evaluated ? $evaluation->evaluated->user->name : 'Self',
+                'scores' => [],
+            ];
+
+            foreach ($evaluation->responses as $response) {
+                $criterionName = $response->templateCriterion->name;
+                $evaluationData['scores'][$criterionName] = $response->score;
+            }
+
+            $summary[$type][$studentId]['evaluations'][] = $evaluationData;
+        }
+
+        return $summary;
     }
 }
