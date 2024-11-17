@@ -62,13 +62,21 @@
         <p>Detalles de las evaluaciones:</p>
         <ul>
             @foreach($evaluations as $evaluation)
-                <li>{{ ucfirst($evaluation->evaluationPeriod->type) }} evaluación - Fecha
-                    límite: {{ $evaluation->evaluationPeriod->ends_at->format('d/m/Y') }}</li>
+                <li>
+                    @if (strtolower($evaluation->evaluationPeriod->type) === 'self')
+                        Autoevaluación
+                    @elseif (strtolower($evaluation->evaluationPeriod->type) === 'peer')
+                        Evaluación entre pares
+                    @else
+                        {{ ucfirst($evaluation->evaluationPeriod->type) }}
+                    @endif
+                    - Fecha límite: {{ $evaluation->evaluationPeriod->ends_at->format('d/m/Y') }}
+                </li>
             @endforeach
         </ul>
-        <p>
-            <a href="{{ config('app.url') }}" class="button">Ir a las Evaluaciones</a>
-        </p>
+        <center>
+            <a href="{{ env('APP_URL') }}/" class="button" style="color: white;">Acceder a la plataforma</a>
+        </center>
     </div>
 </div>
 </body>
