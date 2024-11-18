@@ -31,6 +31,16 @@ class EvaluationReminderMail extends Mailable
                 'groupName' => $group->short_name,
                 'evaluationType' => ucfirst($this->evaluation->evaluationPeriod->type)
             ])
-            ->subject('Recordatorio: Evaluación ' . $this->evaluation->evaluationPeriod->type . ' pendiente para Sprint ' . $sprint->title . ' - Grupo ' . $group->short_name);
+            ->subject('Recordatorio: Evaluación ' . $this->translateEvaluationType($this->evaluation->evaluationPeriod->type) . ' pendiente para Sprint ' . $sprint->title . ' - Grupo ' . $group->short_name);
+    }
+
+    private function translateEvaluationType($type)
+    {
+        $translations = [
+            'self' => 'Autoevaluación',
+            'peer' => 'Evaluación entre pares',
+        ];
+
+        return $translations[strtolower($type)] ?? ucfirst($type);
     }
 }
