@@ -75,7 +75,15 @@
             src="https://images.unsplash.com/photo-1435527173128-983b87201f4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1467&q=80"
             alt="Recordatorio de evaluación" class="image">
         <ul>
-            <li><strong>Tipo de Evaluación:</strong> {{ $evaluationType }}</li>
+            <li><strong>Tipo de Evaluación:</strong>
+                @if (strtolower($evaluationType) === 'self')
+                    Autoevaluación
+                @elseif (strtolower($evaluationType) === 'peer')
+                    Evaluación entre pares
+                @else
+                    {{ $evaluationType }}
+                @endif
+            </li>
             <li><strong>Sprint:</strong> {{ $sprint->title }}</li>
             <li><strong>Grupo:</strong> {{ $groupName }}</li>
             <li><strong>Fecha de Inicio:</strong> {{ $evaluation->evaluationPeriod->starts_at->format('d/m/Y') }}</li>
@@ -83,9 +91,9 @@
             </li>
         </ul>
         <p>Por favor, completa tu evaluación lo antes posible.</p>
-        <p>
-            <a href="{{ config('app.url') }}/evaluations" class="button">Ir a la Evaluación</a>
-        </p>
+        <center>
+            <a href="{{ config('app.url') }}" class="button" style="color: white;">Acceder a la plataforma</a>
+        </center>
     </div>
 </div>
 </body>
