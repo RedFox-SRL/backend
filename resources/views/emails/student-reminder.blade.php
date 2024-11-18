@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recordatorio de Evaluación Pendiente - Sprint {{ $sprint->name }} - Grupo {{ $groupName }}</title>
+    <title>Recordatorio de Evaluación Pendiente - Sprint {{ $sprint->title }} - Grupo {{ $groupName }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -69,20 +69,22 @@
         <h1>Recordatorio de Evaluación Pendiente</h1>
     </div>
     <div class="content">
-        <p>Hola {{ $student->name }},</p>
+        <p>Hola {{ $studentName }},</p>
         <p>Te recordamos que tienes una evaluación pendiente por completar:</p>
         <img
             src="https://images.unsplash.com/photo-1435527173128-983b87201f4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1467&q=80"
             alt="Recordatorio de evaluación" class="image">
         <ul>
-            <li><strong>Tipo de Evaluación:</strong> {{ ucfirst($evaluation->evaluationPeriod->type) }}</li>
+            <li><strong>Tipo de Evaluación:</strong> {{ $evaluationType }}</li>
+            <li><strong>Sprint:</strong> {{ $sprint->title }}</li>
+            <li><strong>Grupo:</strong> {{ $groupName }}</li>
             <li><strong>Fecha de Inicio:</strong> {{ $evaluation->evaluationPeriod->starts_at->format('d/m/Y') }}</li>
             <li><strong>Fecha de Finalización:</strong> {{ $evaluation->evaluationPeriod->ends_at->format('d/m/Y') }}
             </li>
         </ul>
         <p>Por favor, completa tu evaluación lo antes posible.</p>
         <p>
-            <a href="{{ config('app.url') }}" class="button">Ir a la Evaluación</a>
+            <a href="{{ config('app.url') }}/evaluations" class="button">Ir a la Evaluación</a>
         </p>
     </div>
 </div>

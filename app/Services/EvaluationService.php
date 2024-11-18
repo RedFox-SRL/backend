@@ -88,16 +88,16 @@ class EvaluationService
                     ->where('ends_at', '>=', $now)
                     ->where('is_active', true);
             })
-            ->whereDoesntHave('reminders', function ($query) use ($now) {
-                $query->whereDate('sent_at', $now->toDateString());
-            })
+            ->with(['evaluationPeriod', 'evaluator.user'])
             ->get();
 
         foreach ($remindersToSend as $evaluation) {
-            if ($evaluation->evaluationPeriod->starts_at->isToday() ||
-                $evaluation->evaluationPeriod->starts_at->addDays(3)->isToday()) {
-                Mail::to($evaluation->evaluator->user)->send(new EvaluationReminderMail($evaluation));
-                $evaluation->reminders()->create(['sent_at' => $now]);
+            $activationDate = $evaluation->evaluationPeriod->starts_at;
+            $daysSinceActivation = $now->diffInDays($activationDate);
+
+            if ($daysSinceActivation > 0 && $daysSinceActivation <= 3) {
+                Mail::to($evaluation->evaluator->user->email)
+                    ->send(new EvaluationReminderMail($evaluation));
             }
         }
     }
@@ -177,7 +177,7 @@ class EvaluationService
     {
         $teacher = $sprint->group->teacher;
         $summary = $this->generateEvaluationSummary($sprint);
-        Mail::to($teacher->user)->send(new TeacherSummaryMail($sprint, $summary));
+        Mail::to($teacher->user->email)->send(new TeacherSummaryMail($sprint, $summary));
     }
 
     private function generateEvaluationSummary(Sprint $sprint)

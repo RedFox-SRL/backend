@@ -28,8 +28,9 @@ class EvaluationReminderMail extends Mailable
                 'studentName' => $this->evaluation->evaluator->user->name,
                 'evaluation' => $this->evaluation,
                 'sprint' => $sprint,
-                'groupName' => $group->short_name
+                'groupName' => $group->short_name,
+                'evaluationType' => ucfirst($this->evaluation->evaluationPeriod->type)
             ])
-            ->subject('Recordatorio: Evaluación pendiente para Sprint ' . $sprint->name . ' - Grupo ' . $group->short_name);
+            ->subject('Recordatorio: Evaluación ' . $this->evaluation->evaluationPeriod->type . ' pendiente para Sprint ' . $sprint->title . ' - Grupo ' . $group->short_name);
     }
 }
