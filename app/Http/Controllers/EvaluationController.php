@@ -39,8 +39,12 @@ class EvaluationController extends Controller
             return $this->respondUnAuthorizedRequest(ApiCode::UNAUTHORIZED);
         }
 
-        $this->evaluationService->submitEvaluation($evaluation, $request->responses);
+        $result = $this->evaluationService->submitEvaluation($evaluation, $request->responses);
 
-        return $this->respondWithMessage('Evaluation submitted successfully.');
+        if (!$result['success']) {
+            return $this->respondBadRequest($result['error']);
+        }
+
+        return $this->respondWithMessage($result['message']);
     }
 }
