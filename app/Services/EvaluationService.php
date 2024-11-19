@@ -175,9 +175,12 @@ class EvaluationService
 
     private function sendTeacherSummary(Sprint $sprint)
     {
-        $teacher = $sprint->group->teacher;
-        $summary = $this->generateEvaluationSummary($sprint);
-        Mail::to($teacher->user->email)->send(new TeacherSummaryMail($sprint, $summary));
+        $teacher = $sprint->group->management->teacher;
+
+        if ($teacher && $teacher->user) {
+            $summary = $this->generateEvaluationSummary($sprint);
+            Mail::to($teacher->user->email)->send(new TeacherSummaryMail($sprint, $summary));
+        }
     }
 
     private function generateEvaluationSummary(Sprint $sprint)
