@@ -41,8 +41,8 @@
 </head>
 <body>
 <div class="container">
-    <h1>Resumen de Evaluaciones del Sprint {{ $sprint->name }}</h1>
-    <p>Grupo: {{ $sprint->group->name }}</p>
+    <h1>Resumen de Evaluaciones del Sprint {{ $sprint->title }}</h1>
+    <p>Grupo: {{ $sprint->group->short_name }}</p>
     <p>Fecha de finalización del sprint: {{ $sprint->end_date->format('d/m/Y') }}</p>
 
     <h2>Autoevaluaciones</h2>

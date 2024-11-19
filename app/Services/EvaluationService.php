@@ -219,9 +219,8 @@ class EvaluationService
                 return $period->studentEvaluations->every->is_completed;
             });
 
-        if ($allCompleted && !$sprint->teacher_summary_sent) {
+        if ($allCompleted) {
             $this->sendTeacherSummary($sprint);
-            $sprint->update(['teacher_summary_sent' => true]);
         }
     }
 

@@ -23,6 +23,6 @@ class TeacherSummaryMail extends Mailable
     public function build()
     {
         return $this->view('emails.teacher-summary')
-            ->subject('Resumen Detallado de Evaluaciones del Sprint ' . $this->sprint->name);
+            ->subject('Resumen Detallado de Evaluaciones del Sprint ' . $this->sprint->title);
     }
 }
