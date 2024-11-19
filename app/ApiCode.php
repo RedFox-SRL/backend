@@ -65,4 +65,8 @@ class ApiCode
     public const STUDENT_NOT_FOUND = 313;
     public const STUDENT_NOT_IN_SAME_MANAGEMENT = 314;
     public const EVALUATION_ALREADY_COMPLETED = 315;
+    public const EVALUATION_SUBMISSION_FAILED = 316;
+    public const EVALUATION_PERIOD_EXPIRED = 317;
+    public const INVALID_RESPONSE_COUNT = 318;
+    public const INSUFFICIENT_GROUP_MEMBERS = 319;
 }

@@ -93,5 +93,9 @@ return [
         ApiCode::STUDENT_NOT_FOUND => 'api.student_not_found',
         ApiCode::STUDENT_NOT_IN_SAME_MANAGEMENT => 'api.student_not_in_same_management',
         ApiCode::EVALUATION_ALREADY_COMPLETED => 'api.evaluation_already_completed',
+        ApiCode::EVALUATION_SUBMISSION_FAILED => 'api.evaluation_submission_failed',
+        ApiCode::EVALUATION_PERIOD_EXPIRED => 'api.evaluation_period_expired',
+        ApiCode::INVALID_RESPONSE_COUNT => 'api.invalid_response_count',
+        ApiCode::INSUFFICIENT_GROUP_MEMBERS => 'api.insufficient_group_members',
     ],
 ];

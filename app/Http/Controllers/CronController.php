@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\EvaluationService;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Sprint;
-use Carbon\Carbon;
 
 class CronController extends Controller
 {
@@ -30,6 +28,10 @@ class CronController extends Controller
             ->get();
 
         foreach ($sprints as $sprint) {
+            $group = $sprint->group;
+            if ($group->students()->count() < 2) {
+                return response()->json(['mensaje' => 'Grupo con numero de miembros insuficientes'], 200);
+            }
             $this->evaluationService->createAndActivateEvaluations($sprint);
         }
 

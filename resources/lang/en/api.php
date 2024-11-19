@@ -63,4 +63,8 @@ return [
     'student_not_found' => 'Student not found.',
     'student_not_in_same_management' => 'The student is not part of the same management as the group.',
     'evaluation_already_completed' => 'The evaluation has already been completed.',
+    'evaluation_submission_failed' => 'Failed to submit the evaluation.',
+    'evaluation_period_expired' => 'The evaluation period has expired.',
+    'invalid_response_count' => 'Invalid number of responses.',
+    'insufficient_group_members' => 'The group does not have enough members to create evaluations.',
 ];

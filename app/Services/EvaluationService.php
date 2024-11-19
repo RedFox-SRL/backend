@@ -13,6 +13,8 @@ use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\ApiCode;
+use Exception;
 
 class EvaluationService
 {
@@ -35,7 +37,7 @@ class EvaluationService
         }
 
         $startDate = $sprint->end_date;
-        $endDate = $startDate->copy()->addDays(4);
+        $endDate = $startDate->copy()->addDays(4)->setTime(22, 0, 0);
 
         $this->createEvaluationPeriod($sprint, $selfTemplate, 'self', $startDate, $endDate);
         $this->createEvaluationPeriod($sprint, $peerTemplate, 'peer', $startDate, $endDate);
@@ -129,7 +131,7 @@ class EvaluationService
     {
         $now = Carbon::now();
 
-        return StudentEvaluation::where('evaluator_id', $student->id)
+        $evaluations = StudentEvaluation::where('evaluator_id', $student->id)
             ->whereHas('evaluationPeriod', function ($query) use ($now) {
                 $query->where('starts_at', '<=', $now)
                     ->where('ends_at', '>=', $now)
@@ -137,25 +139,75 @@ class EvaluationService
             })
             ->with(['evaluationPeriod.evaluationTemplate.sections.criteria', 'evaluated', 'evaluationPeriod.sprint'])
             ->get();
+
+        if ($evaluations->isEmpty()) {
+            return ['success' => true, 'message' => 'No active evaluations found.'];
+        }
+
+        $activeEvaluations = $evaluations->filter(function ($evaluation) {
+            return !$evaluation->is_completed;
+        });
+
+        $completedEvaluations = $evaluations->filter(function ($evaluation) {
+            return $evaluation->is_completed;
+        });
+
+        $result = [
+            'active' => $activeEvaluations->values(),
+            'completed' => $completedEvaluations->map(function ($evaluation) {
+                return [
+                    'id' => $evaluation->id,
+                    'type' => $evaluation->evaluationPeriod->type,
+                    'completed_at' => $evaluation->completed_at,
+                ];
+            })->values(),
+        ];
+
+        return ['success' => true, 'evaluations' => $result];
     }
 
     public function submitEvaluation(StudentEvaluation $evaluation, array $responses)
     {
-        DB::transaction(function () use ($evaluation, $responses) {
-            foreach ($responses as $criterionId => $score) {
-                $evaluation->responses()->create([
-                    'template_criterion_id' => $criterionId,
-                    'score' => $score,
-                ]);
+        try {
+            $now = Carbon::now();
+            $evaluationPeriod = $evaluation->evaluationPeriod;
+
+            if ($now > $evaluationPeriod->ends_at) {
+                return ['success' => false, 'error' => ApiCode::EVALUATION_PERIOD_EXPIRED];
             }
 
-            $evaluation->update([
-                'is_completed' => true,
-                'completed_at' => Carbon::now(),
-            ]);
+            $template = $evaluationPeriod->evaluationTemplate;
+            $expectedCriteriaCount = $template->sections->flatMap->criteria->count();
 
-            $this->checkAndSendTeacherSummary($evaluation->evaluationPeriod->sprint);
-        });
+            if (count($responses) !== $expectedCriteriaCount) {
+                return ['success' => false, 'error' => ApiCode::INVALID_RESPONSE_COUNT];
+            }
+
+            $validCriteriaIds = $template->sections->flatMap->criteria->pluck('id')->toArray();
+
+            DB::transaction(function () use ($evaluation, $responses, $validCriteriaIds) {
+                foreach ($responses as $criterionId => $score) {
+                    if (!in_array($criterionId, $validCriteriaIds)) {
+                        throw new Exception('Invalid criterion ID');
+                    }
+
+                    $evaluation->responses()->create([
+                        'template_criterion_id' => $criterionId,
+                        'score' => $score,
+                    ]);
+                }
+
+                $evaluation->update([
+                    'is_completed' => true,
+                    'completed_at' => Carbon::now(),
+                ]);
+
+                $this->checkAndSendTeacherSummary($evaluation->evaluationPeriod->sprint);
+            });
+            return ['success' => true, 'message' => 'Evaluation submitted successfully.'];
+        } catch (Exception $e) {
+            return ['success' => false, 'error' => ApiCode::EVALUATION_SUBMISSION_FAILED];
+        }
     }
 
     private function checkAndSendTeacherSummary(Sprint $sprint)
