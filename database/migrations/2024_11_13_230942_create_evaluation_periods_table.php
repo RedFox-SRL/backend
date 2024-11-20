@@ -15,7 +15,6 @@ class CreateEvaluationPeriodsTable extends Migration
             $table->enum('type', ['self', 'peer']);
             $table->timestamp('starts_at');
             $table->timestamp('ends_at');
-            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

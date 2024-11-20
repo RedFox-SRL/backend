@@ -51,7 +51,6 @@ class EvaluationService
             'type' => $type,
             'starts_at' => $startDate,
             'ends_at' => $endDate,
-            'is_active' => true,
         ]);
 
         $students = $sprint->group->students;
@@ -87,8 +86,7 @@ class EvaluationService
         $remindersToSend = StudentEvaluation::where('is_completed', false)
             ->whereHas('evaluationPeriod', function ($query) use ($now) {
                 $query->where('starts_at', '<=', $now)
-                    ->where('ends_at', '>=', $now)
-                    ->where('is_active', true);
+                    ->where('ends_at', '>=', $now);
             })
             ->with(['evaluationPeriod', 'evaluator.user'])
             ->get();
@@ -134,8 +132,7 @@ class EvaluationService
         $evaluations = StudentEvaluation::where('evaluator_id', $student->id)
             ->whereHas('evaluationPeriod', function ($query) use ($now) {
                 $query->where('starts_at', '<=', $now)
-                    ->where('ends_at', '>=', $now)
-                    ->where('is_active', true);
+                    ->where('ends_at', '>=', $now);
             })
             ->with(['evaluationPeriod.evaluationTemplate.sections.criteria', 'evaluated', 'evaluationPeriod.sprint'])
             ->get();
