@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateManagementRequest extends FormRequest
+class UpdateProjectDeliveryDateRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,8 +14,7 @@ class CreateManagementRequest extends FormRequest
     public function rules()
     {
         return [
-            'semester' => 'required|in:first,second',
-            'year' => 'required|integer|min:2000|max:2100',
+            'project_delivery_date' => 'required|date_format:Y-m-d H:i:s',
         ];
     }
 }

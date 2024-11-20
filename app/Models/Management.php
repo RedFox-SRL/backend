@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Management extends Model
 {
@@ -17,11 +18,12 @@ class Management extends Model
         'end_date',
         'group_limit',
         'is_code_active',
+        'project_delivery_date',
     ];
 
     protected $table = 'management';
 
-    protected $dates = ['start_date', 'end_date'];
+    protected $dates = ['start_date', 'end_date', 'project_delivery_date'];
 
     public function teacher()
     {
@@ -36,7 +38,7 @@ class Management extends Model
     public static function generateUniqueCode()
     {
         do {
-            $code = strtoupper(bin2hex(random_bytes(3))); // Genera un código aleatorio de 6 caracteres
+            $code = strtoupper(bin2hex(random_bytes(6)));
         } while (self::where('code', $code)->exists());
 
         return $code;
@@ -49,6 +51,22 @@ class Management extends Model
 
     protected function serializeDate(\DateTimeInterface $date)
     {
-        return $date->format('Y-m-d');
+        return $date->format('Y-m-d H:i:s');
+    }
+
+    public static function calculateDates($semester, $year)
+    {
+        if ($semester === 'first') {
+            $startDate = Carbon::create($year, 1, 1);
+            $endDate = Carbon::create($year, 6, 30);
+        } else {
+            $startDate = Carbon::create($year, 7, 1);
+            $endDate = Carbon::create($year, 12, 31);
+        }
+
+        return [
+            'start_date' => $startDate,
+            'end_date' => $endDate,
+        ];
     }
 }

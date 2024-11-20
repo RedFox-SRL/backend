@@ -67,4 +67,5 @@ return [
     'evaluation_period_expired' => 'The evaluation period has expired.',
     'invalid_response_count' => 'Invalid number of responses.',
     'insufficient_group_members' => 'The group does not have enough members to create evaluations.',
+    'invalid_project_delivery_date' => 'The project delivery date must be within the management period.',
 ];

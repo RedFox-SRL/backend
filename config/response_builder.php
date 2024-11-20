@@ -97,5 +97,6 @@ return [
         ApiCode::EVALUATION_PERIOD_EXPIRED => 'api.evaluation_period_expired',
         ApiCode::INVALID_RESPONSE_COUNT => 'api.invalid_response_count',
         ApiCode::INSUFFICIENT_GROUP_MEMBERS => 'api.insufficient_group_members',
+        ApiCode::INVALID_PROJECT_DELIVERY_DATE => 'api.invalid_project_delivery_date',
     ],
 ];
