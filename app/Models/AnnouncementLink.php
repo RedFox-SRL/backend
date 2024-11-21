@@ -10,15 +10,14 @@ class AnnouncementLink extends Model
     use HasFactory;
 
     protected $fillable = [
-        'announcement_id',
+        'announceable_id',
+        'announceable_type',
         'url',
         'title',
-        'description',
-        'image',
     ];
 
-    public function announcement()
+    public function announceable()
     {
-        return $this->belongsTo(Announcement::class);
+        return $this->morphTo();
     }
 }

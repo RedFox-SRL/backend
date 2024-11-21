@@ -10,15 +10,14 @@ class AnnouncementYoutubeVideo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'announcement_id',
+        'announceable_id',
+        'announceable_type',
         'video_id',
         'title',
-        'description',
-        'thumbnail',
     ];
 
-    public function announcement()
+    public function announceable()
     {
-        return $this->belongsTo(Announcement::class);
+        return $this->morphTo();
     }
 }

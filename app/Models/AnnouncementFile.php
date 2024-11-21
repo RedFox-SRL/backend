@@ -10,15 +10,16 @@ class AnnouncementFile extends Model
     use HasFactory;
 
     protected $fillable = [
-        'announcement_id',
+        'announceable_id',
+        'announceable_type',
         'name',
         'path',
         'mime_type',
         'size',
     ];
 
-    public function announcement()
+    public function announceable()
     {
-        return $this->belongsTo(Announcement::class);
+        return $this->morphTo();
     }
 }

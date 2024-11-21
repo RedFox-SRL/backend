@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
-use App\Models\AnnouncementFile;
-use App\Models\AnnouncementLink;
-use App\Models\AnnouncementYoutubeVideo;
+use App\Models\GlobalAnnouncement;
 use App\Models\Management;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use App\ApiCode;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class AnnouncementController extends Controller
 {
@@ -39,53 +37,68 @@ class AnnouncementController extends Controller
         DB::beginTransaction();
 
         try {
-            $announcementData = [
-                'user_id' => $user->id,
-                'content' => $validatedData['announcement'] ?? '',
-                'is_global' => $validatedData['is_global'] ?? false,
-            ];
-
             if ($validatedData['is_global'] ?? false) {
-                $announcements = $this->createGlobalAnnouncements($announcementData, $management);
+                $announcement = GlobalAnnouncement::create([
+                    'user_id' => $user->id,
+                    'content' => $validatedData['announcement'] ?? '',
+                    'semester' => $management->semester,
+                    'year' => $management->start_date->year,
+                ]);
             } else {
-                $announcementData['management_id'] = $validatedData['management_id'];
-                $announcements = [Announcement::create($announcementData)];
+                $announcement = Announcement::create([
+                    'management_id' => $validatedData['management_id'],
+                    'user_id' => $user->id,
+                    'content' => $validatedData['announcement'] ?? '',
+                ]);
             }
 
-            foreach ($announcements as $announcement) {
-                $this->processFiles($request, $announcement);
-                $this->processLinks($validatedData, $announcement);
-                $this->processYoutubeVideos($validatedData, $announcement);
-            }
+            $this->processFiles($request, $announcement);
+            $this->processLinks($validatedData, $announcement);
+            $this->processYoutubeVideos($validatedData, $announcement);
 
             DB::commit();
 
-            $announcement = $announcements[0];
-            $announcement->load('files', 'links', 'youtubeVideos');
-            return response()->json(['message' => 'Anuncio creado con éxito', 'announcement' => $announcement], 201);
+            $announcement->load('files', 'links', 'youtubeVideos', 'user');
+            return response()->json(['message' => 'Anuncio creado con éxito', 'announcement' => $this->formatAnnouncement($announcement)], 201);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['message' => 'Error al crear el anuncio', 'error' => $e->getMessage()], 500);
         }
     }
 
-    private function createGlobalAnnouncements($announcementData, $management)
+    public function index(Request $request, $managementId)
     {
-        $announcements = [];
-        $startDate = $management->start_date instanceof Carbon
-            ? $management->start_date
-            : Carbon::parse($management->start_date);
+        $management = Management::findOrFail($managementId);
 
-        $relatedManagements = Management::where('semester', $management->semester)
-            ->whereYear('start_date', $startDate->year)
+        $regularAnnouncements = Announcement::where('management_id', $managementId)
+            ->with(['user', 'files', 'links', 'youtubeVideos'])
             ->get();
 
-        foreach ($relatedManagements as $relatedManagement) {
-            $announcementData['management_id'] = $relatedManagement->id;
-            $announcements[] = Announcement::create($announcementData);
-        }
+        $globalAnnouncements = GlobalAnnouncement::where('semester', $management->semester)
+            ->whereYear('created_at', $management->start_date->year)
+            ->with(['user', 'files', 'links', 'youtubeVideos'])
+            ->get();
 
-        return $announcements;
+        $allAnnouncements = $regularAnnouncements->concat($globalAnnouncements)
+            ->sortByDesc('created_at')
+            ->values();
+
+        $page = max(1, intval($request->input('page', 1)));
+        $perPage = 10;
+
+        $paginatedAnnouncements = new \Illuminate\Pagination\LengthAwarePaginator(
+            $allAnnouncements->forPage($page, $perPage),
+            $allAnnouncements->count(),
+            $perPage,
+            $page,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
+
+        $formattedAnnouncements = $paginatedAnnouncements->through(function ($announcement) {
+            return $this->formatAnnouncement($announcement);
+        });
+
+        return response()->json($formattedAnnouncements);
     }
 
     private function processFiles($request, $announcement)
@@ -93,8 +106,7 @@ class AnnouncementController extends Controller
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $file) {
                 $path = $file->store('announcement_files');
-                AnnouncementFile::create([
-                    'announcement_id' => $announcement->id,
+                $announcement->files()->create([
                     'name' => $file->getClientOriginalName(),
                     'path' => $path,
                     'mime_type' => $file->getMimeType(),
@@ -110,8 +122,7 @@ class AnnouncementController extends Controller
         if (is_array($links)) {
             foreach ($links as $link) {
                 if (isset($link['url'])) {
-                    AnnouncementLink::create([
-                        'announcement_id' => $announcement->id,
+                    $announcement->links()->create([
                         'url' => $link['url'],
                         'title' => $link['title'] ?? null,
                     ]);
@@ -126,8 +137,7 @@ class AnnouncementController extends Controller
         if (is_array($youtubeVideos)) {
             foreach ($youtubeVideos as $video) {
                 if (isset($video['video_id'])) {
-                    AnnouncementYoutubeVideo::create([
-                        'announcement_id' => $announcement->id,
+                    $announcement->youtubeVideos()->create([
                         'video_id' => $video['video_id'],
                         'title' => $video['title'] ?? null,
                     ]);
@@ -136,42 +146,16 @@ class AnnouncementController extends Controller
         }
     }
 
-    public function index(Request $request, $managementId)
-    {
-        $management = Management::findOrFail($managementId);
-        $user = Auth::user();
-
-        $announcements = Announcement::where(function ($query) use ($managementId, $management) {
-            $query->where('management_id', $managementId)
-                ->orWhere(function ($q) use ($management) {
-                    $q->where('is_global', true)
-                        ->whereHas('management', function ($subQ) use ($management) {
-                            $subQ->where('semester', $management->semester)
-                                ->whereYear('start_date', Carbon::parse($management->start_date)->year);
-                        });
-                });
-        })
-            ->with(['user', 'files', 'links', 'youtubeVideos'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
-
-        $formattedAnnouncements = $announcements->through(function ($announcement) {
-            return $this->formatAnnouncement($announcement);
-        });
-
-        return response()->json($formattedAnnouncements);
-    }
-
     private function formatAnnouncement($announcement)
     {
         return [
             'id' => $announcement->id,
-            'management_id' => $announcement->management_id,
+            'management_id' => $announcement instanceof Announcement ? $announcement->management_id : null,
             'user_id' => $announcement->user_id,
             'content' => $announcement->content,
             'created_at' => $announcement->created_at,
             'updated_at' => $announcement->updated_at,
-            'is_global' => $announcement->is_global,
+            'is_global' => $announcement instanceof GlobalAnnouncement,
             'user' => $announcement->user,
             'files' => $this->formatFiles($announcement->files),
             'links' => $announcement->links,
@@ -192,9 +176,9 @@ class AnnouncementController extends Controller
         });
     }
 
-    private function formatYoutubeVideos($youtubeVideos)
+    private function formatYoutubeVideos($videos)
     {
-        return $youtubeVideos->map(function ($video) {
+        return $videos->map(function ($video) {
             return [
                 'id' => $video->id,
                 'video_id' => $video->video_id,

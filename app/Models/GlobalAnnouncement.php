@@ -5,20 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Announcement extends Model
+class GlobalAnnouncement extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'management_id',
         'user_id',
         'content',
+        'semester',
+        'year',
     ];
-
-    public function management()
-    {
-        return $this->belongsTo(Management::class);
-    }
 
     public function user()
     {
