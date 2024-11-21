@@ -68,4 +68,6 @@ return [
     'invalid_response_count' => 'Invalid number of responses.',
     'insufficient_group_members' => 'The group does not have enough members to create evaluations.',
     'invalid_project_delivery_date' => 'The project delivery date must be within the management period.',
+    'management_date_in_past' => 'The management date is in the past.',
+    'management_date_in_future' => 'The management date is in the future.',
 ];

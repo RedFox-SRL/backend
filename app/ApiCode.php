@@ -70,4 +70,6 @@ class ApiCode
     public const INVALID_RESPONSE_COUNT = 318;
     public const INSUFFICIENT_GROUP_MEMBERS = 319;
     public const INVALID_PROJECT_DELIVERY_DATE = 320;
+    public const MANAGEMENT_DATE_IN_PAST = 321;
+    public const MANAGEMENT_DATE_IN_FUTURE = 322;
 }

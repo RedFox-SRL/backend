@@ -98,5 +98,7 @@ return [
         ApiCode::INVALID_RESPONSE_COUNT => 'api.invalid_response_count',
         ApiCode::INSUFFICIENT_GROUP_MEMBERS => 'api.insufficient_group_members',
         ApiCode::INVALID_PROJECT_DELIVERY_DATE => 'api.invalid_project_delivery_date',
+        ApiCode::MANAGEMENT_DATE_IN_PAST => 'api.management_date_in_past',
+        ApiCode::MANAGEMENT_DATE_IN_FUTURE => 'api.management_date_in_future',
     ],
 ];

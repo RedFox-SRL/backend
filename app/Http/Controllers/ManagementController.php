@@ -40,12 +40,27 @@ class ManagementController extends Controller
             return $this->respondBadRequest(ApiCode::MANAGEMENT_ALREADY_EXISTS);
         }
 
-        $dates = Management::calculateDates($request->input('semester'), $request->input('year'));
+        $currentDate = Carbon::now();
+        $currentYear = $currentDate->year;
+        $currentSemester = $currentDate->month <= 6 ? 'first' : 'second';
+
+        $requestedYear = $request->input('year');
+        $requestedSemester = $request->input('semester');
+
+        if ($requestedYear < $currentYear || ($requestedYear == $currentYear && $requestedSemester == 'first' && $currentSemester == 'second')) {
+            return $this->respondBadRequest(ApiCode::MANAGEMENT_DATE_IN_PAST);
+        }
+
+        if ($requestedYear > $currentYear || ($requestedYear == $currentYear && $requestedSemester == 'second' && $currentSemester == 'first')) {
+            return $this->respondBadRequest(ApiCode::MANAGEMENT_DATE_IN_FUTURE);
+        }
+
+        $dates = Management::calculateDates($requestedSemester, $requestedYear);
 
         $management = Management::create([
             'teacher_id' => $teacher->id,
             'code' => Management::generateUniqueCode(),
-            'semester' => $request->input('semester'),
+            'semester' => $requestedSemester,
             'start_date' => $dates['start_date'],
             'end_date' => $dates['end_date'],
             'group_limit' => 1,
