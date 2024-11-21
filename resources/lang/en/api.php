@@ -70,4 +70,6 @@ return [
     'invalid_project_delivery_date' => 'The project delivery date must be within the management period.',
     'management_date_in_past' => 'The management date is in the past.',
     'management_date_in_future' => 'The management date is in the future.',
+    'project_delivery_date_before_start' => 'The project delivery date must be after the management start date.',
+    'project_delivery_date_after_end' => 'The project delivery date must be before the management end date.',
 ];

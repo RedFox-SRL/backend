@@ -24,7 +24,7 @@ class UpdateGroupLimitRequest extends FormRequest
     public function rules()
     {
         return [
-            'group_limit' => 'required|integer|min:1',
+            'group_limit' => 'required|integer|min:1|max:100',
         ];
     }
 }

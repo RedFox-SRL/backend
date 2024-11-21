@@ -100,5 +100,7 @@ return [
         ApiCode::INVALID_PROJECT_DELIVERY_DATE => 'api.invalid_project_delivery_date',
         ApiCode::MANAGEMENT_DATE_IN_PAST => 'api.management_date_in_past',
         ApiCode::MANAGEMENT_DATE_IN_FUTURE => 'api.management_date_in_future',
+        ApiCode::PROJECT_DELIVERY_DATE_BEFORE_START => 'api.project_delivery_date_before_start',
+        ApiCode::PROJECT_DELIVERY_DATE_AFTER_END => 'api.project_delivery_date_after_end',
     ],
 ];

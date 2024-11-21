@@ -36,7 +36,10 @@ class ManagementController extends Controller
             return $teacher;
         }
 
-        if ($this->managementExistsForTeacher($teacher->id, $request->input('semester'), $request->input('year'))) {
+        $requestedYear = $request->input('year');
+        $requestedSemester = $request->input('semester');
+
+        if ($this->managementExistsForTeacher($teacher->id, $requestedSemester, $requestedYear)) {
             return $this->respondBadRequest(ApiCode::MANAGEMENT_ALREADY_EXISTS);
         }
 
@@ -44,14 +47,13 @@ class ManagementController extends Controller
         $currentYear = $currentDate->year;
         $currentSemester = $currentDate->month <= 6 ? 'first' : 'second';
 
-        $requestedYear = $request->input('year');
-        $requestedSemester = $request->input('semester');
-
-        if ($requestedYear < $currentYear || ($requestedYear == $currentYear && $requestedSemester == 'first' && $currentSemester == 'second')) {
+        if ($requestedYear < $currentYear ||
+            ($requestedYear == $currentYear && $requestedSemester == 'first' && $currentSemester == 'second')) {
             return $this->respondBadRequest(ApiCode::MANAGEMENT_DATE_IN_PAST);
         }
 
-        if ($requestedYear > $currentYear || ($requestedYear == $currentYear && $requestedSemester == 'second' && $currentSemester == 'first')) {
+        if ($requestedYear > $currentYear ||
+            ($requestedYear == $currentYear && $requestedSemester == 'second' && $currentSemester == 'first')) {
             return $this->respondBadRequest(ApiCode::MANAGEMENT_DATE_IN_FUTURE);
         }
 
@@ -85,12 +87,22 @@ class ManagementController extends Controller
 
     public function updateGroupLimit(UpdateGroupLimitRequest $request, $managementId)
     {
-        $management = $this->getManagementForAuthenticatedTeacher($managementId);
+        $teacher = $this->getAuthenticatedTeacher();
+        if ($teacher instanceof \Illuminate\Http\JsonResponse) {
+            return $teacher;
+        }
+
+        $management = $this->getManagement($managementId);
         if ($management instanceof \Illuminate\Http\JsonResponse) {
             return $management;
         }
 
-        $management->group_limit = $request->input('group_limit');
+        if ($management->teacher_id !== $teacher->id) {
+            return $this->respondUnAuthorizedRequest(ApiCode::MANAGEMENT_ACCESS_DENIED);
+        }
+
+        $validatedData = $request->validated();
+        $management->group_limit = $validatedData['group_limit'];
         $management->save();
 
         return $this->respond(['management' => $management], 'Group limit updated successfully.');
@@ -98,19 +110,34 @@ class ManagementController extends Controller
 
     public function updateProjectDeliveryDate(UpdateProjectDeliveryDateRequest $request, $managementId)
     {
-        $management = $this->getManagementForAuthenticatedTeacher($managementId);
+        $teacher = $this->getAuthenticatedTeacher();
+        if ($teacher instanceof \Illuminate\Http\JsonResponse) {
+            return $teacher;
+        }
+
+        $management = $this->getManagement($managementId);
         if ($management instanceof \Illuminate\Http\JsonResponse) {
             return $management;
         }
 
-        $projectDeliveryDate = Carbon::parse($request->input('project_delivery_date'));
-        if ($projectDeliveryDate->between($management->start_date, $management->end_date)) {
-            $management->project_delivery_date = $projectDeliveryDate;
-            $management->save();
-            return $this->respond(['management' => $management], 'Project delivery date updated successfully.');
-        } else {
-            return $this->respondBadRequest(ApiCode::INVALID_PROJECT_DELIVERY_DATE);
+        if ($management->teacher_id !== $teacher->id) {
+            return $this->respondForbidden(ApiCode::MANAGEMENT_ACCESS_DENIED);
         }
+
+        $projectDeliveryDate = Carbon::parse($request->input('project_delivery_date'));
+
+        if ($projectDeliveryDate->lt($management->start_date)) {
+            return $this->respondBadRequest(ApiCode::PROJECT_DELIVERY_DATE_BEFORE_START);
+        }
+
+        if ($projectDeliveryDate->gt($management->end_date)) {
+            return $this->respondBadRequest(ApiCode::PROJECT_DELIVERY_DATE_AFTER_END);
+        }
+
+        $management->project_delivery_date = $projectDeliveryDate;
+        $management->save();
+
+        return $this->respond(['management' => $management], 'Project delivery date updated successfully.');
     }
 
     public function getStudentManagement()
