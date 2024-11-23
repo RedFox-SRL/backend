@@ -53,4 +53,9 @@ class Group extends Model
     {
         return $this->hasMany(Invitation::class);
     }
+
+    public function projectLinks()
+    {
+        return $this->hasMany(ProjectLink::class);
+    }
 }

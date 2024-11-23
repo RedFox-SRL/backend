@@ -102,5 +102,6 @@ return [
         ApiCode::MANAGEMENT_DATE_IN_FUTURE => 'api.management_date_in_future',
         ApiCode::PROJECT_DELIVERY_DATE_BEFORE_START => 'api.project_delivery_date_before_start',
         ApiCode::PROJECT_DELIVERY_DATE_AFTER_END => 'api.project_delivery_date_after_end',
+        ApiCode::LINK_NOT_FOUND => 'api.link_not_found',
     ],
 ];

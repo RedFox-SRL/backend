@@ -9,6 +9,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\ProjectLinkController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SprintController;
 use App\Http\Controllers\StudentManagementController;
@@ -105,4 +106,9 @@ Route::middleware(['api'])->group(function () {
     Route::get('/evaluations/active', [EvaluationController::class, 'getActiveEvaluations']);
     Route::post('/evaluations/{evaluation}/submit', [EvaluationController::class, 'submitEvaluation']);
     Route::post('/sprints/{sprint}/finish', [SprintController::class, 'finishSprint']);
+
+    Route::post('project-links', [ProjectLinkController::class, 'store']);
+    Route::get('project-links', [ProjectLinkController::class, 'index']);
+    Route::put('project-links/{linkId}', [ProjectLinkController::class, 'update']);
+    Route::delete('project-links/{linkId}', [ProjectLinkController::class, 'destroy']);
 });

@@ -74,4 +74,7 @@ class ApiCode
     public const MANAGEMENT_DATE_IN_FUTURE = 322;
     public const PROJECT_DELIVERY_DATE_BEFORE_START = 323;
     public const PROJECT_DELIVERY_DATE_AFTER_END = 324;
+    public const LINK_NOT_BELONG_TO_GROUP = 325;
+    public const LINK_NOT_FOUND = 326;
+
 }

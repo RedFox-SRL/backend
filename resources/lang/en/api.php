@@ -72,4 +72,5 @@ return [
     'management_date_in_future' => 'The management date is in the future.',
     'project_delivery_date_before_start' => 'The project delivery date must be after the management start date.',
     'project_delivery_date_after_end' => 'The project delivery date must be before the management end date.',
+    'link_not_found' => 'Link not found.',
 ];
