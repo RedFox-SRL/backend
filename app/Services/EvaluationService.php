@@ -127,7 +127,7 @@ class EvaluationService
 
     public function getActiveEvaluations(Student $student)
     {
-        $now = Carbon::now();
+        $now = Carbon::now()->format('Y-m-d H:i:s');
 
         $evaluations = StudentEvaluation::where('evaluator_id', $student->id)
             ->whereHas('evaluationPeriod', function ($query) use ($now) {
@@ -155,7 +155,7 @@ class EvaluationService
                 return [
                     'id' => $evaluation->id,
                     'type' => $evaluation->evaluationPeriod->type,
-                    'completed_at' => $evaluation->completed_at,
+                    'completed_at' => $evaluation->completed_at ? Carbon::parse($evaluation->completed_at)->format('Y-m-d H:i:s') : null,
                 ];
             })->values(),
         ];
