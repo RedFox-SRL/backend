@@ -43,7 +43,7 @@ class ProjectLinkController extends Controller
                     }
                 },
             ],
-            'category' => 'required|string|in:documentation,source_code,deployment,design,presentation,report,credentials,other',
+            'links.*.category' => 'required|string|in:documentation,source_code,deployment,design,presentation,report,credentials,other',
             'links.*.description' => 'nullable|string|max:1000',
         ]);
 
