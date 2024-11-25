@@ -30,14 +30,9 @@ class EvaluationPeriod extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function getStartsAtAttribute($value)
+    public function getEndsAtFormattedAttribute()
     {
-        return Carbon::parse($value)->format('Y-m-d H:i:s');
-    }
-
-    public function getEndsAtAttribute($value)
-    {
-        return Carbon::parse($value)->format('Y-m-d H:i:s');
+        return $this->ends_at ? $this->ends_at->format('Y-m-d H:i:s') : null;
     }
 
     public function sprint()

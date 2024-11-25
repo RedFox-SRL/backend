@@ -70,7 +70,7 @@
                     @else
                         {{ ucfirst($evaluation->evaluationPeriod->type) }}
                     @endif
-                    - Fecha límite: {{ $evaluation->evaluationPeriod->ends_at->format('d/m/Y H:i') }}
+                    - Fecha límite: {{ $evaluation->evaluationPeriod->ends_at_formatted ?? 'N/A' }}
                 </li>
             @endforeach
         </ul>

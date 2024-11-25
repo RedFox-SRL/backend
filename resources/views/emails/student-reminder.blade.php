@@ -86,8 +86,7 @@
             </li>
             <li><strong>Sprint:</strong> {{ $sprint->title }}</li>
             <li><strong>Grupo:</strong> {{ $groupName }}</li>
-            <li><strong>Fecha de Inicio:</strong> {{ $evaluation->evaluationPeriod->starts_at->format('d/m/Y') }}</li>
-            <li><strong>Fecha de Finalización:</strong> {{ $evaluation->evaluationPeriod->ends_at->format('d/m/Y H:i') }}
+            <li><strong>Fecha de Finalización:</strong> {{ $evaluation->evaluationPeriod->ends_at_formatted ?? 'N/A' }}
             </li>
         </ul>
         <p>Por favor, completa tu evaluación lo antes posible.</p>
