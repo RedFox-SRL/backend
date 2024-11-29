@@ -69,4 +69,9 @@ class Management extends Model
             'end_date' => $endDate,
         ];
     }
+
+    public function crossEvaluations()
+    {
+        return $this->hasMany(CrossEvaluation::class);
+    }
 }

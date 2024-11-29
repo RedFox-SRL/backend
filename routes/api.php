@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CronController;
+use App\Http\Controllers\CrossEvaluationController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\EvaluationTemplateController;
 use App\Http\Controllers\ForgotPasswordController;
@@ -28,6 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('cron')->group(function () {
     Route::get('/check-sprints', [CronController::class, 'checkSprints']);
     Route::get('/send-reminders', [CronController::class, 'sendReminders']);
+    Route::get('/check-cross-evaluations', [CronController::class, 'checkCrossEvaluations']);
 });
 
 Route::middleware(['api'])->group(function () {
@@ -111,4 +113,7 @@ Route::middleware(['api'])->group(function () {
     Route::get('project-links', [ProjectLinkController::class, 'index']);
     Route::put('project-links/{linkId}', [ProjectLinkController::class, 'update']);
     Route::delete('project-links/{linkId}', [ProjectLinkController::class, 'destroy']);
+
+    Route::get('/cross-evaluation', [CrossEvaluationController::class, 'getActiveCrossEvaluation']);
+    Route::post('/cross-evaluation/submit', [CrossEvaluationController::class, 'submitCrossEvaluation']);
 });

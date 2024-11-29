@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\EvaluationService;
+use App\Services\CrossEvaluationService;
 use App\Models\Sprint;
+use App\Models\Management;
+use Carbon\Carbon;
 
 class CronController extends Controller
 {
     protected $evaluationService;
+    protected $crossEvaluationService;
 
-    public function __construct(EvaluationService $evaluationService)
+    public function __construct(EvaluationService $evaluationService, CrossEvaluationService $crossEvaluationService)
     {
         $this->evaluationService = $evaluationService;
+        $this->crossEvaluationService = $crossEvaluationService;
     }
 
     public function checkSprints(Request $request)
@@ -35,18 +40,36 @@ class CronController extends Controller
             $this->evaluationService->createAndActivateEvaluations($sprint);
         }
 
-        return response()->json(['mensaje' => 'Sprints verificados exitosamente'], 200);
+        return response()->json(['mensaje' => 'Sprints verificados exitosamente']);
+    }
+
+    public function checkCrossEvaluations(Request $request)
+    {
+        if (!$this->validateCronRequest($request)) {
+            return response()->json(['error' => 'No autorizado'], 401);
+        }
+
+        $completedManagements = Management::where('project_delivery_date', '<=', Carbon::now())
+            ->whereDoesntHave('crossEvaluations')
+            ->get();
+
+        foreach ($completedManagements as $management) {
+            $this->crossEvaluationService->activateAndAssignCrossEvaluations($management);
+        }
+
+        return response()->json(['mensaje' => 'Evaluaciones cruzadas verificadas exitosamente']);
     }
 
     public function sendReminders(Request $request)
     {
         if (!$this->validateCronRequest($request)) {
-            return response()->json(['mensaje' => 'No autorizado'], 200);
+            return response()->json(['mensaje' => 'No autorizado'], 401);
         }
 
         $this->evaluationService->sendReminders();
+        $this->crossEvaluationService->sendCrossEvaluationReminders();
 
-        return response()->json(['mensaje' => 'Recordatorios enviados exitosamente'], 200);
+        return response()->json(['mensaje' => 'Recordatorios enviados exitosamente']);
     }
 
     protected function validateCronRequest(Request $request)

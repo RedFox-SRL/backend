@@ -18,6 +18,11 @@ class Group extends Model
         'contact_email',
         'contact_phone',
         'logo',
+        'cross_evaluation_score',
+    ];
+
+    protected $casts = [
+        'cross_evaluation_score' => 'decimal:2',
     ];
 
     public static function generateUniqueCode()
@@ -57,5 +62,15 @@ class Group extends Model
     public function projectLinks()
     {
         return $this->hasMany(ProjectLink::class);
+    }
+
+    public function crossEvaluationsAsEvaluator()
+    {
+        return $this->hasMany(CrossEvaluation::class, 'evaluator_group_id');
+    }
+
+    public function crossEvaluationsAsEvaluated()
+    {
+        return $this->hasMany(CrossEvaluation::class, 'evaluated_group_id');
     }
 }
