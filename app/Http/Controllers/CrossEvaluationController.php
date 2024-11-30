@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\CrossEvaluation;
 use App\Services\CrossEvaluationService;
 use Illuminate\Http\Request;
+use App\ApiCode;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class CrossEvaluationController extends Controller
 {
@@ -17,15 +20,26 @@ class CrossEvaluationController extends Controller
 
     public function getActiveCrossEvaluation(Request $request)
     {
-        $student = $request->user()->student;
-        if (!$student || !$student->group) {
-            return response()->json(['message' => 'Estudiante o grupo no encontrado.'], 404);
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
         }
 
-        $crossEvaluation = $this->crossEvaluationService->getActiveCrossEvaluation($student->group);
+        if (!$user->student) {
+            return $this->respondBadRequest(ApiCode::NOT_A_STUDENT);
+        }
+
+        $group = $user->student->groups()->first();
+
+        if (!$group) {
+            return $this->respondNotFound(ApiCode::GROUP_NOT_FOUND);
+        }
+
+        $crossEvaluation = $this->crossEvaluationService->getActiveCrossEvaluation($group);
 
         if (!$crossEvaluation) {
-            return response()->json(['message' => 'No hay evaluación cruzada activa.'], 404);
+            return $this->respondNotFound(ApiCode::CROSS_EVALUATION_NOT_FOUND);
         }
 
         $response = [
@@ -39,32 +53,52 @@ class CrossEvaluationController extends Controller
             'deadline' => $crossEvaluation->created_at->addWeek(),
         ];
 
-        if ($student->is_representative) {
+        if ($user->student->id === $group->creator_id) {
             $response['questions'] = $crossEvaluation->evaluationTemplate->sections->flatMap->criteria;
         }
 
-        return response()->json($response);
+        return $this->respond($response);
     }
 
     public function submitCrossEvaluation(Request $request)
     {
-        $student = $request->user()->student;
-        if (!$student->is_representative) {
-            return response()->json(['error' => 'No autorizado'], 403);
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
         }
 
-        $crossEvaluation = $this->crossEvaluationService->getActiveCrossEvaluation($student->group);
+        if (!$user->student) {
+            return $this->respondBadRequest(ApiCode::NOT_A_STUDENT);
+        }
+
+        $group = $user->student->groups()->first();
+
+        if (!$group) {
+            return $this->respondNotFound(ApiCode::GROUP_NOT_FOUND);
+        }
+
+        if ($user->student->id !== $group->creator_id) {
+            return $this->respondBadRequest(ApiCode::NOT_GROUP_REPRESENTATIVE);
+        }
+
+        $crossEvaluation = $this->crossEvaluationService->getActiveCrossEvaluation($group);
+
         if (!$crossEvaluation) {
-            return response()->json(['error' => 'No hay evaluación cruzada activa'], 404);
+            return $this->respondNotFound(ApiCode::CROSS_EVALUATION_NOT_FOUND);
         }
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'responses' => 'required|array',
             'responses.*' => 'required|integer|min:0|max:5',
         ]);
 
+        if ($validator->fails()) {
+            return $this->respondBadRequest(ApiCode::VALIDATION_ERROR, $validator->errors());
+        }
+
         $result = $this->crossEvaluationService->submitCrossEvaluation($crossEvaluation, $request->responses);
 
-        return response()->json($result);
+        return $this->respond($result, 'Cross evaluation submitted successfully.');
     }
 }
