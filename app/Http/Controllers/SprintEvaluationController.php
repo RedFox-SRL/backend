@@ -44,10 +44,6 @@ class SprintEvaluationController extends Controller
                 return $this->respondBadRequest(ApiCode::SPRINT_EVALUATION_TOO_EARLY);
             }
 
-            if ($now->lt($sprintEndDate)) {
-                return $this->respondBadRequest(ApiCode::SPRINT_NOT_ENDED);
-            }
-
             if ($sprint->weeklyEvaluations()->count() === 0) {
                 return $this->respondBadRequest(ApiCode::NO_WEEKLY_EVALUATIONS);
             }

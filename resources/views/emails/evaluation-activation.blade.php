@@ -45,6 +45,14 @@
             height: auto;
             margin: 20px 0;
         }
+
+        .footer {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -75,8 +83,12 @@
             @endforeach
         </ul>
         <center>
-            <a href="{{ env('APP_URL') }}/" class="button" style="color: white;">Acceder a la plataforma</a>
+            <a href="{{ env('APP_URL') }}" class="button" style="color: white;">Acceder a la plataforma</a>
         </center>
+        <div class="footer">
+            <p>Saludos cordiales,<br>El equipo de {{ config('app.name') }}</p>
+            <p>© {{ date('Y') }} Red Fox SRL. Todos los derechos reservados.</p>
+        </div>
     </div>
 </div>
 </body>

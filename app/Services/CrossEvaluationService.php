@@ -52,10 +52,11 @@ class CrossEvaluationService
     {
         return Group::where('management_id', $management->id)
             ->whereHas('sprints', function ($query) {
-                $query->whereNotNull('evaluation_percentage')
-                    ->where('reviewed', true)
-                    ->selectRaw('SUM(evaluation_percentage) as total_percentage')
-                    ->havingRaw('SUM(evaluation_percentage) >= ?', [90]);
+                $query->whereHas('sprintEvaluation')
+                    ->select('group_id')
+                    ->selectRaw('SUM(percentage) as total_percentage')
+                    ->groupBy('group_id')
+                    ->havingRaw('SUM(percentage) >= ?', [90]);
             })
             ->get();
     }
@@ -110,15 +111,22 @@ class CrossEvaluationService
 
     public function sendCrossEvaluationReminders()
     {
-        $pendingEvaluations = CrossEvaluation::where('is_completed', false)
-            ->where('created_at', '<=', Carbon::now()->subDays(6))
+        $now = Carbon::now();
+        $remindersToSend = CrossEvaluation::where('is_completed', false)
+            ->where('created_at', '<=', $now->copy()->subDay())
+            ->where('created_at', '>', $now->copy()->subWeek())
+            ->with(['evaluatorGroup.students.user'])
             ->get();
 
-        foreach ($pendingEvaluations as $evaluation) {
-            $group = $evaluation->evaluatorGroup;
-            foreach ($group->students as $student) {
-                Mail::to($student->user->email)
-                    ->send(new CrossEvaluationReminderMail($evaluation, $student));
+        foreach ($remindersToSend as $evaluation) {
+            $activationDate = $evaluation->created_at;
+            $daysSinceActivation = $now->diffInDays($activationDate);
+
+            if ($daysSinceActivation > 0 && $daysSinceActivation <= 6) {
+                foreach ($evaluation->evaluatorGroup->students as $student) {
+                    Mail::to($student->user->email)
+                        ->send(new CrossEvaluationReminderMail($evaluation, $student));
+                }
             }
         }
     }

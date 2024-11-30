@@ -42,19 +42,35 @@ class CrossEvaluationController extends Controller
             return $this->respondNotFound(ApiCode::CROSS_EVALUATION_NOT_FOUND);
         }
 
+        $evaluatedGroup = $crossEvaluation->evaluatedGroup;
+        $representative = $evaluatedGroup->creator->user;
+
         $response = [
             'cross_evaluation_id' => $crossEvaluation->id,
             'evaluated_group' => [
-                'name' => $crossEvaluation->evaluatedGroup->name,
-                'short_name' => $crossEvaluation->evaluatedGroup->short_name,
-                'links' => $crossEvaluation->evaluatedGroup->links ?? [],
+                'id' => $evaluatedGroup->id,
+                'name' => $evaluatedGroup->long_name,
+                'short_name' => $evaluatedGroup->short_name,
+                'contact_email' => $evaluatedGroup->contact_email,
+                'contact_phone' => $evaluatedGroup->contact_phone,
+                'representative' => [
+                    'name' => $representative->name,
+                    'last_name' => $representative->last_name,
+                    'email' => $representative->email,
+                ],
+                'links' => $evaluatedGroup->projectLinks->map(function ($link) {
+                    return [
+                        'url' => $link->url,
+                        'category' => $link->category,
+                        'description' => $link->description,
+                    ];
+                }),
             ],
-            'template' => $crossEvaluation->evaluationTemplate,
             'deadline' => $crossEvaluation->created_at->addWeek(),
         ];
 
         if ($user->student->id === $group->creator_id) {
-            $response['questions'] = $crossEvaluation->evaluationTemplate->sections->flatMap->criteria;
+            $response['template'] = $crossEvaluation->evaluationTemplate;
         }
 
         return $this->respond($response);

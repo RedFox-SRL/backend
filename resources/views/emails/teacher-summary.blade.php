@@ -37,6 +37,14 @@
         th {
             background-color: #edf2f7;
         }
+
+        .footer {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -81,6 +89,10 @@
             </table>
         @endforeach
     @endforeach
+    <div class="footer">
+        <p>Saludos cordiales,<br>El equipo de {{ config('app.name') }}</p>
+        <p>© {{ date('Y') }} Red Fox SRL. Todos los derechos reservados.</p>
+    </div>
 </div>
 </body>
 </html>

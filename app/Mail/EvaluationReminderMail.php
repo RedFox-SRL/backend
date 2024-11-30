@@ -25,7 +25,7 @@ class EvaluationReminderMail extends Mailable
 
         return $this->view('emails.student-reminder')
             ->with([
-                'studentName' => $this->evaluation->evaluator->user->name,
+                'studentName' => $this->evaluation->evaluator->user->name . ' ' . $this->evaluation->evaluator->user->last_name,
                 'evaluation' => $this->evaluation,
                 'sprint' => $sprint,
                 'groupName' => $group->short_name,

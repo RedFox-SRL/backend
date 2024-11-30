@@ -28,7 +28,7 @@ class EvaluationActivationMail extends Mailable
     {
         return $this->view('emails.evaluation-activation')
             ->with([
-                'studentName' => $this->student->user->name,
+                'studentName' => $this->student->user->name . ' ' . $this->student->user->last_name,
                 'evaluations' => $this->evaluations,
                 'sprint' => $this->sprint,
                 'groupName' => $this->sprint->group->short_name
