@@ -73,4 +73,5 @@ return [
     'project_delivery_date_before_start' => 'The project delivery date must be after the management start date.',
     'project_delivery_date_after_end' => 'The project delivery date must be before the management end date.',
     'link_not_found' => 'Link not found.',
+    'cross_evaluation_not_found' => 'Cross evaluation not found.',
 ];
