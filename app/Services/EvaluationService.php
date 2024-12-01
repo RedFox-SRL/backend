@@ -55,12 +55,12 @@ class EvaluationService
 
         $students = $sprint->group->students;
 
-        foreach ($students as $student) {
-            if ($type === 'self') {
+        if ($type === 'self') {
+            foreach ($students as $student) {
                 $this->createStudentEvaluation($period, $student, $student);
-            } else {
-                $this->assignPeerEvaluation($period, $students, $student);
             }
+        } else if ($type === 'peer') {
+            $this->assignPeerEvaluation($period, $students);
         }
     }
 
@@ -111,18 +111,23 @@ class EvaluationService
         ]);
     }
 
-    private function assignPeerEvaluation(EvaluationPeriod $period, $students, Student $evaluator)
+    private function assignPeerEvaluation(EvaluationPeriod $period, $students)
     {
-        $availableStudents = $students->where('id', '!=', $evaluator->id)->pluck('id')->toArray();
-        $evaluatedId = $availableStudents[array_rand($availableStudents)];
+        $studentsArray = $students->shuffle()->values()->all();
+        $studentCount = count($studentsArray);
 
-        PeerEvaluationAssignment::create([
-            'evaluation_period_id' => $period->id,
-            'evaluator_id' => $evaluator->id,
-            'evaluated_id' => $evaluatedId,
-        ]);
+        for ($i = 0; $i < $studentCount; $i++) {
+            $evaluator = $studentsArray[$i];
+            $evaluated = $studentsArray[($i + 1) % $studentCount];
 
-        $this->createStudentEvaluation($period, $evaluator, Student::find($evaluatedId));
+            PeerEvaluationAssignment::create([
+                'evaluation_period_id' => $period->id,
+                'evaluator_id' => $evaluator['id'],
+                'evaluated_id' => $evaluated['id'],
+            ]);
+
+            $this->createStudentEvaluation($period, Student::find($evaluator['id']), Student::find($evaluated['id']));
+        }
     }
 
     public function getActiveEvaluations(Student $student)
@@ -134,7 +139,7 @@ class EvaluationService
                 $query->where('starts_at', '<=', $now)
                     ->where('ends_at', '>=', $now);
             })
-            ->with(['evaluationPeriod.evaluationTemplate.sections.criteria', 'evaluated', 'evaluationPeriod.sprint'])
+            ->with(['evaluationPeriod.evaluationTemplate.sections.criteria', 'evaluated.user', 'evaluationPeriod.sprint'])
             ->get();
 
         if ($evaluations->isEmpty()) {
@@ -143,6 +148,13 @@ class EvaluationService
 
         $activeEvaluations = $evaluations->filter(function ($evaluation) {
             return !$evaluation->is_completed;
+        })->map(function ($evaluation) {
+            $data = $evaluation->toArray();
+            if ($evaluation->evaluationPeriod->type === 'peer') {
+                $data['evaluated_name'] = $evaluation->evaluated->user->name;
+                $data['evaluated_last_name'] = $evaluation->evaluated->user->last_name;
+            }
+            return $data;
         });
 
         $completedEvaluations = $evaluations->filter(function ($evaluation) {
