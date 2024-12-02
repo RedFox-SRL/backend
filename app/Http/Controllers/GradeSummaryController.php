@@ -4,15 +4,11 @@ namespace App\Http\Controllers;
 
 use App\ApiCode;
 use App\Models\Management;
-use App\Models\Group;
-use App\Models\Student;
 use App\Models\Sprint;
-use App\Models\SprintEvaluation;
-use App\Models\ProposalSubmission;
-use App\Models\CrossEvaluation;
-use App\Models\ScoreConfiguration;
+use App\Models\StudentSprintGrade;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class GradeSummaryController extends Controller
 {
@@ -21,11 +17,17 @@ class GradeSummaryController extends Controller
         $user = Auth::user();
 
         if (!$user || !$user->teacher) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'No autorizado'], 401);
         }
 
         $managements = Management::where('teacher_id', $user->teacher->id)
-            ->with(['groups.students.user', 'groups.sprints.sprintEvaluation.studentGrades', 'groups.proposalSubmission', 'groups.crossEvaluationsAsEvaluated', 'scoreConfiguration'])
+            ->with([
+                'groups.students.user',
+                'groups.sprints.sprintEvaluation.studentGrades',
+                'groups.proposalSubmission',
+                'groups.crossEvaluationsAsEvaluated.responses',
+                'scoreConfiguration'
+            ])
             ->get();
 
         $summary = $managements->map(function ($management) {
@@ -49,31 +51,66 @@ class GradeSummaryController extends Controller
         }
 
         return $management->groups->map(function ($group) use ($scoreConfig) {
-            $sprintsScore = $this->calculateSprintsScore($group, $scoreConfig);
-            $proposalScore = $this->calculateProposalScore($group, $scoreConfig);
-            $crossEvalScore = $this->calculateCrossEvalScore($group, $scoreConfig);
+            $groupScores = $this->calculateGroupScores($group, $scoreConfig);
 
             return [
                 'group_id' => $group->id,
                 'group_name' => $group->long_name,
-                'scores' => [
-                    'sprints' => round($sprintsScore, 2),
-                    'proposal' => round($proposalScore, 2),
-                    'cross_evaluation' => round($crossEvalScore, 2)
+                'score_configuration' => [
+                    'sprints' => $scoreConfig->sprint_points,
+                    'proposal' => $scoreConfig->proposal_points,
+                    'cross_evaluation' => $scoreConfig->cross_evaluation_points,
                 ],
-                'total_score' => round($sprintsScore + $proposalScore + $crossEvalScore, 2),
-                'students' => $this->getStudentsSummary($group, $scoreConfig),
+                'group_scores' => $groupScores,
+                'students' => $this->getStudentsSummary($group, $scoreConfig, $groupScores),
             ];
         });
     }
 
-    private function calculateSprintsScore($group, $scoreConfig)
+    private function calculateGroupScores($group, $scoreConfig)
     {
-        $totalScore = $group->sprints->sum(function ($sprint) {
-            return $sprint->sprintEvaluation ? $sprint->sprintEvaluation->studentGrades->avg('grade') : 0;
+        $sprintsScore = $this->calculateGroupSprintsScore($group, $scoreConfig);
+        $proposalScore = $this->calculateProposalScore($group, $scoreConfig);
+        $crossEvalScore = $this->calculateCrossEvalScore($group, $scoreConfig);
+
+        return [
+            'sprints' => round($sprintsScore, 2),
+            'proposal' => round($proposalScore, 2),
+            'cross_evaluation' => round($crossEvalScore, 2),
+        ];
+    }
+
+    private function calculateGroupSprintsScore($group, $scoreConfig)
+    {
+        $totalPercentage = $group->sprints->sum('percentage');
+        if ($totalPercentage == 0) {
+            return 0;
+        }
+
+        $totalScore = $group->sprints->sum(function ($sprint) use ($group, $scoreConfig) {
+            $sprintEvaluation = $sprint->sprintEvaluation;
+            if (!$sprintEvaluation) {
+                return 0;
+            }
+
+            $avgGrade = $sprintEvaluation->studentGrades->avg(function ($grade) use ($scoreConfig) {
+                $teacherScore = $grade->grade ?? 0;
+                $selfScore = $grade->self_evaluation_grade ?? 0;
+                $peerScore = $grade->peer_evaluation_grade ?? 0;
+
+                $teacherPercentage = $scoreConfig->sprint_teacher_percentage / 100;
+                $selfPercentage = $scoreConfig->sprint_self_evaluation_percentage / 100;
+                $peerPercentage = $scoreConfig->sprint_peer_evaluation_percentage / 100;
+
+                return ($teacherScore * $teacherPercentage) +
+                    ($selfScore * $selfPercentage) +
+                    ($peerScore * $peerPercentage);
+            }) ?? 0;
+
+            return $avgGrade * ($sprint->percentage / 100);
         });
 
-        return $totalScore * ($scoreConfig->sprint_points / 100);
+        return ($totalScore / $totalPercentage) * $scoreConfig->sprint_points;
     }
 
     private function calculateProposalScore($group, $scoreConfig)
@@ -90,63 +127,101 @@ class GradeSummaryController extends Controller
 
     private function calculateCrossEvalScore($group, $scoreConfig)
     {
-        $avgScore = $group->crossEvaluationsAsEvaluated->avg(function ($crossEval) {
-            return $crossEval->responses->avg('score');
-        }) ?? 0;
-        return $avgScore * ($scoreConfig->cross_evaluation_points / 100);
+        $crossEvaluation = $group->crossEvaluationsAsEvaluated->first();
+        if (!$crossEvaluation) {
+            return 0;
+        }
+        $avgScore = $crossEvaluation->responses->avg('score') ?? 0;
+        return ($avgScore / 5) * $scoreConfig->cross_evaluation_points;
     }
 
-    private function getStudentsSummary($group, $scoreConfig)
+    private function getStudentsSummary($group, $scoreConfig, $groupScores)
     {
-        return $group->students->map(function ($student) use ($group, $scoreConfig) {
-            $sprintsScore = $this->calculateStudentSprintsScore($student, $group, $scoreConfig);
-            $proposalScore = $this->calculateProposalScore($group, $scoreConfig);
-            $crossEvalScore = $this->calculateCrossEvalScore($group, $scoreConfig);
+        return $group->students->map(function ($student) use ($group, $scoreConfig, $groupScores) {
+            $studentSprintsScore = $this->calculateStudentSprintsScore($student, $group, $scoreConfig);
 
             return [
                 'student_id' => $student->id,
                 'name' => $student->user->name,
                 'last_name' => $student->user->last_name,
-                'scores' => [
-                    'sprints' => round($sprintsScore, 2),
-                    'proposal' => round($proposalScore, 2),
-                    'cross_evaluation' => round($crossEvalScore, 2)
-                ],
-                'total_score' => round($sprintsScore + $proposalScore + $crossEvalScore, 2),
-                'sprints_detail' => $this->getSprintsDetail($student, $group),
+                'sprint_final_score' => round($studentSprintsScore, 2),
+                'proposal_score' => round($groupScores['proposal'], 2),
+                'cross_evaluation_score' => round($groupScores['cross_evaluation'], 2),
+                'final_score' => round($studentSprintsScore + $groupScores['proposal'] + $groupScores['cross_evaluation'], 2),
+                'sprints_detail' => $this->getSprintsDetail($student, $group, $scoreConfig),
             ];
         });
     }
 
     private function calculateStudentSprintsScore($student, $group, $scoreConfig)
     {
-        $totalScore = $group->sprints->sum(function ($sprint) use ($student) {
-            if ($sprint->sprintEvaluation) {
-                $studentGrade = $sprint->sprintEvaluation->studentGrades
-                    ->where('student_id', $student->id)
-                    ->first();
-                return $studentGrade ? $studentGrade->grade : 0;
-            }
+        $totalPercentage = $group->sprints->sum('percentage');
+        if ($totalPercentage == 0) {
             return 0;
+        }
+
+        $totalScore = $group->sprints->sum(function ($sprint) use ($student, $scoreConfig) {
+            $sprintEvaluation = $sprint->sprintEvaluation;
+            if (!$sprintEvaluation) {
+                return 0;
+            }
+
+            $studentGrade = $sprintEvaluation->studentGrades->where('student_id', $student->id)->first();
+            if (!$studentGrade) {
+                return 0;
+            }
+
+            $teacherScore = $studentGrade->grade ?? 0;
+            $selfScore = $studentGrade->self_evaluation_grade ?? 0;
+            $peerScore = $studentGrade->peer_evaluation_grade ?? 0;
+
+            $teacherPercentage = $scoreConfig->sprint_teacher_percentage / 100;
+            $selfPercentage = $scoreConfig->sprint_self_evaluation_percentage / 100;
+            $peerPercentage = $scoreConfig->sprint_peer_evaluation_percentage / 100;
+
+            $weightedScore = ($teacherScore * $teacherPercentage) +
+                ($selfScore * $selfPercentage) +
+                ($peerScore * $peerPercentage);
+
+            return $weightedScore * ($sprint->percentage / 100);
         });
 
-        return $totalScore * ($scoreConfig->sprint_points / 100);
+        return ($totalScore / $totalPercentage) * $scoreConfig->sprint_points;
     }
 
-    private function getSprintsDetail($student, $group)
+    private function getSprintsDetail($student, $group, $scoreConfig)
     {
-        return $group->sprints->map(function ($sprint) use ($student) {
+        return $group->sprints->map(function ($sprint) use ($student, $scoreConfig) {
             $sprintEval = $sprint->sprintEvaluation;
             $studentGrade = $sprintEval ? $sprintEval->studentGrades->where('student_id', $student->id)->first() : null;
+
+            $teacherGrade = $studentGrade ? ($studentGrade->grade ?? 0) : 0;
+            $selfEvaluationGrade = $studentGrade ? ($studentGrade->self_evaluation_grade ?? 0) : 0;
+            $peerEvaluationGrade = $studentGrade ? ($studentGrade->peer_evaluation_grade ?? 0) : 0;
+
+            $teacherPercentage = $scoreConfig->sprint_teacher_percentage / 100;
+            $selfPercentage = $scoreConfig->sprint_self_evaluation_percentage / 100;
+            $peerPercentage = $scoreConfig->sprint_peer_evaluation_percentage / 100;
+
+            $weightedScore = ($teacherGrade * $teacherPercentage) +
+                ($selfEvaluationGrade * $selfPercentage) +
+                ($peerEvaluationGrade * $peerPercentage);
+
+            $sprintScore = $weightedScore * ($sprint->percentage / 100) * ($scoreConfig->sprint_points / 100);
 
             return [
                 'sprint_id' => $sprint->id,
                 'title' => $sprint->title,
-                'percentage' => number_format($sprint->percentage, 2),
-                'grade' => $studentGrade ? number_format($studentGrade->grade, 2) : null,
-                'comments' => $studentGrade ? $studentGrade->comments : null,
+                'percentage' => $sprint->percentage,
+                'teacher_grade' => $teacherGrade,
+                'self_evaluation_grade' => $selfEvaluationGrade,
+                'peer_evaluation_grade' => $peerEvaluationGrade,
+                'teacher_percentage' => $scoreConfig->sprint_teacher_percentage,
+                'self_evaluation_percentage' => $scoreConfig->sprint_self_evaluation_percentage,
+                'peer_evaluation_percentage' => $scoreConfig->sprint_peer_evaluation_percentage,
+                'weighted_score' => round($weightedScore, 2),
+                'sprint_score' => round($sprintScore, 2),
             ];
         });
     }
 }
-
