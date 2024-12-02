@@ -107,5 +107,7 @@ return [
         ApiCode::SUBMISSION_NOT_AVAILABLE => 'api.submission_not_available',
         ApiCode::SUBMISSION_DEADLINE_PASSED => 'api.submission_deadline_passed',
         ApiCode::SUBMISSION_ALREADY_MADE => 'api.submission_already_made',
+        ApiCode::SUBMISSION_NOT_FOUND => 'api.submission_not_found',
+        ApiCode::SCORE_ALREADY_SAVED => 'api.score_already_saved',
     ],
 ];

@@ -77,4 +77,6 @@ return [
     'submission_not_available' => 'The submission is not available at this time.',
     'submission_deadline_passed' => 'The submission deadline has passed.',
     'submission_already_made' => 'The submission has already been made.',
+    'submission_not_found' => 'Submission not found.',
+    'score_already_saved' => 'The score has already been saved.',
 ];

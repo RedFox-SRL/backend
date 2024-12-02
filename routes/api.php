@@ -16,6 +16,7 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SprintController;
 use App\Http\Controllers\StudentManagementController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TeacherProposalController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\WeeklyEvaluationController;
@@ -122,4 +123,7 @@ Route::middleware(['api'])->group(function () {
     Route::post('/proposal-submission/part-a', [ProposalSubmissionController::class, 'submitPartA']);
     Route::post('/proposal-submission/part-b', [ProposalSubmissionController::class, 'submitPartB']);
     Route::get('/proposal-submission', [ProposalSubmissionController::class, 'getGroupSubmission']);
+
+    Route::get('/proposal/{managementId}/proposal-submissions', [TeacherProposalController::class, 'getGroupSubmissions']);
+    Route::post('/proposal/{groupId}/{part}', [TeacherProposalController::class, 'evaluateProposal']);
 });

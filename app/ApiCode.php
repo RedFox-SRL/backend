@@ -80,5 +80,7 @@ class ApiCode
     public const SUBMISSION_NOT_AVAILABLE = 328;
     public const SUBMISSION_DEADLINE_PASSED = 329;
     public const SUBMISSION_ALREADY_MADE = 330;
+    public const SUBMISSION_NOT_FOUND = 331;
+    public const SCORE_ALREADY_SAVED = 332;
 
 }

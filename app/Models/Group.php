@@ -73,4 +73,9 @@ class Group extends Model
     {
         return $this->hasMany(CrossEvaluation::class, 'evaluated_group_id');
     }
+
+    public function proposalSubmission()
+    {
+        return $this->hasOne(ProposalSubmission::class);
+    }
 }

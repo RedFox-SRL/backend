@@ -107,6 +107,7 @@ class ProposalSubmissionController extends Controller
         $deadlineField = "proposal_part_{$part}_deadline";
         $fileField = "part_{$part}_file";
         $submittedAtField = "part_{$part}_submitted_at";
+        $scoreField = "part_{$part}_score";
 
         $now = Carbon::now();
         $deadline = $management->$deadlineField;
@@ -116,11 +117,17 @@ class ProposalSubmissionController extends Controller
         }
 
         if ($submission && $submission->$fileField) {
-            return [
+            $status = [
                 'status' => 'submitted',
                 'file_url' => Storage::url($submission->$fileField),
                 'submitted_at' => $submission->$submittedAtField
             ];
+
+            if ($submission->$scoreField !== null) {
+                $status['score'] = $submission->$scoreField;
+            }
+
+            return $status;
         }
 
         if ($now->gt($deadline)) {

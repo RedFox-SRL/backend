@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProposalSubmission extends Model
 {
-    protected $fillable = ['group_id', 'part_a_file', 'part_b_file', 'part_a_submitted_at', 'part_b_submitted_at'];
+    protected $fillable = [
+        'group_id', 'part_a_file', 'part_b_file',
+        'part_a_submitted_at', 'part_b_submitted_at',
+        'part_a_score', 'part_b_score'
+    ];
 
     protected $casts = [
         'part_a_submitted_at' => 'datetime',
