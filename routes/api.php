@@ -11,6 +11,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\ProjectLinkController;
+use App\Http\Controllers\ProposalSubmissionController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SprintController;
 use App\Http\Controllers\StudentManagementController;
@@ -118,4 +119,7 @@ Route::middleware(['api'])->group(function () {
     Route::post('/cross-evaluation/submit', [CrossEvaluationController::class, 'submitCrossEvaluation']);
 
     Route::put('/management/{managementId}/proposal-deadlines', [ManagementController::class, 'updateProposalDeadlines']);
+    Route::post('/proposal-submission/part-a', [ProposalSubmissionController::class, 'submitPartA']);
+    Route::post('/proposal-submission/part-b', [ProposalSubmissionController::class, 'submitPartB']);
+    Route::get('/proposal-submission', [ProposalSubmissionController::class, 'getGroupSubmission']);
 });

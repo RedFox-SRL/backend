@@ -77,5 +77,8 @@ class ApiCode
     public const LINK_NOT_BELONG_TO_GROUP = 325;
     public const LINK_NOT_FOUND = 326;
     public const CROSS_EVALUATION_NOT_FOUND = 327;
+    public const SUBMISSION_NOT_AVAILABLE = 328;
+    public const SUBMISSION_DEADLINE_PASSED = 329;
+    public const SUBMISSION_ALREADY_MADE = 330;
 
 }

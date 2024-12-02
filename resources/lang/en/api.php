@@ -74,4 +74,7 @@ return [
     'project_delivery_date_after_end' => 'The project delivery date must be before the management end date.',
     'link_not_found' => 'Link not found.',
     'cross_evaluation_not_found' => 'Cross evaluation not found.',
+    'submission_not_available' => 'The submission is not available at this time.',
+    'submission_deadline_passed' => 'The submission deadline has passed.',
+    'submission_already_made' => 'The submission has already been made.',
 ];

@@ -104,5 +104,8 @@ return [
         ApiCode::PROJECT_DELIVERY_DATE_AFTER_END => 'api.project_delivery_date_after_end',
         ApiCode::LINK_NOT_FOUND => 'api.link_not_found',
         ApiCode::CROSS_EVALUATION_NOT_FOUND => 'api.cross_evaluation_not_found',
+        ApiCode::SUBMISSION_NOT_AVAILABLE => 'api.submission_not_available',
+        ApiCode::SUBMISSION_DEADLINE_PASSED => 'api.submission_deadline_passed',
+        ApiCode::SUBMISSION_ALREADY_MADE => 'api.submission_already_made',
     ],
 ];
