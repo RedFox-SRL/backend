@@ -116,4 +116,6 @@ Route::middleware(['api'])->group(function () {
 
     Route::get('/cross-evaluation', [CrossEvaluationController::class, 'getActiveCrossEvaluation']);
     Route::post('/cross-evaluation/submit', [CrossEvaluationController::class, 'submitCrossEvaluation']);
+
+    Route::put('/management/{managementId}/proposal-deadlines', [ManagementController::class, 'updateProposalDeadlines']);
 });

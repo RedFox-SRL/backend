@@ -19,11 +19,19 @@ class Management extends Model
         'group_limit',
         'is_code_active',
         'project_delivery_date',
+        'proposal_part_a_deadline',
+        'proposal_part_b_deadline'
     ];
 
     protected $table = 'management';
 
     protected $dates = ['start_date', 'end_date', 'project_delivery_date'];
+
+    protected $casts = [
+        'proposal_part_a_deadline' => 'datetime',
+        'proposal_part_b_deadline' => 'datetime',
+    ];
+
 
     public function teacher()
     {

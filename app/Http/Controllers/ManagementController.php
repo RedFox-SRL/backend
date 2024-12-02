@@ -265,4 +265,25 @@ class ManagementController extends Controller
 
         return $management;
     }
+
+    public function updateProposalDeadlines(Request $request, $managementId)
+    {
+        $request->validate([
+            'proposal_part_a_deadline' => 'required|date',
+            'proposal_part_b_deadline' => 'required|date',
+        ]);
+
+        $management = Management::find($managementId);
+        if (!$management) {
+            return $this->respondNotFound(ApiCode::MANAGEMENT_NOT_FOUND);
+        }
+
+        if ($management->teacher_id !== auth()->user()->teacher->id) {
+            return $this->respondUnAuthorizedRequest(ApiCode::UNAUTHORIZED);
+        }
+
+        $management->update($request->only(['proposal_part_a_deadline', 'proposal_part_b_deadline']));
+
+        return $this->respond(['management' => $management], 'Proposal deadlines updated successfully.');
+    }
 }
