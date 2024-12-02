@@ -82,4 +82,9 @@ class Management extends Model
     {
         return $this->hasMany(CrossEvaluation::class);
     }
+
+    public function scoreConfiguration()
+    {
+        return $this->hasOne(ScoreConfiguration::class);
+    }
 }

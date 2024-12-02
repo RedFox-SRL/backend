@@ -82,5 +82,8 @@ class ApiCode
     public const SUBMISSION_ALREADY_MADE = 330;
     public const SUBMISSION_NOT_FOUND = 331;
     public const SCORE_ALREADY_SAVED = 332;
+    public const SCORE_CONFIGURATION_NOT_FOUND = 333;
+    public const INVALID_TOTAL_POINTS = 334;
+    public const SCORE_CONFIGURATION_ALREADY_EXISTS = 335;
 
 }

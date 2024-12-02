@@ -79,4 +79,7 @@ return [
     'submission_already_made' => 'The submission has already been made.',
     'submission_not_found' => 'Submission not found.',
     'score_already_saved' => 'The score has already been saved.',
+    'score_configuration_not_found' => 'Score configuration not found.',
+    'invalid_total_points' => 'Invalid total points.',
+    'score_configuration_already_exists' => 'A score configuration of this type already exists.',
 ];

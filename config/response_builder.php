@@ -109,5 +109,8 @@ return [
         ApiCode::SUBMISSION_ALREADY_MADE => 'api.submission_already_made',
         ApiCode::SUBMISSION_NOT_FOUND => 'api.submission_not_found',
         ApiCode::SCORE_ALREADY_SAVED => 'api.score_already_saved',
+        ApiCode::SCORE_CONFIGURATION_NOT_FOUND => 'api.score_configuration_not_found',
+        ApiCode::INVALID_TOTAL_POINTS => 'api.invalid_total_points',
+        ApiCode::SCORE_CONFIGURATION_ALREADY_EXISTS => 'api.score_configuration_already_exists',
     ],
 ];

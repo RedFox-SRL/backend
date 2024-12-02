@@ -13,6 +13,7 @@ use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\ProjectLinkController;
 use App\Http\Controllers\ProposalSubmissionController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ScoreConfigurationController;
 use App\Http\Controllers\SprintController;
 use App\Http\Controllers\StudentManagementController;
 use App\Http\Controllers\TaskController;
@@ -126,4 +127,7 @@ Route::middleware(['api'])->group(function () {
 
     Route::get('/proposal/{managementId}/proposal-submissions', [TeacherProposalController::class, 'getGroupSubmissions']);
     Route::post('/proposal/{groupId}/{part}', [TeacherProposalController::class, 'evaluateProposal']);
+
+    Route::post('/managements/{management}/score', [ScoreConfigurationController::class, 'store']);
+    Route::get('/managements/{management}/score', [ScoreConfigurationController::class, 'show']);
 });
