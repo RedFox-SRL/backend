@@ -82,4 +82,7 @@ return [
     'score_configuration_not_found' => 'Score configuration not found.',
     'invalid_total_points' => 'Invalid total points.',
     'score_configuration_already_exists' => 'A score configuration of this type already exists.',
+    'invalid_proposal_percentages' => 'The proposal percentages must add up to 100%.',
+    'invalid_sprint_percentages' => 'The sprint percentages must add up to 100%.',
+    'incomplete_configuration' => 'The configuration is incomplete.',
 ];

@@ -130,4 +130,5 @@ Route::middleware(['api'])->group(function () {
 
     Route::post('/managements/{management}/score', [ScoreConfigurationController::class, 'store']);
     Route::get('/managements/{management}/score', [ScoreConfigurationController::class, 'show']);
+    Route::get('/managements/{managementId}/scoreStatus', [ScoreConfigurationController::class, 'checkConfigurationStatus']);
 });

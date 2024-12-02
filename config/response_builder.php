@@ -112,5 +112,8 @@ return [
         ApiCode::SCORE_CONFIGURATION_NOT_FOUND => 'api.score_configuration_not_found',
         ApiCode::INVALID_TOTAL_POINTS => 'api.invalid_total_points',
         ApiCode::SCORE_CONFIGURATION_ALREADY_EXISTS => 'api.score_configuration_already_exists',
+        ApiCode::INVALID_PROPOSAL_PERCENTAGES => 'api.invalid_proposal_percentages',
+        ApiCode::INVALID_SPRINT_PERCENTAGES => 'api.invalid_sprint_percentages',
+        ApiCode::INCOMPLETE_CONFIGURATION => 'api.incomplete_configuration',
     ],
 ];

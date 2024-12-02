@@ -85,5 +85,7 @@ class ApiCode
     public const SCORE_CONFIGURATION_NOT_FOUND = 333;
     public const INVALID_TOTAL_POINTS = 334;
     public const SCORE_CONFIGURATION_ALREADY_EXISTS = 335;
-
+    public const INVALID_PROPOSAL_PERCENTAGES = 336;
+    public const INVALID_SPRINT_PERCENTAGES = 337;
+    public const INCOMPLETE_CONFIGURATION = 338;
 }
