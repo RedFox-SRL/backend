@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Management;
+use App\Models\StudentEvaluation;
+use App\Models\EvaluationResponse;
 use App\ApiCode;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class GradeSummaryController extends Controller
 {
@@ -168,8 +171,8 @@ class GradeSummaryController extends Controller
             }
 
             $teacherScore = $studentGrade->grade ?? 0;
-            $selfScore = $studentGrade->self_evaluation_grade ?? 0;
-            $peerScore = $studentGrade->peer_evaluation_grade ?? 0;
+            $selfScore = $this->getAverageEvaluationScore($sprint->id, $student->id, 'self');
+            $peerScore = $this->getAverageEvaluationScore($sprint->id, $student->id, 'peer');
 
             $teacherPercentage = $scoreConfig->sprint_teacher_percentage / 100;
             $selfPercentage = $scoreConfig->sprint_self_percentage / 100;
@@ -185,6 +188,19 @@ class GradeSummaryController extends Controller
         return ($totalScore / $totalPercentage) * $scoreConfig->sprint_points;
     }
 
+    private function getAverageEvaluationScore($sprintId, $studentId, $evaluationType)
+    {
+        $averageScore = DB::table('evaluation_responses')
+            ->join('student_evaluations', 'evaluation_responses.student_evaluation_id', '=', 'student_evaluations.id')
+            ->join('evaluation_periods', 'student_evaluations.evaluation_period_id', '=', 'evaluation_periods.id')
+            ->where('evaluation_periods.sprint_id', $sprintId)
+            ->where('student_evaluations.evaluated_id', $studentId)
+            ->where('evaluation_periods.type', $evaluationType)
+            ->avg('evaluation_responses.score');
+
+        return $averageScore ?? 0;
+    }
+
     private function getSprintsDetail($student, $group, $scoreConfig)
     {
         return $group->sprints->map(function ($sprint) use ($student, $scoreConfig) {
@@ -192,8 +208,8 @@ class GradeSummaryController extends Controller
             $studentGrade = $sprintEval ? $sprintEval->studentGrades->where('student_id', $student->id)->first() : null;
 
             $teacherGrade = $studentGrade ? ($studentGrade->grade ?? 0) : 0;
-            $selfEvaluationGrade = $studentGrade ? ($studentGrade->self_evaluation_grade ?? 0) : 0;
-            $peerEvaluationGrade = $studentGrade ? ($studentGrade->peer_evaluation_grade ?? 0) : 0;
+            $selfEvaluationGrade = $this->getAverageEvaluationScore($sprint->id, $student->id, 'self');
+            $peerEvaluationGrade = $this->getAverageEvaluationScore($sprint->id, $student->id, 'peer');
 
             $teacherPercentage = $scoreConfig->sprint_teacher_percentage / 100;
             $selfPercentage = $scoreConfig->sprint_self_percentage / 100;
@@ -210,8 +226,8 @@ class GradeSummaryController extends Controller
                 'title' => $sprint->title,
                 'percentage' => $sprint->percentage,
                 'teacher_grade' => $teacherGrade,
-                'self_evaluation_grade' => $selfEvaluationGrade,
-                'peer_evaluation_grade' => $peerEvaluationGrade,
+                'self_evaluation_grade' => round($selfEvaluationGrade, 2),
+                'peer_evaluation_grade' => round($peerEvaluationGrade, 2),
                 'teacher_percentage' => $scoreConfig->sprint_teacher_percentage,
                 'self_evaluation_percentage' => $scoreConfig->sprint_self_percentage,
                 'peer_evaluation_percentage' => $scoreConfig->sprint_peer_percentage,
