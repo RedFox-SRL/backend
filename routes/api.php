@@ -7,6 +7,7 @@ use App\Http\Controllers\CrossEvaluationController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\EvaluationTemplateController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\GradeSummaryController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ManagementController;
@@ -131,4 +132,6 @@ Route::middleware(['api'])->group(function () {
     Route::post('/managements/{management}/score', [ScoreConfigurationController::class, 'store']);
     Route::get('/managements/{management}/score', [ScoreConfigurationController::class, 'show']);
     Route::get('/managements/{managementId}/scoreStatus', [ScoreConfigurationController::class, 'checkConfigurationStatus']);
+
+    Route::get('/grade-summary', [GradeSummaryController::class, 'getGradeSummary']);
 });
