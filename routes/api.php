@@ -133,5 +133,5 @@ Route::middleware(['api'])->group(function () {
     Route::get('/managements/{management}/score', [ScoreConfigurationController::class, 'show']);
     Route::get('/managements/{managementId}/scoreStatus', [ScoreConfigurationController::class, 'checkConfigurationStatus']);
 
-    Route::get('/grade-summary', [GradeSummaryController::class, 'getGradeSummary']);
+    Route::get('/grade-summary/{managementId}', [GradeSummaryController::class, 'getGradeSummary']);
 });

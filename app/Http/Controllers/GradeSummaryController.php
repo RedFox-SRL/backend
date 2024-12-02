@@ -2,44 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\ApiCode;
 use App\Models\Management;
-use App\Models\Sprint;
-use App\Models\StudentSprintGrade;
-use Illuminate\Http\JsonResponse;
+use App\ApiCode;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class GradeSummaryController extends Controller
 {
-    public function getGradeSummary(): JsonResponse
+    public function getGradeSummary($managementId)
     {
         $user = Auth::user();
 
-        if (!$user || !$user->teacher) {
-            return response()->json(['error' => 'No autorizado'], 401);
+        if (!$user) {
+            return $this->respondUnAuthorizedRequest(ApiCode::UNAUTHORIZED);
         }
 
-        $managements = Management::where('teacher_id', $user->teacher->id)
-            ->with([
-                'groups.students.user',
-                'groups.sprints.sprintEvaluation.studentGrades',
-                'groups.proposalSubmission',
-                'groups.crossEvaluationsAsEvaluated.responses',
-                'scoreConfiguration'
-            ])
-            ->get();
+        $management = Management::with([
+            'groups.students.user',
+            'groups.sprints.sprintEvaluation.studentGrades',
+            'groups.proposalSubmission',
+            'groups.crossEvaluationsAsEvaluated.responses',
+            'scoreConfiguration'
+        ])->find($managementId);
 
-        $summary = $managements->map(function ($management) {
-            return [
-                'management_id' => $management->id,
-                'semester' => $management->semester,
-                'year' => $management->start_date->year,
-                'groups' => $this->getGroupsSummary($management),
-            ];
-        });
+        if (!$management) {
+            return $this->respondNotFound(ApiCode::MANAGEMENT_NOT_FOUND);
+        }
 
-        return response()->json($summary);
+        $summary = [
+            'management_id' => $management->id,
+            'semester' => $management->semester,
+            'year' => $management->start_date->year,
+            'groups' => $this->getGroupsSummary($management),
+        ];
+
+        return $this->respond($summary);
     }
 
     private function getGroupsSummary($management)
@@ -99,8 +95,8 @@ class GradeSummaryController extends Controller
                 $peerScore = $grade->peer_evaluation_grade ?? 0;
 
                 $teacherPercentage = $scoreConfig->sprint_teacher_percentage / 100;
-                $selfPercentage = $scoreConfig->sprint_self_evaluation_percentage / 100;
-                $peerPercentage = $scoreConfig->sprint_peer_evaluation_percentage / 100;
+                $selfPercentage = $scoreConfig->sprint_self_percentage / 100;
+                $peerPercentage = $scoreConfig->sprint_peer_percentage / 100;
 
                 return ($teacherScore * $teacherPercentage) +
                     ($selfScore * $selfPercentage) +
@@ -176,8 +172,8 @@ class GradeSummaryController extends Controller
             $peerScore = $studentGrade->peer_evaluation_grade ?? 0;
 
             $teacherPercentage = $scoreConfig->sprint_teacher_percentage / 100;
-            $selfPercentage = $scoreConfig->sprint_self_evaluation_percentage / 100;
-            $peerPercentage = $scoreConfig->sprint_peer_evaluation_percentage / 100;
+            $selfPercentage = $scoreConfig->sprint_self_percentage / 100;
+            $peerPercentage = $scoreConfig->sprint_peer_percentage / 100;
 
             $weightedScore = ($teacherScore * $teacherPercentage) +
                 ($selfScore * $selfPercentage) +
@@ -200,8 +196,8 @@ class GradeSummaryController extends Controller
             $peerEvaluationGrade = $studentGrade ? ($studentGrade->peer_evaluation_grade ?? 0) : 0;
 
             $teacherPercentage = $scoreConfig->sprint_teacher_percentage / 100;
-            $selfPercentage = $scoreConfig->sprint_self_evaluation_percentage / 100;
-            $peerPercentage = $scoreConfig->sprint_peer_evaluation_percentage / 100;
+            $selfPercentage = $scoreConfig->sprint_self_percentage / 100;
+            $peerPercentage = $scoreConfig->sprint_peer_percentage / 100;
 
             $weightedScore = ($teacherGrade * $teacherPercentage) +
                 ($selfEvaluationGrade * $selfPercentage) +
@@ -217,8 +213,8 @@ class GradeSummaryController extends Controller
                 'self_evaluation_grade' => $selfEvaluationGrade,
                 'peer_evaluation_grade' => $peerEvaluationGrade,
                 'teacher_percentage' => $scoreConfig->sprint_teacher_percentage,
-                'self_evaluation_percentage' => $scoreConfig->sprint_self_evaluation_percentage,
-                'peer_evaluation_percentage' => $scoreConfig->sprint_peer_evaluation_percentage,
+                'self_evaluation_percentage' => $scoreConfig->sprint_self_percentage,
+                'peer_evaluation_percentage' => $scoreConfig->sprint_peer_percentage,
                 'weighted_score' => round($weightedScore, 2),
                 'sprint_score' => round($sprintScore, 2),
             ];
