@@ -17,6 +17,11 @@ class SprintEvaluationController extends Controller
     {
         try {
             $sprint = $this->getSprintWithRelations($sprintId);
+
+            if ($sprint->sprintEvaluation) {
+                return $this->respondBadRequest(ApiCode::SPRINT_EVALUATION_ALREADY_EXISTS);
+            }
+
             $template = $this->buildEvaluationTemplate($sprint);
             return $this->respond(['template' => $template], 'Evaluation template retrieved successfully');
         } catch (ModelNotFoundException $e) {
