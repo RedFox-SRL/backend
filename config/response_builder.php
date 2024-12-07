@@ -72,7 +72,7 @@ return [
         ApiCode::INVALID_WEEK_NUMBER => 'api.invalid_week_number',
         ApiCode::INVALID_TASKS => 'api.invalid_tasks',
         ApiCode::EVALUATION_RETRIEVAL_FAILED => 'api.evaluation_retrieval_failed',
-        ApiCode::MAX_EVALUATIONS_REACHED => 'api.sprint_percentage_exceeded',
+        ApiCode::MAX_EVALUATIONS_REACHED => 'api.max_evaluations_reached',
         ApiCode::SPRINT_ENDED => 'api.sprint_ended',
         ApiCode::SPRINT_NOT_ENDED => 'api.sprint_not_ended',
         ApiCode::SPRINT_EVALUATION_ALREADY_EXISTS => 'api.sprint_evaluation_already_exists',

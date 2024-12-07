@@ -143,7 +143,7 @@ class EvaluationService
             ->get();
 
         if ($evaluations->isEmpty()) {
-            return ['success' => true, 'message' => 'No active evaluations found.'];
+            return ['success' => true, 'message' => 'No se encontraron evaluaciones activas.'];
         }
 
         $activeEvaluations = $evaluations->filter(function ($evaluation) {
@@ -197,7 +197,7 @@ class EvaluationService
             DB::transaction(function () use ($evaluation, $responses, $validCriteriaIds) {
                 foreach ($responses as $criterionId => $score) {
                     if (!in_array($criterionId, $validCriteriaIds)) {
-                        throw new Exception('Invalid criterion ID');
+                        throw new Exception('ID de criterio inválido');
                     }
 
                     $evaluation->responses()->create([
@@ -213,7 +213,7 @@ class EvaluationService
 
                 $this->checkAndSendTeacherSummary($evaluation->evaluationPeriod->sprint);
             });
-            return ['success' => true, 'message' => 'Evaluation submitted successfully.'];
+            return ['success' => true, 'message' => 'Evaluación enviada con éxito.'];
         } catch (Exception $e) {
             return ['success' => false, 'error' => ApiCode::EVALUATION_SUBMISSION_FAILED];
         }

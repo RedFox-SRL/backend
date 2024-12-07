@@ -38,6 +38,6 @@ class VerificationController extends Controller
 
         $user->sendEmailVerificationNotification();
 
-        return $this->respondWithMessage('Email verification link sent on your email id');
+        return $this->respondWithMessage('Enlace de verificación de correo electrónico enviado a tu dirección de correo electrónico');
     }
 }

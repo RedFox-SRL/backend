@@ -6,17 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Sprint;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class CreateWeeklyEvaluationRequest extends FormRequest
 {
     public function authorize()
     {
-        Log::info('Authorize method called');
         $sprint = Sprint::findOrFail($this->route('id'));
         $user = Auth::user();
         $result = $user->role === 'teacher' && $user->teacher && $sprint->group->management->teacher_id === $user->teacher->id;
-        Log::info('Authorization result: ' . ($result ? 'true' : 'false'));
         return $result;
     }
 
@@ -31,7 +28,7 @@ class CreateWeeklyEvaluationRequest extends FormRequest
                     $sprint = Sprint::findOrFail($this->route('id'));
                     $task = $sprint->tasks()->find($value);
                     if (!$task) {
-                        $fail('The task does not belong to this sprint.');
+                        $fail('La tarea no pertenece a este sprint.');
                     }
                 },
             ],
@@ -47,16 +44,16 @@ class CreateWeeklyEvaluationRequest extends FormRequest
             $currentWeekNumber = $sprint->getCurrentWeekNumber();
 
             if ($currentWeekNumber > $sprint->max_evaluations) {
-                $validator->errors()->add('general', 'Cannot create more evaluations than allowed for this sprint.');
+                $validator->errors()->add('general', 'No se pueden crear más evaluaciones de las permitidas para este sprint.');
             }
 
             if (Carbon::now()->gt($sprint->end_date)) {
-                $validator->errors()->add('general', 'Cannot create evaluations after the sprint end date.');
+                $validator->errors()->add('general', 'No se pueden crear evaluaciones después de la fecha de finalización del sprint.');
             }
 
             $existingEvaluation = $sprint->weeklyEvaluations()->where('week_number', $currentWeekNumber)->first();
             if ($existingEvaluation) {
-                $validator->errors()->add('general', 'An evaluation for this week already exists.');
+                $validator->errors()->add('general', 'Ya existe una evaluación para esta semana.');
             }
         });
     }
@@ -64,14 +61,14 @@ class CreateWeeklyEvaluationRequest extends FormRequest
     public function messages()
     {
         return [
-            'tasks.required' => 'At least one task must be evaluated.',
-            'tasks.*.id.required' => 'Task ID is required.',
-            'tasks.*.id.exists' => 'Invalid task ID.',
-            'tasks.*.comments.required' => 'Comments are required for each task.',
-            'tasks.*.satisfaction_level.required' => 'Satisfaction level is required for each task.',
-            'tasks.*.satisfaction_level.integer' => 'Satisfaction level must be an integer.',
-            'tasks.*.satisfaction_level.min' => 'Satisfaction level must be at least 1.',
-            'tasks.*.satisfaction_level.max' => 'Satisfaction level must not be greater than 5.',
+            'tasks.required' => 'Se debe evaluar al menos una tarea.',
+            'tasks.*.id.required' => 'Se requiere el ID de la tarea.',
+            'tasks.*.id.exists' => 'ID de tarea no válido.',
+            'tasks.*.comments.required' => 'Se requieren comentarios para cada tarea.',
+            'tasks.*.satisfaction_level.required' => 'Se requiere el nivel de satisfacción para cada tarea.',
+            'tasks.*.satisfaction_level.integer' => 'El nivel de satisfacción debe ser un número entero.',
+            'tasks.*.satisfaction_level.min' => 'El nivel de satisfacción debe ser al menos 1.',
+            'tasks.*.satisfaction_level.max' => 'El nivel de satisfacción no debe ser mayor a 5.',
         ];
     }
 }

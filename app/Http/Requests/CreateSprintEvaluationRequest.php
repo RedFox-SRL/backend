@@ -31,8 +31,8 @@ class CreateSprintEvaluationRequest extends FormRequest
     public function messages()
     {
         return [
-            'strengths.required' => 'At least one strength is required.',
-            'weaknesses.required' => 'At least one weakness is required.',
+            'strengths.required' => 'Se requiere al menos una fortaleza.',
+            'weaknesses.required' => 'Se requiere al menos una debilidad.',
         ];
     }
 }

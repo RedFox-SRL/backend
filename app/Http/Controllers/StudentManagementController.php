@@ -46,7 +46,7 @@ class StudentManagementController extends Controller
             'management_id' => $management->id,
         ]);
 
-        return $this->respondWithMessage('Successfully joined the management.');
+        return $this->respondWithMessage('Te has unido exitosamente a la gestión.');
     }
 
     public function leaveManagement()
@@ -80,6 +80,6 @@ class StudentManagementController extends Controller
 
         $studentManagement->delete();
 
-        return $this->respondWithMessage('You have successfully left the management and the group.');
+        return $this->respondWithMessage('Te has salido exitosamente de la gestión y del grupo.');
     }
 }

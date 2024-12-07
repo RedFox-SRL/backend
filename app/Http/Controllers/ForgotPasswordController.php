@@ -19,7 +19,7 @@ class ForgotPasswordController extends Controller
             return $this->respondBadRequest(ApiCode::EMAIL_NOT_FOUND);
         }
 
-        return $this->respondWithMessage('Reset password link sent on your email id.');
+        return $this->respondWithMessage('Enlace para restablecer la contraseña enviado a tu correo electrónico.');
     }
 
     public function reset(ResetPasswordRequest $request)
@@ -33,6 +33,6 @@ class ForgotPasswordController extends Controller
             return $this->respondBadRequest(ApiCode::INVALID_RESET_PASSWORD_TOKEN);
         }
 
-        return $this->respondWithMessage("Password successfully changed");
+        return $this->respondWithMessage("Contraseña cambiada con éxito");
     }
 }

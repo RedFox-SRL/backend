@@ -68,7 +68,7 @@ class GroupController extends Controller
 
         $group->students()->attach($student->id);
 
-        return $this->respond(['group' => $group], 'Group created successfully.');
+        return $this->respond(['group' => $group], 'Grupo creado con éxito.');
     }
 
     public function joinGroup(JoinGroupRequest $request)
@@ -222,7 +222,7 @@ class GroupController extends Controller
 
         $group->students()->detach($student->id);
 
-        return $this->respondWithMessage('You have successfully left the group.');
+        return $this->respondWithMessage('Has salido del grupo con éxito.');
     }
 
     public function getGroupsByManagement($managementId)
@@ -319,7 +319,7 @@ class GroupController extends Controller
 
         $group->students()->detach($memberId);
 
-        return $this->respondWithMessage('Member removed successfully.');
+        return $this->respondWithMessage('Miembro eliminado con éxito.');
     }
 
     public function assignRole($memberId)
@@ -355,7 +355,7 @@ class GroupController extends Controller
         $member->pivot->role = $role;
         $member->pivot->save();
 
-        return $this->respondWithMessage('Role assigned successfully.');
+        return $this->respondWithMessage('Rol asignado con éxito.');
     }
 
     public function getGroupMembersWithRoles($groupId)
@@ -424,6 +424,6 @@ class GroupController extends Controller
 
         $group->update($data);
 
-        return $this->respondWithMessage('Contact information and logo updated successfully.');
+        return $this->respondWithMessage('Información de contacto y logo actualizados con éxito.');
     }
 }

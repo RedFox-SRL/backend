@@ -47,13 +47,13 @@ class WeeklyEvaluationController extends Controller
                 'evaluation' => $this->formatEvaluation($weeklyEvaluation->load(['tasks', 'evaluator:id,name,last_name,email,role'])),
                 'processed_tasks' => $result['processed_tasks'],
                 'skipped_tasks' => $result['skipped_tasks']
-            ], 'Weekly evaluation created successfully');
+            ], 'Evaluación semanal creada con éxito');
         } catch (ModelNotFoundException $e) {
             DB::rollBack();
             return $this->respondNotFound(ApiCode::SPRINT_NOT_FOUND);
         } catch (Exception $e) {
             DB::rollBack();
-            return $this->respondBadRequest($e->getMessage(), $e->getCode() ?: ApiCode::SOMETHING_WENT_WRONG);
+            return $this->respondBadRequest(ApiCode::SOMETHING_WENT_WRONG);
         }
     }
 
@@ -63,7 +63,7 @@ class WeeklyEvaluationController extends Controller
             $sprint = Sprint::findOrFail($sprintId);
             $this->authorizeViewEvaluations($sprint);
             $evaluations = $this->fetchWeeklyEvaluations($sprintId);
-            return $this->respond(['evaluations' => $this->formatEvaluations($evaluations)], 'Weekly evaluations retrieved successfully');
+            return $this->respond(['evaluations' => $this->formatEvaluations($evaluations)], 'Evaluaciones semanales recuperadas con éxito');
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound(ApiCode::SPRINT_NOT_FOUND);
         } catch (Exception $e) {
@@ -119,15 +119,15 @@ class WeeklyEvaluationController extends Controller
     private function validateEvaluationCreation($sprint, $weekNumber)
     {
         if ($this->evaluationExists($sprint->id, $weekNumber)) {
-            throw new Exception('Evaluation already exists for this week', ApiCode::EVALUATION_ALREADY_EXISTS);
+            throw new Exception(ApiCode::EVALUATION_ALREADY_EXISTS);
         }
 
         if ($weekNumber > $sprint->max_evaluations) {
-            throw new Exception('Cannot create more evaluations than allowed for this sprint', ApiCode::MAX_EVALUATIONS_REACHED);
+            throw new Exception(ApiCode::MAX_EVALUATIONS_REACHED);
         }
 
         if (Carbon::now()->gt($sprint->end_date)) {
-            throw new Exception('Cannot create evaluations after the sprint end date', ApiCode::SPRINT_ENDED);
+            throw new Exception(ApiCode::SPRINT_ENDED);
         }
     }
 
@@ -150,7 +150,7 @@ class WeeklyEvaluationController extends Controller
     {
         $user = Auth::user();
         if ($user->role !== 'teacher' || !$user->teacher) {
-            throw new Exception('Only teachers can create evaluations', ApiCode::UNAUTHORIZED);
+            throw new Exception(ApiCode::UNAUTHORIZED);
         }
 
         return WeeklyEvaluation::create([
@@ -170,12 +170,12 @@ class WeeklyEvaluationController extends Controller
             $task = $sprintTasks->firstWhere('id', $taskData['id']);
 
             if (!$task) {
-                $skippedTasks[] = $this->createSkippedTaskEntry($taskData['id'], 'Task not found in sprint');
+                $skippedTasks[] = $this->createSkippedTaskEntry($taskData['id'], 'Tarea no encontrada en el sprint');
                 continue;
             }
 
             if ($task->weeklyEvaluations()->exists()) {
-                $skippedTasks[] = $this->createSkippedTaskEntry($task->id, 'Already reviewed in a previous week');
+                $skippedTasks[] = $this->createSkippedTaskEntry($task->id, 'Ya revisado en una semana anterior');
                 continue;
             }
 
@@ -241,7 +241,7 @@ class WeeklyEvaluationController extends Controller
             ($user->student && $sprint->group->students->contains($user->student->id));
 
         if (!$canView) {
-            throw new Exception('Unauthorized to view evaluations', ApiCode::UNAUTHORIZED);
+            throw new Exception(ApiCode::UNAUTHORIZED);
         }
     }
 

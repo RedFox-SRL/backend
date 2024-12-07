@@ -18,7 +18,7 @@ class UserController extends Controller
 
         $user->update($request->validated());
 
-        return $this->respond(['user' => $user], 'Profile updated successfully.');
+        return $this->respond(['user' => $user], 'Perfil actualizado con éxito.');
     }
 }
 

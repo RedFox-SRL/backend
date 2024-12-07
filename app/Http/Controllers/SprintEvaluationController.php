@@ -23,7 +23,7 @@ class SprintEvaluationController extends Controller
             }
 
             $template = $this->buildEvaluationTemplate($sprint);
-            return $this->respond(['template' => $template], 'Evaluation template retrieved successfully');
+            return $this->respond(['template' => $template], 'Plantilla de evaluación recuperada con éxito');
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound(ApiCode::SPRINT_NOT_FOUND);
         } catch (Exception $e) {
@@ -102,7 +102,7 @@ class SprintEvaluationController extends Controller
             DB::commit();
             return $this->respond(
                 ['evaluation' => $sprintEvaluation->load('studentGrades', 'points')],
-                'Sprint evaluation created successfully'
+                'Evaluación del sprint creada con éxito'
             );
         } catch (\Exception $e) {
             DB::rollBack();
@@ -128,7 +128,7 @@ class SprintEvaluationController extends Controller
             }
 
             $evaluation = $this->buildFinalEvaluation($sprint);
-            return $this->respond(['evaluation' => $evaluation], 'Final evaluation retrieved successfully');
+            return $this->respond(['evaluation' => $evaluation], 'Evaluación final recuperada con éxito');
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound(ApiCode::SPRINT_NOT_FOUND);
         } catch (Exception $e) {

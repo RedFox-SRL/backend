@@ -70,7 +70,7 @@ class EvaluationTemplateController extends Controller
 
             DB::commit();
 
-            return $this->respond(['template' => $template->load('sections.criteria')], 'Evaluation template created successfully.');
+            return $this->respond(['template' => $template->load('sections.criteria')], 'Plantilla de evaluación creada con éxito.');
         } catch (\Exception $e) {
             DB::rollBack();
             return $this->respondBadRequest(ApiCode::TEMPLATE_CREATION_FAILED);
@@ -159,7 +159,7 @@ class EvaluationTemplateController extends Controller
 
             DB::commit();
 
-            return $this->respond(['template' => $template->fresh()->load('sections.criteria')], 'Evaluation template updated successfully.');
+            return $this->respond(['template' => $template->fresh()->load('sections.criteria')], 'Plantilla de evaluación actualizada con éxito.');
         } catch (\Exception $e) {
             DB::rollBack();
             return $this->respondBadRequest(ApiCode::TEMPLATE_UPDATE_FAILED);

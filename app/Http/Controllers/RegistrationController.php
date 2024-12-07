@@ -28,6 +28,6 @@ class RegistrationController extends Controller
             Mail::to($user->email)->send(new WelcomeEmail($user));
         });
 
-        return $this->respondWithMessage('User registered successfully');
+        return $this->respondWithMessage('Usuario registrado con éxito');
     }
 }

@@ -82,7 +82,7 @@ class ManagementController extends Controller
         $management->is_code_active = !$management->is_code_active;
         $management->save();
 
-        return $this->respond(['management' => $management], 'Management code status updated successfully.');
+        return $this->respond(['management' => $management], 'El estado del código de gestión se ha actualizado con éxito.');
     }
 
     public function updateGroupLimit(UpdateGroupLimitRequest $request, $managementId)
@@ -105,7 +105,7 @@ class ManagementController extends Controller
         $management->group_limit = $validatedData['group_limit'];
         $management->save();
 
-        return $this->respond(['management' => $management], 'Group limit updated successfully.');
+        return $this->respond(['management' => $management], 'Límite de grupo actualizado con éxito.');
     }
 
     public function updateProjectDeliveryDate(UpdateProjectDeliveryDateRequest $request, $managementId)
@@ -137,7 +137,7 @@ class ManagementController extends Controller
         $management->project_delivery_date = $projectDeliveryDate;
         $management->save();
 
-        return $this->respond(['management' => $management], 'Project delivery date updated successfully.');
+        return $this->respond(['management' => $management], 'Fecha de entrega del proyecto actualizada con éxito.');
     }
 
     public function getStudentManagement()
@@ -159,7 +159,7 @@ class ManagementController extends Controller
             return $this->respondNotFound(ApiCode::MANAGEMENT_NOT_FOUND);
         }
 
-        return $this->respond(['management' => $studentManagement->management], 'Management details retrieved successfully.');
+        return $this->respond(['management' => $studentManagement->management], 'Detalles de gestión recuperados con éxito.');
     }
 
     public function getManagementDetails($id)
@@ -284,6 +284,6 @@ class ManagementController extends Controller
 
         $management->update($request->only(['proposal_part_a_deadline', 'proposal_part_b_deadline']));
 
-        return $this->respond(['management' => $management], 'Proposal deadlines updated successfully.');
+        return $this->respond(['management' => $management], 'Fechas límite de la propuesta actualizadas con éxito.');
     }
 }

@@ -112,6 +112,6 @@ class TaskController extends Controller
             return $this->respondBadRequest(ApiCode::TASK_DELETE_FAILED);
         }
 
-        return $this->respondWithMessage('Task successfully deleted');
+        return $this->respondWithMessage('Tarea eliminada con éxito');
     }
 }

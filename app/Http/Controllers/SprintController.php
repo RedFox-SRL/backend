@@ -111,6 +111,6 @@ class SprintController extends Controller
             return $this->respondBadRequest(ApiCode::SPRINT_NOT_ENDED);
         }
 
-        return $this->respondWithMessage('Sprint finished and evaluations activated.');
+        return $this->respondWithMessage('Sprint finalizado y evaluaciones activadas.');
     }
 }

@@ -19,7 +19,6 @@ class InvitationController extends Controller
     {
         $student = auth()->user()->student;
 
-        // Find the group where the student is the creator
         $group = Group::where('creator_id', $student->id)->first();
 
         if (!$group) {
@@ -38,7 +37,6 @@ class InvitationController extends Controller
             return $this->respondBadRequest(ApiCode::STUDENT_ALREADY_IN_GROUP);
         }
 
-        // Check if the invited student is in the same management as the group
         $invitedStudentManagement = StudentManagement::where('student_id', $invitedStudent->id)
             ->where('management_id', $group->management_id)
             ->exists();
@@ -77,7 +75,7 @@ class InvitationController extends Controller
 
         Mail::to($invitedStudent->user->email)->send(new GroupInvitation($invitation));
 
-        return $this->respond(['invitation' => $invitation], 'Invitation sent successfully.');
+        return $this->respond(['invitation' => $invitation], 'Invitación enviada con éxito.');
     }
 
 
@@ -152,7 +150,7 @@ class InvitationController extends Controller
 
         $invitation->delete();
 
-        return $this->respondWithMessage('Invitation cancelled successfully.');
+        return $this->respondWithMessage('Invitación cancelada con éxito.');
     }
 
     public function listForGroup($groupId)

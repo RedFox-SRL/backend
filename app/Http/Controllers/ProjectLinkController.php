@@ -39,7 +39,7 @@ class ProjectLinkController extends Controller
                 'url',
                 function ($attribute, $value, $fail) {
                     if (!$this->isValidUrl($value)) {
-                        $fail($attribute . ' is not a valid URL.');
+                        $fail($attribute . ' no es una URL válida.');
                     }
                 },
             ],
@@ -48,7 +48,7 @@ class ProjectLinkController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->respondBadRequest(ApiCode::VALIDATION_ERROR, $validator->errors());
+            return $this->respondBadRequest(ApiCode::VALIDATION_ERROR);
         }
 
         $createdLinks = [];
@@ -57,7 +57,7 @@ class ProjectLinkController extends Controller
             $createdLinks[] = $group->projectLinks()->create($linkData);
         }
 
-        return $this->respond(['links' => $createdLinks], 'Project links have been added successfully.');
+        return $this->respond(['links' => $createdLinks], 'Los enlaces del proyecto se han agregado con éxito.');
     }
 
     public function index()
@@ -117,7 +117,7 @@ class ProjectLinkController extends Controller
                 'url',
                 function ($attribute, $value, $fail) {
                     if (!$this->isValidUrl($value)) {
-                        $fail($attribute . ' is not a valid URL.');
+                        $fail($attribute . ' no es una URL válida.');
                     }
                 },
             ],
@@ -126,12 +126,12 @@ class ProjectLinkController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->respondBadRequest(ApiCode::VALIDATION_ERROR, $validator->errors());
+            return $this->respondBadRequest(ApiCode::VALIDATION_ERROR);
         }
 
         $link->update($request->all());
 
-        return $this->respond(['link' => $link], 'Project link has been updated successfully.');
+        return $this->respond(['link' => $link], 'El enlace del proyecto se ha actualizado con éxito.');
     }
 
     public function destroy($linkId)
@@ -168,7 +168,7 @@ class ProjectLinkController extends Controller
 
         $link->delete();
 
-        return $this->respond(null, 'Project link has been deleted successfully.');
+        return $this->respond(null, 'El enlace del proyecto se ha eliminado con éxito.');
     }
 
     private function isValidUrl($url)

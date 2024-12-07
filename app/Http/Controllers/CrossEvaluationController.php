@@ -110,11 +110,11 @@ class CrossEvaluationController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->respondBadRequest(ApiCode::VALIDATION_ERROR, $validator->errors());
+            return $this->respondBadRequest(ApiCode::VALIDATION_ERROR);
         }
 
         $result = $this->crossEvaluationService->submitCrossEvaluation($crossEvaluation, $request->responses);
 
-        return $this->respond($result, 'Cross evaluation submitted successfully.');
+        return $this->respond($result, 'Evaluación cruzada enviada con éxito.');
     }
 }
