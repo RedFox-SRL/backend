@@ -131,7 +131,7 @@
             </div>
 
             <p>Su cuenta ha sido creada exitosamente como <strong>docente</strong>. Estamos seguros de que su guía será
-                invaluable para nuestros estudiantes durante este semestre.</p>
+                invaluable para nuestros estudiantes.</p>
 
             <p>Para acceder a la plataforma y comenzar a explorar las herramientas disponibles, por favor haga clic en
                 el siguiente botón:</p>
