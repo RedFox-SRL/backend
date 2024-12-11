@@ -87,7 +87,7 @@ return [
     'incomplete_configuration' => 'La configuración está incompleta.',
     'invalid_email_domain' => 'El dominio del correo electrónico no pertenece a los dominios validos @est.umss.edu o @fcyt.umss.edu.bo.',
     'invalid_verification_code' => 'Código de verificación inválido o expirado.',
-    'user_not_found' => 'Usuario no encontrado.',
+    'user_not_found' => 'Email no registrado en TrackMaster.',
     'email_already_exists' => 'El correo electrónico ya está en uso.',
     'invalid_student_email' => 'El correo debe tener el formato codsis@est.umss.edu.',
 ];
