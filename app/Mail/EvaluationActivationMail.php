@@ -33,6 +33,6 @@ class EvaluationActivationMail extends Mailable
                 'sprint' => $this->sprint,
                 'groupName' => $this->sprint->group->short_name
             ])
-            ->subject('Evaluaciones Activadas para Sprint ' . $this->sprint->title . ' - Grupo ' . $this->sprint->group->short_name);
+            ->subject('Evaluaciones activadas para sprint ' . $this->sprint->title . ' - Grupo ' . $this->sprint->group->short_name);
     }
 }

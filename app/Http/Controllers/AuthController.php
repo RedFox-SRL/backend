@@ -3,33 +3,54 @@
 namespace App\Http\Controllers;
 
 use App\ApiCode;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerificationCodeEmail;
 
 class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'verifyCode']]);
     }
 
-    public function login()
+    public function login(Request $request)
     {
-        $credentials = request(['email', 'password']);
+        $request->validate([
+            'email' => 'required|email',
+        ]);
 
-        if (!$token = auth()->attempt($credentials)) {
-            return $this->respondUnAuthenticated(ApiCode::INVALID_CREDENTIALS);
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return $this->respondBadRequest(ApiCode::USER_NOT_FOUND);
         }
 
-        $user = auth()->user();
-        return $this->respondWithTokenAndRole($token, $user->role);
+        $user->generateVerificationCode();
+        Mail::to($user->email)->send(new VerificationCodeEmail($user));
+
+        return $this->respondWithMessage('Código de verificación enviado al correo electrónico');
     }
 
-    private function respondWithToken($token)
+    public function verifyCode(Request $request)
     {
-        return $this->respond([
-            'token' => $token,
-            'access_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL(),
+        $request->validate([
+            'email' => 'required|email',
+            'verification_code' => 'required|string',
         ]);
+
+        $user = User::where('email', $request->email)
+            ->where('verification_code', $request->verification_code)
+            ->where('verification_code_expires_at', '>', now())
+            ->first();
+
+        if (!$user) {
+            return $this->respondBadRequest(ApiCode::INVALID_VERIFICATION_CODE);
+        }
+
+        $token = auth()->login($user);
+        return $this->respondWithTokenAndRole($token, $user->role);
     }
 
     public function logout()
@@ -40,7 +61,7 @@ class AuthController extends Controller
 
     public function refresh()
     {
-        return $this->respondWithToken(auth()->refresh());
+        return $this->respondWithTokenAndRole(auth()->refresh());
     }
 
     public function me()
@@ -56,9 +77,6 @@ class AuthController extends Controller
             'name' => $user->name,
             'last_name' => $user->last_name,
             'email' => $user->email,
-            'email_verified_at' => $user->email_verified_at,
-            'created_at' => $user->created_at,
-            'updated_at' => $user->updated_at,
             'role' => $user->role,
         ];
 
@@ -71,7 +89,7 @@ class AuthController extends Controller
         return $this->respond(['item' => $data]);
     }
 
-    private function respondWithTokenAndRole($token, $role)
+    private function respondWithTokenAndRole($token, $role): \Symfony\Component\HttpFoundation\Response
     {
         return $this->respond([
             'token' => $token,

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'invalid_credentials' => 'Correo electrónico o contraseña inválidos.',
+    'invalid_credentials' => 'Credenciales inválidas.',
     'something_went_wrong' => 'Algo salió mal.',
     'validation_error' => 'Error de validación.',
     'invalid_email_verification_link' => 'URL de verificación de correo electrónico inválida o expirada.',
@@ -85,4 +85,9 @@ return [
     'invalid_proposal_percentages' => 'Los porcentajes de la propuesta deben sumar el 100%.',
     'invalid_sprint_percentages' => 'Los porcentajes del sprint deben sumar el 100%.',
     'incomplete_configuration' => 'La configuración está incompleta.',
+    'invalid_email_domain' => 'El dominio del correo electrónico no pertenece a los dominios validos @est.umss.edu o @fcyt.umss.edu.bo.',
+    'invalid_verification_code' => 'Código de verificación inválido o expirado.',
+    'user_not_found' => 'Usuario no encontrado.',
+    'email_already_exists' => 'El correo electrónico ya está en uso.',
+    'invalid_student_email' => 'El correo debe tener el formato codsis@est.umss.edu.',
 ];

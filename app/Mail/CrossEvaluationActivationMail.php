@@ -38,6 +38,6 @@ class CrossEvaluationActivationMail extends Mailable
                 'deadlineFormatted' => $this->deadlineFormatted,
                 'isRepresentative' => $isRepresentative,
             ])
-            ->subject('Activación de Evaluación Cruzada');
+            ->subject('Activación de evaluación cruzada');
     }
 }

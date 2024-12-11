@@ -115,5 +115,9 @@ return [
         ApiCode::INVALID_PROPOSAL_PERCENTAGES => 'api.invalid_proposal_percentages',
         ApiCode::INVALID_SPRINT_PERCENTAGES => 'api.invalid_sprint_percentages',
         ApiCode::INCOMPLETE_CONFIGURATION => 'api.incomplete_configuration',
+        ApiCode::INVALID_EMAIL_DOMAIN => 'api.invalid_email_domain',
+        ApiCode::INVALID_VERIFICATION_CODE => 'api.invalid_verification_code',
+        ApiCode::USER_NOT_FOUND => 'api.user_not_found',
+        ApiCode::EMAIL_ALREADY_EXISTS => 'api.email_already_exists',
     ],
 ];

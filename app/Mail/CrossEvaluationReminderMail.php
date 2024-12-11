@@ -38,6 +38,6 @@ class CrossEvaluationReminderMail extends Mailable
                 'deadlineFormatted' => $this->deadlineFormatted,
                 'isRepresentative' => $isRepresentative,
             ])
-            ->subject('Recordatorio: Evaluación Cruzada Pendiente');
+            ->subject('Recordatorio: Evaluación cruzada pendiente');
     }
 }

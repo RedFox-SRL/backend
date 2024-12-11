@@ -96,35 +96,53 @@
         <h1>¡Bienvenido a {{ config('app.name') }}!</h1>
     </div>
     <div class="content">
-        <h2>Hola {{ $user->name }} {{ $user->last_name }},</h2>
+        @if($user->role == 'student')
+            <h2>Hola {{ $user->name }} {{ $user->last_name }},</h2>
 
-        <p>¡Estamos emocionados de darte la bienvenida a nuestra plataforma para el Taller de Ingeniería de
-            Software!</p>
+            <p>¡Estamos emocionados de darte la bienvenida a nuestra plataforma para el Taller de Ingeniería de
+                Software!</p>
 
-        <div class="image-container">
-            <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                 alt="Bienvenida" style="max-width: 100%; height: auto;">
-        </div>
+            <div class="image-container">
+                <img
+                    src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                    alt="Estudiantes trabajando" style="max-width: 100%; height: auto;">
+            </div>
 
-        <p>Tu cuenta ha sido creada exitosamente como
-            <strong>{{ $user->role == 'student' ? 'estudiante' : 'docente' }}</strong>.
-            Estamos ansiosos por ver tus contribuciones y tu crecimiento durante este semestre.</p>
+            <p>Tu cuenta ha sido creada exitosamente como <strong>estudiante</strong>. Estamos ansiosos por ver tus
+                contribuciones y tu crecimiento durante este semestre.</p>
 
-        <p>Para comenzar tu experiencia, simplemente haz clic en el botón de abajo:</p>
+            <p>Para comenzar tu experiencia, simplemente haz clic en el botón de abajo:</p>
 
-        <center>
-            <a href="{{ env('APP_URL') }}/" class="button" style="color: white;">Acceder a la plataforma</a>
-        </center>
+            <center>
+                <a href="{{ env('APP_URL') }}/" class="button" style="color: white;">Acceder a la plataforma</a>
+            </center>
 
-        <p>Recuerda, estamos aquí para apoyarte en cada paso del camino. Si tienes alguna pregunta o necesitas ayuda, no
-            dudes en contactarnos.</p>
+            <p>¡Esperamos que tengas una experiencia increíble en nuestra plataforma!</p>
+        @else
+            <h2>Estimado/a Docente {{ $user->name }} {{ $user->last_name }},</h2>
 
-        <div class="image-container">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                 alt="Equipo de trabajo" style="max-width: 100%; height: auto;">
-        </div>
+            <p>Es un placer darle la bienvenida a nuestra plataforma para el Taller de Ingeniería de Software. Su
+                experiencia y conocimientos serán fundamentales para el éxito de este curso.</p>
 
-        <p>¡Esperamos que tengas una experiencia increíble en nuestra plataforma!</p>
+            <div class="image-container">
+                <img
+                    src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                    alt="Docente en clase" style="max-width: 100%; height: auto;">
+            </div>
+
+            <p>Su cuenta ha sido creada exitosamente como <strong>docente</strong>. Estamos seguros de que su guía será
+                invaluable para nuestros estudiantes durante este semestre.</p>
+
+            <p>Para acceder a la plataforma y comenzar a explorar las herramientas disponibles, por favor haga clic en
+                el siguiente botón:</p>
+
+            <center>
+                <a href="{{ env('APP_URL') }}/" class="button" style="color: white;">Acceder a la plataforma</a>
+            </center>
+
+            <p>Agradecemos su compromiso con la educación y esperamos que esta plataforma sea una herramienta valiosa en
+                su labor docente.</p>
+        @endif
     </div>
     <div class="footer">
         <p>Saludos cordiales,<br>El equipo de {{ config('app.name') }}</p>

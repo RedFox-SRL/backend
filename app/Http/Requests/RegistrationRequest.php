@@ -3,38 +3,42 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Hash;
+use Illuminate\Validation\Rule;
+use App\ApiCode;
 
 class RegistrationRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'last_name' => 'required|string',
-            'email' => 'required|email|unique:users',
-            'role' => 'required|in:student,teacher',
-            'password' => 'required|string|min:6',
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => [
+                'required',
+                'email',
+                'unique:users',
+                function ($attribute, $value, $fail) {
+                    if (preg_match('/@est\.umss\.edu$/', $value)) {
+                        if (!preg_match('/^20\d{7}@est\.umss\.edu$/', $value)) {
+                            $fail(__('api.invalid_student_email'));
+                        }
+                    } elseif (!preg_match('/@fcyt\.umss\.edu\.bo$/', $value)) {
+                        $fail(__('api.invalid_email_domain'));
+                    }
+                },
+            ],
         ];
     }
 
-    public function getAttributes()
+    public function messages()
     {
-        return $this ->validated();
+        return [
+            'email.unique' => 'El correo electrónico ya está en uso.',
+        ];
     }
 }

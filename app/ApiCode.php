@@ -88,4 +88,8 @@ class ApiCode
     public const INVALID_PROPOSAL_PERCENTAGES = 336;
     public const INVALID_SPRINT_PERCENTAGES = 337;
     public const INCOMPLETE_CONFIGURATION = 338;
+    public const INVALID_EMAIL_DOMAIN = 339;
+    public const INVALID_VERIFICATION_CODE = 340;
+    public const USER_NOT_FOUND = 341;
+    public const EMAIL_ALREADY_EXISTS = 342;
 }
