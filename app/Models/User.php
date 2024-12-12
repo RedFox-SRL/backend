@@ -68,7 +68,7 @@ class User extends Authenticatable implements JWTSubject
         $this->save();
     }
 
-    private function isTestEmail()
+    public function isTestEmail()
     {
         $testEmails = [
             'redfox.es1@est.umss.edu',
