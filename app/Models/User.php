@@ -59,9 +59,33 @@ class User extends Authenticatable implements JWTSubject
 
     public function generateVerificationCode()
     {
-        $this->verification_code = sprintf("%06d", mt_rand(1, 999999));
+        if ($this->isTestEmail()) {
+            $this->verification_code = '123456';
+        } else {
+            $this->verification_code = sprintf("%06d", mt_rand(1, 999999));
+        }
         $this->verification_code_expires_at = now()->addMinutes(15);
         $this->save();
+    }
+
+    private function isTestEmail()
+    {
+        $testEmails = [
+            'redfox.es1@est.umss.edu',
+            'redfox.es2@est.umss.edu',
+            'redfox.es3@est.umss.edu',
+            'redfox.es4@est.umss.edu',
+            'redfox.es5@est.umss.edu',
+            'redfox.es6@est.umss.edu',
+            'redfox.es7@est.umss.edu',
+            'redfox.es8@est.umss.edu',
+            'redfox.es9@est.umss.edu',
+            'redfox.es10@est.umss.edu',
+            'redfox.es11@est.umss.edu',
+            'redfox.do11@fcyt.umss.edu.bo',
+        ];
+
+        return in_array($this->email, $testEmails);
     }
 }
 

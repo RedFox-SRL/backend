@@ -28,7 +28,9 @@ class AuthController extends Controller
         }
 
         $user->generateVerificationCode();
-        Mail::to($user->email)->send(new VerificationCodeEmail($user));
+        if (!$user->isTestEmail()) {
+            Mail::to($user->email)->send(new VerificationCodeEmail($user));
+        }
 
         return $this->respondWithMessage('Código de verificación enviado al correo electrónico');
     }
