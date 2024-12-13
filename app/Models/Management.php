@@ -46,7 +46,7 @@ class Management extends Model
     public static function generateUniqueCode()
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $length = 6;
+        $length = 7;
         $code = '';
 
         for ($i = 0; $i < $length; $i++) {
