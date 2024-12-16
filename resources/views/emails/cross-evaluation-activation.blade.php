@@ -18,7 +18,7 @@
         }
 
         .header {
-            background-color: #800080;
+            background-color: rgb(147, 51, 234);
             color: white;
             text-align: center;
             padding: 10px;
@@ -32,7 +32,7 @@
 
         .button {
             display: inline-block;
-            background-color: #800080;
+            background-color: rgb(147, 51, 234);
             color: white;
             padding: 10px 20px;
             text-decoration: none;

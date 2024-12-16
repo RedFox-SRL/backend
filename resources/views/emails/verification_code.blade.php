@@ -26,7 +26,7 @@
         }
 
         .header {
-            background-color: #6200EA;
+            background-color: rgb(147, 51, 234);
             color: white;
             padding: 30px;
             text-align: center;
@@ -43,14 +43,14 @@
         }
 
         .content h2 {
-            color: #6200EA;
+            color: rgb(147, 51, 234);
             margin-top: 0;
         }
 
         .verification-code {
             font-size: 36px;
             font-weight: 700;
-            color: #6200EA;
+            color: rgb(147, 51, 234);
             text-align: center;
             margin: 20px 0;
             letter-spacing: 5px;

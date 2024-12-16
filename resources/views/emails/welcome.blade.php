@@ -26,7 +26,7 @@
         }
 
         .header {
-            background-color: #6200EA;
+            background-color: rgb(147, 51, 234);
             color: white;
             padding: 30px;
             text-align: center;
@@ -43,14 +43,14 @@
         }
 
         .content h2 {
-            color: #6200EA;
+            color: rgb(147, 51, 234);
             margin-top: 0;
         }
 
         .button {
             display: inline-block;
             padding: 12px 24px;
-            background-color: #6200EA;
+            background-color: rgb(147, 51, 234);
             color: white;
             text-decoration: none;
             border-radius: 25px;
@@ -60,7 +60,7 @@
         }
 
         .button:hover {
-            background-color: #5000D0;
+            background-color: rgb(147, 51, 234);
         }
 
         .footer {

@@ -21,7 +21,7 @@
             overflow: hidden;
         }
         .header {
-            background-color: #6b21a8;
+            background-color: rgb(147, 51, 234);
             padding: 20px;
             text-align: center;
             color: #ffffff;
@@ -44,7 +44,7 @@
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #9333ea;
+            background-color: rgb(147, 51, 234);
             color: #ffffff;
             text-decoration: none;
             border-radius: 5px;
