@@ -24,7 +24,7 @@ class JoinGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            'group_code' => 'required|string|exists:groups,code',
+            'group_code' => 'required|string',
         ];
     }
 }
