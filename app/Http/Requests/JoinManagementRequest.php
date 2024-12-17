@@ -24,7 +24,7 @@ class JoinManagementRequest extends FormRequest
     public function rules()
     {
         return [
-            'management_code' => 'required|string|exists:management,code',
+            'management_code' => 'required|string',
         ];
     }
 }
