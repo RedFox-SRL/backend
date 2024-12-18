@@ -26,7 +26,6 @@ class EvaluationTemplateController extends Controller
         $request->validate([
             'management_id' => 'required|exists:management,id',
             'type' => 'required|in:self,peer,cross,final',
-            'name' => 'required|string|max:255',
             'sections' => 'required|array|min:1',
             'sections.*.title' => 'required|string|max:255',
             'sections.*.criteria' => 'required|array|min:1',
@@ -50,7 +49,6 @@ class EvaluationTemplateController extends Controller
             $template = EvaluationTemplate::create([
                 'management_id' => $request->management_id,
                 'type' => $request->type,
-                'name' => $request->name,
             ]);
 
             foreach ($request->sections as $index => $sectionData) {
@@ -90,7 +88,6 @@ class EvaluationTemplateController extends Controller
         }
 
         $request->validate([
-            'name' => 'required|string|max:255',
             'sections' => 'required|array|min:1',
             'sections.*.id' => 'sometimes|exists:template_sections,id',
             'sections.*.title' => 'required|string|max:255',
@@ -109,8 +106,6 @@ class EvaluationTemplateController extends Controller
         DB::beginTransaction();
 
         try {
-            $template->update(['name' => $request->name]);
-
             $existingSectionIds = $template->sections->pluck('id')->toArray();
             $updatedSectionIds = [];
 

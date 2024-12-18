@@ -9,7 +9,7 @@ class EvaluationTemplate extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['management_id', 'type', 'name'];
+    protected $fillable = ['management_id', 'type'];
 
     public function management()
     {
