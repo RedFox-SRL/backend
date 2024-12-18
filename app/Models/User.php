@@ -82,7 +82,17 @@ class User extends Authenticatable implements JWTSubject
             'redfox.es9@est.umss.edu',
             'redfox.es10@est.umss.edu',
             'redfox.es11@est.umss.edu',
-            'redfox.do11@fcyt.umss.edu.bo',
+            'redfox.es12@est.umss.edu',
+            'redfox.es13@est.umss.edu',
+            'redfox.es14@est.umss.edu',
+            'redfox.es15@est.umss.edu',
+            'redfox.es16@est.umss.edu',
+            'redfox.es17@est.umss.edu',
+            'redfox.es18@est.umss.edu',
+            'redfox.do1@fcyt.umss.edu.bo',
+            'redfox.do2@fcyt.umss.edu.bo',
+            'redfox.do3@fcyt.umss.edu.bo',
+            'redfox.do4@fcyt.umss.edu.bo',
         ];
 
         return in_array($this->email, $testEmails);
