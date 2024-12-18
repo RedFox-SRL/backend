@@ -27,9 +27,20 @@ class Group extends Model
 
     public static function generateUniqueCode()
     {
-        do {
-            $code = strtoupper(bin2hex(random_bytes(3)));
-        } while (self::where('code', $code)->exists());
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $length = 7;
+        $code = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $code .= $characters[random_int(0, strlen($characters) - 1)];
+        }
+
+        while (self::where('code', $code)->exists()) {
+            $code = '';
+            for ($i = 0; $i < $length; $i++) {
+                $code .= $characters[random_int(0, strlen($characters) - 1)];
+            }
+        }
 
         return $code;
     }
