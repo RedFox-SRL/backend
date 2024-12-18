@@ -17,8 +17,8 @@ class CreateGroupNamesTable extends Migration
             $table->id();
             $table->string('short_name')->unique()->nullable();
             $table->string('long_name')->unique()->nullable();
-            $table->string('management')->unique()->nullable();
-            $table->string('teacher')->unique()->nullable();
+            $table->string('management')->nullable();
+            $table->string('teacher')->nullable();
             $table->timestamps();
         });
     }
