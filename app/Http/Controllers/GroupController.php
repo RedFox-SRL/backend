@@ -61,14 +61,27 @@ class GroupController extends Controller
             'logo' => $logoPath,
         ]);
 
+        $semesterYear = $this->getSemesterYear($management->semester, $management->start_date);
+        $teacherInitials = $management->getTeacherInitials();
+
         GroupName::create([
             'short_name' => $request->short_name,
             'long_name' => $request->long_name,
+            'management' => $semesterYear,
+            'teacher' => $teacherInitials,
+
         ]);
 
         $group->students()->attach($student->id);
 
         return $this->respond(['group' => $group], 'Grupo creado con éxito.');
+    }
+
+    private function getSemesterYear($semester, $startDate)
+    {
+        $year = \Carbon\Carbon::parse($startDate)->year;
+        $semesterNumber = $semester === 'first' ? 1 : 2;
+        return "{$semesterNumber}-{$year}";
     }
 
     public function joinGroup(JoinGroupRequest $request)

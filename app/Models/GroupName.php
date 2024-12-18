@@ -9,5 +9,5 @@ class GroupName extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['short_name', 'long_name'];
+    protected $fillable = ['short_name', 'long_name', 'management', 'teacher'];
 }

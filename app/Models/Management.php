@@ -98,4 +98,16 @@ class Management extends Model
     {
         return $this->hasOne(ScoreConfiguration::class);
     }
+
+    public function getTeacherInitials()
+    {
+        $teacher = $this->teacher;
+        if ($teacher && $teacher->user) {
+            $nameParts = explode(' ', $teacher->user->name);
+            $lastNameParts = explode(' ', $teacher->user->last_name);
+            $initials = strtoupper(substr($nameParts[0], 0, 1) . substr($lastNameParts[0], 0, 1));
+            return $initials;
+        }
+        return null;
+    }
 }
