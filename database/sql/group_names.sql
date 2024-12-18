@@ -1,667 +1,668 @@
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1326, 'A&D', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1327, 'ABC', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1328, 'ActionSoft', 'ActionSoft  S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1329, 'ADA SOFT', 'Ada Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1330, 'Addsoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1331, 'Adeptus Code', 'Adeptus Code SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1332, 'ADSysCorp', 'ADSystem Corporation', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1333, 'AGAAK development SRL', 'AGAAK', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1334, 'AGEN', 'AgileEngineers', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1335, 'Agile Action', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1336, 'AGILESOFT', 'AGILESOFT', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1337, 'AiraSoft', 'AiraSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1338, 'Akira soft', 'Akira soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1339, 'AlfaSoft', 'AlfaSoft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1340, 'Altec SRL', 'Experiencia y alta tecnologia SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1341, 'ANDESOFT', 'ANDESOFT', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1342, 'Angel Fire', 'Angel Fire', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1343, 'ANKA SOFT', 'ANKA SOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1344, 'Answer', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1345, 'Ant Work', 'Ant Work SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1346, 'Aracorp', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1347, 'ARES', 'ARES S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1348, 'ARGOS', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1349, 'Arkano', 'Arkano', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1350, 'Aska', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1351, 'ASSI', 'ASSI', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1352, 'AT&P', 'AT&P SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1353, 'ATIS SRL', 'ATIS SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1354, 'Atiysoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1355, 'Atom', 'Atom Software SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1356, 'Authentic Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1357, 'B.TECTIS', 'BUSSINESS TECNO TIS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1358, 'B&B', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1359, 'Bastet S.R.L.', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1360, 'BeDevs S.R.L.', 'BeDevs S-R-L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1361, 'BERSASOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1362, 'BH Soft', 'Bit Hunter Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1363, 'Binary', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1364, 'Binarysoft', 'Binarysoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1365, 'Bit SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1366, 'BitDevs', 'BitDevs SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1367, 'Bittle SRL', 'Bittle SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1368, 'Black Cloud', 'Black Cloud S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1369, 'Blue Marlin S.R.L.', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1370, 'BolBuilder', 'BolBuilder SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1371, 'Bolivia soft', 'Bolivia soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1372, 'Boost Soft', 'Boost Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1373, 'BOS SA', 'Build Of System S.A', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1374, 'Bots'' System Teach', 'Bots'' System Teach.SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1375, 'Boy''s Code', 'Boy''s Code SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1376, 'BRAIN SOFT', 'BRAIN SOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1377, 'Brave Soft', 'Brave software solutions', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1378, 'Build Solutions', 'Build Solutions SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1379, 'Building Soft', 'Building Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1380, 'Burgos Soft', 'BURGOS SOFT S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1381, 'BUSSINESOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1382, 'C@DSOFT SRL', 'C@DSOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1383, 'Caesar asociados', 'Caesar asociados', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1384, 'CAMEL SOFT', 'CAMEL  SOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1385, 'Canguro soft srl', 'Canguro soft srl', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1386, 'CaniSoft SRL', 'CaniSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1387, 'Capsule', 'Capsule SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1388, 'CAS S.R.L.', 'Cochabamba Automática Soft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1389, 'Cassiopeia', 'Cassiopeia', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1390, 'Cativos', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1391, 'CDSA SRL', 'Consultora de desarrollo de software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1392, 'CEDSI', 'CEDSI', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1393, 'Cemdesoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1394, 'CENTAURO', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1395, 'Centersoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1396, 'Chameleon Code', 'Chameleon Code Software S.R.L', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1397, 'CHR SRL', 'Compumundo Hipermega Red SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1398, 'Cis sa', 'Cis sa', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1399, 'CISOFT', 'CISOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1400, 'CLASSSOFT SRL', 'CLASSSOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1401, 'Click', 'Click Soluciones Informáticas', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1402, 'Clicknet', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1403, 'ClubMorning', 'ClubMorning S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1404, 'Cochala-Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1405, 'CODEBREAKER', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1406, 'CodeCraze', 'CodeCraze SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1407, 'CodeFusion', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1408, 'Codemaster', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1409, 'CODESOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1410, 'Codesoft', 'Codesoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1411, 'Codesoft_srl', 'Codesoft_srl', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1412, 'Codigo Enigma S.R.L.', 'Codigo Enigma S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1413, 'Codigo Fuerte S.R.L.', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1414, 'COLECTIVO', 'COLECTIVO VIRTUAL SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1415, 'Colmena SRL', 'Colmena SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1416, 'comotusoft', 'Como Tu Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1417, 'Compusoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1418, 'CondeVela Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1419, 'Condor Technology', 'Condor Technology S.R.L', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1420, 'Conseinf', 'Conseinf', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1421, 'ControlZ', 'ControlZ', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1422, 'Corporación de Software y Tecnología SRL', 'CST', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1423, 'Cosinf', 'Consultora de Servicios Informáticos', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1424, 'Creasser SRL', 'Creasser SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1425, 'CREATIVE.SOFT777 S.R.L.', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1426, 'CREATIVESOFT', 'SOFTWARE CREATIVO', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1427, 'Cripher', 'CodeFusion SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1428, 'Crovz', 'Crovz', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1429, 'CSI', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1430, 'Csi', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1431, 'Csisi', 'Csisi', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1432, 'Csiv', 'Csiv', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1433, 'Cstidas', 'Cstidas', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1434, 'ctrl_alt_soft', 'ctrl_alt_soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1435, 'CTRLS SRL', 'Controlled Solutions SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1436, 'Cusco_system', 'Cusco_system', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1437, 'Cyber Nest', 'Cyber Nest SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1438, 'Cyber Systems', 'Cyber Systems', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1439, 'Cyborg Solutions LTD.', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1440, 'D.A.C. S.A', 'Dream Act Create S.A.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1441, 'D&D', 'Design & Development software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1442, 'DAD software', 'DAD software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1443, 'DarkSoft', 'DarkSoft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1444, 'Dastech', 'Dastech', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1445, 'Databyte', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1446, 'DDS', 'Digital Development Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1447, 'DEBUG', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1448, 'DecSoft', 'DecSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1449, 'DelfiNet', 'DelfiNet', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1450, 'Delfos SRL', 'Delfos Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1451, 'Demonnet', 'Demonnet', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1452, 'DEPSOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1453, 'DESIGNTEC', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1454, 'Desofin', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1455, 'DESOFT SRL', 'DESOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1456, 'DESOInf', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1457, 'Dessa', 'Desarrolladora de Software Aplicado', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1458, 'Dessoft ORION', 'Dessoft ORION', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1459, 'Dev Solutions ISC', 'DevSolutions Innovative Software Company SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1460, 'DevBOL', 'DevBol SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1461, 'Developer in open source', 'Developer in open source', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1462, 'DEVS', 'DEVS GROUP SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1463, 'DevSociety', 'Developer''s Society S.R.L', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1464, 'DEVSOFT SRL.', 'Developer Software SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1465, 'DevSol.SRL', 'DevSol.SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1466, 'DevSZ', 'Development Software Z', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1467, 'DFS SRL', 'Desarrollo de Fuertes Soluciones S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1468, 'DG', 'DevGenius S.R.L', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1469, 'DICOSOFT', 'diseño y consultoria de software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1470, 'Digital City', 'Digital City S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1471, 'DIGITAL CRAFTERS', 'DIGITAL CRAFTERS Inc. S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1472, 'DIGITAL SYSTEMS', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1473, 'DigitalSoft', 'DigitalSoft SA', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1474, 'Dim_soft', 'Dim_soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1475, 'Dinasoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1476, 'Dios', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1477, 'DIS', 'DIS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1478, 'DiverNet', 'DiverNert', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1479, 'DKS', 'DKS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1480, 'DOMINOSOFT SRL', 'DOMINOSOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1481, 'Dotpoint Soft.Srl', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1482, 'Dows', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1483, 'Drakko', 'Drakko srl', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1484, 'Dreams SRL', 'Dreams SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1485, 'Drsif', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1486, 'DS', 'Digital Strategies', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1487, 'DSA', 'DSA', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1488, 'DSAN', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1489, 'DSI', 'DSI', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1490, 'Dsisoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1491, 'Dsp', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1492, 'DTS', 'DTS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1493, 'DYANSOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1494, 'e & s SRL', 'e & s SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1495, 'EAGLESOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1496, 'EDAS', 'EDAS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1497, 'EDESSI', 'Empresa de Desarrollo de Sistemas y Servicios Informaticos', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1498, 'Editsoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1499, 'EDS SA', 'Empresa de Desarrollo de Software SA', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1500, 'EDSI', 'Empresa de Desarrollo de Sistemas Informáticos', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1501, 'EDSIN', 'Elite en Desarrollo Soluciones Informaticas', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1502, 'Edsj', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1503, 'EDSL', 'EDSL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1504, 'EDSODIA SRL', 'Empresa de Desarrollo de Software de Implementación Actual SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1505, 'Edti', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1506, 'Eficient', 'Eficient', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1507, 'Egroup', 'e-group srl', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1508, 'EIDS', 'EIDS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1509, 'EKEKO', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1510, 'Elysium', 'Elysium S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1511, 'Emagic', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1512, 'Emcosis', 'emcosis srl', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1513, 'emcosoft', 'Empresa Comercial de Software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1514, 'emdesoft', 'emdesoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1515, 'Emesoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1516, 'EMIS SRL', 'EMIS SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1517, 'EmprendeSOFT.SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1518, 'EmpujeSoft.SRL', 'EmpujeSoft.SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1519, 'ENC', 'E.N.C. ( New Computational Empire ) S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1520, 'Enterprise software SRL', 'ENTERSOFT', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1521, 'Enterprise-esc', 'Enterprise Software Construction SA', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1522, 'EPIC', 'EPIC SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1523, 'ES3', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1524, 'ESA', 'ESA', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1525, 'ESSI', 'ESSI SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1526, 'ETIS', 'ETIS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1527, 'ETSI', 'ETSI', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1528, 'Evil Genius', 'Evil Genius S.R.L', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1529, 'Evil Genius SRL', 'EGENIUS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1530, 'Evolutionsoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1531, 'Ewebshop', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1532, 'eXistenZ', 'eXistenZ', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1533, 'Exodus', 'Exodus SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1534, 'Extreme System', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1535, 'F01 emdes', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1536, 'Falcon', 'Falcon Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1537, 'Faro Systems', 'Faro Systems', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1538, 'FDS', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1539, 'Fenix', 'Fenix', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1540, 'FenrirSulven Sistems. Ingenieria y Reingenieria', 'FenrirSulven Sistems. Ingenieria y Reingenieria', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1541, 'Feral Consultores.SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1542, 'Filia', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1543, 'FJSOFT', 'FJSOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1544, 'Flare Soft S.R.L.', 'Flare Soft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1545, 'Flash', 'Flash', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1546, 'FocaSoft', 'FocaSoft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1547, 'Formato X S.A.', 'Formato X S.A.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1548, 'Fox-Soft', 'Fox-Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1549, 'FRAMTIS', 'FRAMTIS SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1550, 'FreeSOFT.SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1551, 'FREEVALU', 'FreeValue SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1552, 'FRIENDSOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1553, 'Full Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1554, 'FUTESOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1555, 'G & G Soft', 'G & G Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1556, 'G Kaisoft', 'Group Knowledge Advanced In Innovation Of Software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1557, 'GDESIS', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1558, 'Gdesis', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1559, 'GDSOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1560, 'GEDSIS', 'GEDSIS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1561, 'GEDSOFT SA', 'Grupo de Desarrollo de Software Sociedad Anónima', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1562, 'GeekSlate', 'GeekSlate SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1563, 'Gen Soft', 'Generadores de software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1564, 'Generic software', 'Generic software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1565, 'Genesis', 'Genesis', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1566, 'Genesis Code', 'Genesis Code', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1567, 'Genesis Soft', 'Genesis Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1568, 'GeniusTech', 'GeniusTechnology S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1569, 'GERF', 'GERF Software S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1570, 'Ghost SRL', 'Ghost SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1571, 'Girasolmax', 'Girasolmax', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1572, 'GleakSoft', 'GleakSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1573, 'Global Soft', 'Global soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1574, 'Global Systems S.R.L.', 'Global Systems S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1575, 'Gos', 'Gos', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1576, 'GRED Soft', 'GRED Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1577, 'Grusoft_necs', 'Grusoft_necs', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1578, 'GTI Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1579, 'Guess Soft', 'Guess Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1580, 'Guss', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1581, 'HadesSoft', 'HadesSoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1582, 'Hellsoft', 'HELLSOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1583, 'Hexacode Technology', 'Hexacode Technology S.R.L. ', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1584, 'High Bits', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1585, 'House Soft.SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1586, 'Hsd', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1587, 'Huayra Soft', 'Huayra', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1588, 'Hypersoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1589, 'IART', 'Informatica Adelantos Responsables en Tecnologia', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1590, 'Iarte', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1591, 'Icarsoft Soluciones Tecnologicas', 'ICARSOFT', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1592, 'Icarus SRL', 'Icarus Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1593, 'Icon', 'icon soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1594, 'ICOS', 'Ingenieria de Computación y Software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1595, 'ID Soft SRL', 'ID Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1596, 'ide@', 'ide@', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1597, 'IKKITOUSEN SRL', 'IKKITOUSEN SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1598, 'Illimani', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1599, 'ILLUSION', 'ILLUSION SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1600, 'Imagsoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1601, 'INCA', 'INCA', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1602, 'INDESOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1603, 'Indesoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1604, 'INDEX SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1605, 'INFIDES SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1606, 'INFINITY CODE', 'INFINITY CODE Ltda.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1607, 'Infotec', 'Infotec', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1608, 'Infsis', 'Infsis', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1609, 'Infsol', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1610, 'Ingesof', 'Ingesof', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1611, 'INNER Soft', 'INNER Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1612, 'INNOSIS', 'Innovaciones en Sistemas Informáticos', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1613, 'INNOVA TECHNOLOGY SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1614, 'INNOVATE SRL', 'INNOVATE SOFTWARE SOLUTION SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1615, 'Innovatek', 'Innovatek SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1616, 'INNOVATION SOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1617, 'INNSER', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1618, 'INsoft', 'INsoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1619, 'InterfaceMultimedia', 'Interface Multimedia', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1620, 'Inti SRL', 'Inti SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1621, 'IRDB', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1622, 'Iridium', 'Iridium Software SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1623, 'Iridium SS', 'Iridium SOftware Solutions', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1624, 'Iron', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1625, 'IS', 'Innova Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1626, 'ISIS cia', 'ISIS cia', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1627, 'iSoft SRL', 'iSOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1628, 'ISSI', 'ISSI', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1629, 'ITEC', 'ITEC Innovación Tecnológica', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1630, 'ITG SRL', 'ITG SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1631, 'ITTEAM Ltda', 'Equipo de Tecnologias de información', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1632, 'ITTERASOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1633, 'Izzysoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1634, 'JAC', 'JAC', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1635, 'Jadesoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1636, 'Jaguar Soft. SRL', 'Jaguar Soft. SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1637, 'JAM', 'JAM Soft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1638, 'JAVAS Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1639, 'Javas Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1640, 'JAZC Development', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1641, 'JCSOFT', 'JCSOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1642, 'JetSoft', 'JetSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1643, 'JeveSoft', 'JeveSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1644, 'jexasoft', 'jexasoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1645, 'JH3', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1646, 'JMMSoft', 'JMMSoft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1647, 'Jugs', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1648, 'JUKUMARI', 'KD. SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1649, 'K-Lite Srl', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1650, 'KAHE', 'KAHE', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1651, 'KANE SRL', 'Informatic´s System´s Development KANE SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1652, 'KD', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1653, 'Kdes', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1654, 'KERNELOGICS', 'KERNELOGICS SOFTWARE SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1655, 'Kiwi', 'Kiwi is web investigation S.A.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1656, 'Knowledge Overload', 'Knowledge Overload', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1657, 'Koliita developers SRL', 'Kollita SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1658, 'Konoha Srl', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1659, 'KusaSoft', 'KusaSoft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1660, 'Lanv Solutions', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1661, 'Lemaxsoft', 'lemaxsoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1662, 'LETIS SRL', 'Lideres emprendedores en trabajos de ingenieria de software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1663, 'LEVEL SOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1664, 'LevitaSoft S.R.L.', 'Levita Software Development Technology Company S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1665, 'Lid systems', 'Lid systems', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1666, 'Lidere Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1667, 'LigthSoft', 'LigthSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1668, 'Linfocitos SRL.', 'Linfocitos SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1669, 'LionTech', 'LionTech.SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1670, 'Lirium SRL', 'Lirium Software Engineering Services SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1671, 'LITTLE SOLUTIONS', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1672, 'LiveCorp SRL', 'LiveCorp SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1673, 'Lizardtech', 'Lizardtech SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1674, 'LJSE', 'LJSE', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1675, 'Llajta Soft', 'Llajta Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1676, 'Lobel', 'Lobel', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1677, 'Logitech', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1678, 'Lynx', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1679, 'MachineSoft SRL', 'MachineSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1680, 'MACROSOFT', 'MACROSOFT', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1681, 'Macross', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1682, 'MAD SRL', 'MAD SOFT', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1683, 'MAGIC', 'Manejo Global de Información Computarizada', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1684, 'MagicLeague', 'MagicLeague SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1685, 'MagicTech', 'MagicTech.SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1686, 'Magio', 'MagioSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1687, 'MagoSoft', 'MagoSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1688, 'MAISOFT', 'MAISOFT S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1689, 'MANAGERSOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1690, 'Manzanares', 'Manzanares SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1691, 'Marfil SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1692, 'Marte', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1693, 'Maveric', 'maveric system', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1694, 'Maximal', 'Maximal Express S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1695, 'MBKM Soft', 'MBKM Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1696, 'McCorvi SRL', 'McCorvi SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1697, 'MD Futuro Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1698, 'Mega_Soft', 'Mega_Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1699, 'Mercury SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1700, 'MIChi - Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1701, 'Milenium SC', 'Milenium SC', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1702, 'MindCoding SRL', 'MindCoding SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1703, 'MindSoft S.R.L.', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1704, 'MingSoft SRL', 'MingSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1705, 'Mirasoft', 'Mirasoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1706, 'Miski Devs', 'Miski Devs', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1707, 'Molecular Soft', 'Molecular Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1708, 'Monkey developers SRL', 'Monkey', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1709, 'Moonsoft', 'Moonsoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1710, 'Munay Technology SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1711, 'Mundo Soft SRL', 'Empresa de Desarrollo de Sistemas Informáticos Mundo Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1712, 'MythicalSoft', 'MythicalSoft.SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1713, 'NaviSoft', 'NaviSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1714, 'Nemesis', 'Nemesis SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1715, 'Neolancer', 'Neolancer S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1716, 'NeoSoft SRL', 'NeoSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1717, 'Neptuno soft', 'Neptuno soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1718, 'NerdWare SRL', 'Nerd Software Engineering Services', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1719, 'NERF DATA', 'NERF DATA S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1720, 'NETSKY', 'NETSKY SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1721, 'NetSoft', 'NetSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1722, 'Network', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1723, 'Neurolink SRL', 'Neurolink SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1724, 'New Tech Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1725, 'NEXGEN SOFT S.R.L.', 'Next Generation Software S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1726, 'Nexsis', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1727, 'Nexus', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1728, 'NFS', 'NFS SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1729, 'Notepad', 'Notepad Coders S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1730, 'Novasoft', 'Novasoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1731, 'NSB_Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1732, 'Oasis', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1733, 'Olimpos', 'Olimpo´s Software System Designer', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1734, 'OMEGA SD', 'OMEGA Software Development', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1735, 'ON SOFT', 'Camaleon Software SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1736, 'OnBuilding Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1737, 'OpenMind Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1738, 'Orange Soft SRL', 'Orange Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1739, 'Oreosoft', 'OREOSOFT S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1740, 'Oriansoft', 'oriansoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1741, 'ORION SOFT', 'ORION SOFTWARE SOLUTIONS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1742, 'Osiris', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1743, 'Oversoft', 'oversoft desarrollando soluciones', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1744, 'Padsoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1745, 'Paradise', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1746, 'Pathfinder', 'Pathfinder', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1747, 'Pentamix', 'Pentamix', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1748, 'Pentasoft', 'Pentasoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1749, 'PEOPLE XTREME SOFT-PXP S.R.L.', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1750, 'PF', 'Programando el Futuro', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1751, 'Phalcondev', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1752, 'Phoenix SRL.', 'Phoenix SRL.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1753, 'Phpsoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1754, 'Pied S.R.L.', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1755, 'Pirasoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1756, 'Programadores sin límites.Srl', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1757, 'Propersoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1758, 'Prosoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1759, 'PSS', 'Prime Soft Solutions Ltda.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1760, 'PUNTO CLICK SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1761, 'Puriskiri', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1762, 'PYXIDIS', 'pyxidis solutions SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1763, 'Qbetagroup', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1764, 'Quality', 'Quality', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1765, 'QueIdeas Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1766, 'QuickSoftware S.R.L.', 'QuickSoftware S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1767, 'QUIRKYSOFT SRL', 'QUIRKYSOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1768, 'Ragosoft', 'Ragosoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1769, 'Ramon Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1770, 'Reactive Solutions.SRL', 'Reactive Solutions.SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1771, 'Resource Technology', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1772, 'Revolution Software', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1773, 'Ric_tis', 'Ric_tis', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1774, 'RobSoft', 'RobSoft Corporation', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1775, 'Ruasun_soft', 'Ruasun_soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1776, 'RVGC Soft', 'Roman Vargas Gonzales Chipana Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1777, 'S-XTREMES', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1778, 'S.R.L.', 'Consultora de Tecnologias de Ingenieria de Software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1779, 'SAADS SRL', 'SAADS SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1780, 'Sac', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1781, 'Sadi', 'Servicios de Automatizacion y desarrollo industrial', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1782, 'Sajom Soft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1783, 'SAS', 'Smart ACtion Software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1784, 'SAT', 'SAT', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1785, 'SCAYNET', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1786, 'ScrumTroopers S.C.', 'ScrumTroopers Sociedad Colectiva', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1787, 'SDC SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1788, 'SDSC', 'Sociedad de Desarrollo de Software de Calidad', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1789, 'Sed', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1790, 'SEE', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1791, 'SEGINFA', 'Seguridad Informática ALIENS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1792, 'Semael', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1793, 'SER SRL', 'Software Engineering Revolution SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1794, 'SerApps', 'SerApps SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1795, 'Servicios Integrales en Tecnología, Información y Computacion ', 'SITIC', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1796, 'ServiSoft.SRL', 'ServiSoft.SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1797, 'SETIC', 'SETIC', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1798, 'Sewbs SRL', 'Sewbs SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1799, 'SEWS', 'Software Engineering Work Shop', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1800, 'SHB', 'Software Hecho en Bolivia', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1801, 'Shiba Tech', 'Shiba Tech S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1802, 'ShieldCode Soft S.R.L', 'ShieldCode Soft S.R.L', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1803, 'SHIFT SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1804, 'SHYAB', 'SHYAB', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1805, 'SIAN SRL', 'SIAN SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1806, 'Sibosoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1807, 'SICC', 'SICC', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1808, 'SICESOFT SRL.', 'SOLUTIONS ICE SOFTWARE SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1809, 'Sicomp', 'Sicomp', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1810, 'SID SRL', 'SID SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1811, 'SIDA', 'SIDA', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1812, 'SIDESOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1813, 'Sigma', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1814, 'SimCom', 'SimCom', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1815, 'Simplicity', 'Simplicity', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1816, 'Simus', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1817, 'SING', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1818, 'SINGECORP', 'Sistemas Informaticos de Gestion Corporativa', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1819, 'SINTEG', 'Solución Inteligente de Tecnologia Global S.R.L', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1820, 'SISCO', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1821, 'SISNET', 'Sistemas Informáticos Seguros en Internet,', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1822, 'Sispreco SRL', 'Sispreco SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1823, 'SISU', 'Sistemas de SOftware Unidos', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1824, 'SITEC', 'SIstemas de Informacion Tecnologica', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1825, 'SIWEB', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1826, 'Sky Brians', 'Sky Brians SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1827, 'SKYNET', 'SKYNET', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1828, 'SKYSOFT', 'SKYSOFT SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1829, 'SLOW CODE', 'SLOW CODE SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1830, 'Smart Solution', 'Smart Solution S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1831, 'Smartsoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1832, 'SnoopySoft', 'SnoopySoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1833, 'SODES SRL', 'Software Development Enterprise SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1834, 'SODESI SRL', 'SODESI SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1835, 'Soft Llajta', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1836, 'SOFT MAGIC TOUCH', 'SOFTWARE MAGIC TOUCH', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1837, 'Soft Master', 'Soft Master', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1838, 'SOFT NET Ltda.', 'Empresa de desarrollo de software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1839, 'Soft Source', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1840, 'Soft World', 'Soluciones integrales con tecnología simplificada', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1841, 'SOFT_LAB S.R.L.', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1842, 'SOFT_SOURCE', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1843, 'SoftART', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1844, 'SoftBar', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1845, 'Softbol', 'Softbol', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1846, 'SoftBox Soluciones', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1847, 'SoftCode', 'SoftCode SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1848, 'Softcreme', 'Softcreme SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1849, 'SOFTDEITEL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1850, 'SoftInnovate Solutions', 'SoftInnovate Solutions SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1851, 'Softelligent', 'SOFTWARE INTELIGENTE', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1852, 'SOFTG', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1853, 'SOFTIS', 'Software TIS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1854, 'SoftLab S.R.L.', 'SoftLab S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1855, 'SoftMakers', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1856, 'Softop', 'Softop', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1857, 'Softquina', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1858, 'SoftServ', 'Software Service', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1859, 'SoftSolutions', 'SoftSolutions SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1860, 'SoftVision', 'The Software Vision Company', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1861, 'Software Development Innovation SRL', 'SDI SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1862, 'Softwaredesigners', 'software designers SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1863, 'SoftWib', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1864, 'Soinco', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1865, 'Solid Developers SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1866, 'Solidev', 'Solidev S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1867, 'SOLUSOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1868, 'SOLVWARE', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1869, 'SOTEA SRL', 'SOTEA SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1870, 'SotwareEnpreneur', 'SotwareEnpreneur SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1871, 'Source Code', 'Source Code', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1872, 'Space', 'Space SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1873, 'SPYD Software', 'Sociedad de Planificación Y Desarrollo de Software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1874, 'Sss', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1875, 'StardustSoft', 'StardustSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1876, 'STARTSOFT', 'Empresa de Desarrollo Informatico STARTSOFT', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1877, 'STARTTIS', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1878, 'Sting Soft SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1879, 'Storm', 'StormSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1880, 'Stragos', 'Stragos soft srl', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1881, 'STS', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1882, 'StudSoft', 'StudSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1883, 'Sublime SRL', 'Sublime Projects SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1884, 'SumajSoft', 'Sumajsoft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1885, 'Summit', 'Summit SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1886, 'Swlink', 'Swlink', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1887, 'Symphony Soft', 'Symphony Software', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1888, 'Synapsis', 'Synapsis', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1889, 'Synchro SRL', 'Synchro SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1890, 'SynergiSoft', 'SynergiSoft S.R.L', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1891, 'Sysdecom', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1892, 'SystemBolDevSoft Srl', 'SystemBolDevSoft Srl', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1893, 'SystemWorks', 'SystemWorks SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1894, 'T-SYS', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1895, 'TALOS Dev', 'Talos Development S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1896, 'TBS', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1897, 'TDsoft', 'TDsoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1898, 'TeachBird', 'TeachBird SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1899, 'Team Soft', 'Team Soft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1900, 'TEC', 'TEC', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1901, 'TECASOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1902, 'TecnoAvance', 'TecnoAvance', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1903, 'Tecnology', 'Tecnology soft ltda', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1904, 'TeleTran', 'TeleTran', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1905, 'TeraSoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1906, 'TH', 'Transhumant', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1907, 'The Code Tellers', 'The Code Tellers SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1908, 'ThinkDSoft SRL', 'ThinkDSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1909, 'THNS SRL', 'Technohookup Newsystems SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1910, 'THREEFORCE DEVELOPMENT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1911, 'ThunderSoft', 'Thunder Software S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1912, 'TI SOLUTUONS', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1913, 'TIM.SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1914, 'TISOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1915, 'TIZEN', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1916, 'TopCoDev.SRL', 'TopCoDev.SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1917, 'TopSoft', 'Top Software SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1918, 'Totality', 'Totality', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1919, 'TOTEMWORKS', 'TOTEMWORKS', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1920, 'Trinity Soft', 'Trinity Software Development', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1921, 'Trojan Soft', 'Trojan Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1922, 'Trust Quest SRL', 'Trust Quest SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1923, 'TRY TECK S.R.L.', 'TRY TECK S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1924, 'TS SRL', 'Team Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1925, 'Tunari.com', 'Tunari.com', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1926, 'TuringSoft.S.R.L', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1927, 'ULTIMATE', 'ULTIMATE', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1928, 'Umbrella', 'Umbrella CORP SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1929, 'Umbrella Code', 'Umbrella Code SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1930, 'Unisoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1931, 'Unlocking Software', 'Unlocking SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1932, 'UNTEC', 'Undefined Technology S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1933, 'Urban Soft SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1934, 'Usoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1935, 'V@gos soft SRL', 'V@gos soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1936, 'Valle Soft', 'Valle Soft  S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1937, 'VenSoft SRL', 'VenSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1938, 'venturesome', 'venturesome', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1939, 'Viba', 'Viba', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1940, 'VIDA SRL', 'VIDA SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1941, 'Virtu@l soft', 'Virtu@l soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1942, 'VirusNot', 'VirusNot Development Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1943, 'Waarp', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1944, 'Wayra', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1945, 'WebJets', 'WebJets Soluciones informaticas', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1946, 'WebOn', 'WebOn SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1947, 'WEBSOLUTIONS', 'WEBSOLUTIONS SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1948, 'WEsoft', 'WEsoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1949, 'Whitehatsoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1950, 'WHS SRL', 'Work at Home Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1951, 'WieselSoft SRL', 'WieselSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1952, 'Winesoft', 'Winesoft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1953, 'WinnSoft', 'WinnSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1954, 'Winsmart Soft.SRL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1955, 'WOLF', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1956, 'X-SOFT', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1957, 'XINTHEWORLD', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1958, 'XPARSA', 'EXPANDIENDO SOFTWARE', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1959, 'XPDEV', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1960, 'Xpro', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1961, 'Xsoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1962, 'Xtreme SB SRL', 'Xtreme StormBrain SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1963, 'XtremeSoft', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1964, 'YAC', 'Yac ingenieria de calidad', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1965, 'Yachay', 'YachayPacha Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1966, 'Yantana Soft', 'Yantana Soft', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1967, 'YELADEVEL', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1968, 'Yenci Soft', 'Yenci Soft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1969, 'YUME', null, null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1970, 'ZEIKO', 'ZEIKO SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1971, 'Zeros & Ones SRL', 'Zeros & Ones SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1972, 'Zeus', 'ZEUS SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1973, 'Zion', 'Zion', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1974, 'ZODIAC', 'ZODIAC S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1975, 'B.F.S.', 'Brute Force Solutions', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1976, 'Digital Nest', 'Digital Nest S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1977, 'Intelligence Software', 'Intelligence Software S.R.L', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1978, 'JaCOD', 'Jatun Code Tecnología', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1979, 'Llama Digital', 'Llama Digital – making life easier S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1980, 'PhilfrutSoft', 'PhilfrutSoft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1981, 'SkynetSoft', 'Skynet Development Soft S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1982, 'Steel Code', 'Steel Code S.R.L', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1983, 'Zincronix', 'Zincronix Solutions S.R.L.', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1984, 'DevGenius', 'DevGenius SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1985, 'DreamSoft', 'DreamSoft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1986, 'Eureka Solutions', 'Eureka Solutions SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1987, 'MegaByte', 'MegaByte SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1988, 'Purple Soft', 'Purple Soft SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1989, 'Ada Enterprise', 'Ada Enterprise SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1990, 'SparkCode', 'SparkCode SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1991, 'IBM Jr', 'IBM Jr SRL', null, null);
-INSERT INTO public.group_names (id, short_name, long_name, created_at, updated_at) VALUES (1992, 'Palmer Technology', 'Palmer Technology SRL', null, null);
+insert into public.group_names (id, short_name, long_name, management, teacher, created_at, updated_at)
+values  (1547, 'Formato X S.A.', 'Formato X S.A.', null, null, null, null),
+        (1548, 'Fox-Soft', 'Fox-Soft SRL', '1-2011', null, null, null),
+        (1549, 'FRAMTIS', 'FRAMTIS SRL', '1-2011', null, null, null),
+        (1550, 'FreeSOFT.SRL', null, '1-2012', null, null, null),
+        (1551, 'FREEVALU', 'FreeValue SRL', '1-2014', null, null, null),
+        (1552, 'FRIENDSOFT', null, '2-2010', null, null, null),
+        (1553, 'Full Soft', null, '1-2009', null, null, null),
+        (1554, 'FUTESOFT', null, '1-2019', 'PR', null, null),
+        (1555, 'G & G Soft', 'G & G Soft', null, null, null, null),
+        (1556, 'G Kaisoft', 'Group Knowledge Advanced In Innovation Of Software', null, null, null, null),
+        (1557, 'GDESIS', null, '1-2009', null, null, null),
+        (1558, 'Gdesis', null, null, null, null, null),
+        (1559, 'GDSOFT', null, '2-2010', null, null, null),
+        (1560, 'GEDSIS', 'GEDSIS', null, null, null, null),
+        (1561, 'GEDSOFT SA', 'Grupo de Desarrollo de Software Sociedad Anónima', '1-2012', null, null, null),
+        (1562, 'GeekSlate', 'GeekSlate SRL', '1-2023', 'CF', null, null),
+        (1563, 'Gen Soft', 'Generadores de software', null, null, null, null),
+        (1564, 'Generic software', 'Generic software', null, null, null, null),
+        (1565, 'Genesis', 'Genesis', null, null, null, null),
+        (1566, 'Genesis Code', 'Genesis Code', '1-2021', 'CF', null, null),
+        (1567, 'Genesis Soft', 'Genesis Soft', '2-2019', 'PR', null, null),
+        (1568, 'GeniusTech', 'GeniusTechnology S.R.L.', '2-2023', 'LB', null, null),
+        (1569, 'GERF', 'GERF Software S.R.L.', '1-2022', 'LB', null, null),
+        (1570, 'Ghost SRL', 'Ghost SRL', null, null, null, null),
+        (1571, 'Girasolmax', 'Girasolmax', null, null, null, null),
+        (1572, 'GleakSoft', 'GleakSoft SRL', '1-2023', 'CF', null, null),
+        (1573, 'Global Soft', 'Global soft', null, null, null, null),
+        (1574, 'Global Systems S.R.L.', 'Global Systems S.R.L.', '1-2016', null, null, null),
+        (1575, 'Gos', 'Gos', null, null, null, null),
+        (1576, 'GRED Soft', 'GRED Soft', null, null, null, null),
+        (1577, 'Grusoft_necs', 'Grusoft_necs', null, null, null, null),
+        (1578, 'GTI Soft', null, '2-2012', null, null, null),
+        (1579, 'Guess Soft', 'Guess Soft', null, null, null, null),
+        (1580, 'Guss', null, null, null, null, null),
+        (1581, 'HadesSoft', 'HadesSoft', null, null, null, null),
+        (1582, 'Hellsoft', 'HELLSOFT SRL', null, null, null, null),
+        (1583, 'Hexacode Technology', 'Hexacode Technology S.R.L. ', '1-2022', 'LB', null, null),
+        (1584, 'High Bits', null, '2-2014', null, null, null),
+        (1585, 'House Soft.SRL', null, '2-2013', null, null, null),
+        (1586, 'Hsd', null, null, null, null, null),
+        (1587, 'Huayra Soft', 'Huayra', '1-2020', 'LB', null, null),
+        (1588, 'Hypersoft', null, null, null, null, null),
+        (1589, 'IART', 'Informatica Adelantos Responsables en Tecnologia', '1-2010', null, null, null),
+        (1590, 'Iarte', null, null, null, null, null),
+        (1591, 'Icarsoft Soluciones Tecnologicas', 'ICARSOFT', '1-2022', 'PR', null, null),
+        (1592, 'Icarus SRL', 'Icarus Soft SRL', '2-2017', null, null, null),
+        (1593, 'Icon', 'icon soft', null, null, null, null),
+        (1594, 'ICOS', 'Ingenieria de Computación y Software', '1-2013', null, null, null),
+        (1595, 'ID Soft SRL', 'ID Soft SRL', null, null, null, null),
+        (1596, 'ide@', 'ide@', null, null, null, null),
+        (1597, 'IKKITOUSEN SRL', 'IKKITOUSEN SRL', null, null, null, null),
+        (1598, 'Illimani', null, null, null, null, null),
+        (1599, 'ILLUSION', 'ILLUSION SRL', '1-2014', null, null, null),
+        (1600, 'Imagsoft', null, null, null, null, null),
+        (1601, 'INCA', 'INCA', null, null, null, null),
+        (1602, 'INDESOFT', null, '2-2010', null, null, null),
+        (1603, 'Indesoft', null, null, null, null, null),
+        (1604, 'INDEX SRL', null, null, null, null, null),
+        (1605, 'INFIDES SRL', null, null, null, null, null),
+        (1606, 'INFINITY CODE', 'INFINITY CODE Ltda.', '2-2023', 'LB', null, null),
+        (1607, 'Infotec', 'Infotec', null, null, null, null),
+        (1608, 'Infsis', 'Infsis', null, null, null, null),
+        (1609, 'Infsol', null, null, null, null, null),
+        (1610, 'Ingesof', 'Ingesof', null, null, null, null),
+        (1611, 'INNER Soft', 'INNER Soft', '1-2015', null, null, null),
+        (1612, 'INNOSIS', 'Innovaciones en Sistemas Informáticos', null, null, null, null),
+        (1613, 'INNOVA TECHNOLOGY SRL', null, '2-2016', null, null, null),
+        (1614, 'INNOVATE SRL', 'INNOVATE SOFTWARE SOLUTION SRL', '1-2015', null, null, null),
+        (1615, 'Innovatek', 'Innovatek SRL', '1-2019', 'LB', null, null),
+        (1616, 'INNOVATION SOFT', null, '1-2011', null, null, null),
+        (1617, 'INNSER', null, null, null, null, null),
+        (1618, 'INsoft', 'INsoft', null, null, null, null),
+        (1619, 'InterfaceMultimedia', 'Interface Multimedia', null, null, null, null),
+        (1620, 'Inti SRL', 'Inti SRL', null, null, null, null),
+        (1621, 'IRDB', null, null, null, null, null),
+        (1622, 'Iridium', 'Iridium Software SRL', '2-2021', 'LB', null, null),
+        (1623, 'Iridium SS', 'Iridium SOftware Solutions', '2-2022', 'PR', null, null),
+        (1624, 'Iron', null, null, null, null, null),
+        (1625, 'IS', 'Innova Soft', '2-2023', 'PR', null, null),
+        (1626, 'ISIS cia', 'ISIS cia', null, null, null, null),
+        (1627, 'iSoft SRL', 'iSOFT SRL', '1-2013', null, null, null),
+        (1628, 'ISSI', 'ISSI', null, null, null, null),
+        (1629, 'ITEC', 'ITEC Innovación Tecnológica', '1-2019', 'DE', null, null),
+        (1630, 'ITG SRL', 'ITG SRL', null, null, null, null),
+        (1631, 'ITTEAM Ltda', 'Equipo de Tecnologias de información', null, null, null, null),
+        (1632, 'ITTERASOFT', null, '1-2010', null, null, null),
+        (1633, 'Izzysoft', null, '1-2017', null, null, null),
+        (1634, 'JAC', 'JAC', null, null, null, null),
+        (1635, 'Jadesoft', null, '2-2012', null, null, null),
+        (1636, 'Jaguar Soft. SRL', 'Jaguar Soft. SRL', '1-2015', null, null, null),
+        (1637, 'JAM', 'JAM Soft S.R.L.', '1-2019', 'LB', null, null),
+        (1638, 'JAVAS Soft', null, '1-2021', 'DE', null, null),
+        (1639, 'Javas Soft', null, '2-2021', 'DE', null, null),
+        (1640, 'JAZC Development', null, '2-2012', null, null, null),
+        (1641, 'JCSOFT', 'JCSOFT SRL', '1-2011', null, null, null),
+        (1642, 'JetSoft', 'JetSoft SRL', '1-2019', 'CF', null, null),
+        (1643, 'JeveSoft', 'JeveSoft SRL', '2-2022', 'CF', null, null),
+        (1644, 'jexasoft', 'jexasoft SRL', null, null, null, null),
+        (1645, 'JH3', null, '2-2010', null, null, null),
+        (1646, 'JMMSoft', 'JMMSoft S.R.L.', '1-2023', 'LB', null, null),
+        (1647, 'Jugs', null, null, null, null, null),
+        (1648, 'JUKUMARI', 'KD. SRL', '2-2023', 'CF', null, null),
+        (1649, 'K-Lite Srl', null, '2-2010', null, null, null),
+        (1650, 'KAHE', 'KAHE', null, null, null, null),
+        (1651, 'KANE SRL', 'Informatic´s System´s Development KANE SRL', null, null, null, null),
+        (1652, 'KD', null, null, null, null, null),
+        (1653, 'Kdes', null, null, null, null, null),
+        (1654, 'KERNELOGICS', 'KERNELOGICS SOFTWARE SRL', '1-2016', null, null, null),
+        (1655, 'Kiwi', 'Kiwi is web investigation S.A.', null, null, null, null),
+        (1656, 'Knowledge Overload', 'Knowledge Overload', '1-2019', 'DE', null, null),
+        (1657, 'Koliita developers SRL', 'Kollita SRL', '1-2020', 'LB', null, null),
+        (1658, 'Konoha Srl', null, null, null, null, null),
+        (1659, 'KusaSoft', 'KusaSoft S.R.L.', '1-2022', 'CF', null, null),
+        (1660, 'Lanv Solutions', null, '2-2011', null, null, null),
+        (1661, 'Lemaxsoft', 'lemaxsoft', null, null, null, null),
+        (1662, 'LETIS SRL', 'Lideres emprendedores en trabajos de ingenieria de software', '2-2011', null, null, null),
+        (1663, 'LEVEL SOFT', null, '1-2009', null, null, null),
+        (1664, 'LevitaSoft S.R.L.', 'Levita Software Development Technology Company S.R.L.', '1-2021', 'LB', null, null),
+        (1665, 'Lid systems', 'Lid systems', null, null, null, null),
+        (1666, 'Lidere Soft', null, null, null, null, null),
+        (1667, 'LigthSoft', 'LigthSoft SRL', '2-2022', 'CF', null, null),
+        (1668, 'Linfocitos SRL.', 'Linfocitos SRL', '1-2020', 'CF', null, null),
+        (1669, 'LionTech', 'LionTech.SRL', '2-2021', 'CF', null, null),
+        (1670, 'Lirium SRL', 'Lirium Software Engineering Services SRL', '2-2019', 'LB', null, null),
+        (1671, 'LITTLE SOLUTIONS', null, '1-2011', null, null, null),
+        (1672, 'LiveCorp SRL', 'LiveCorp SRL', '1-2020', 'CF', null, null),
+        (1673, 'Lizardtech', 'Lizardtech SRL', '2-2023', 'DE', null, null),
+        (1674, 'LJSE', 'LJSE', null, null, null, null),
+        (1675, 'Llajta Soft', 'Llajta Soft', '1-2016', null, null, null),
+        (1676, 'Lobel', 'Lobel', null, null, null, null),
+        (1677, 'Logitech', null, null, null, null, null),
+        (1678, 'Lynx', null, null, null, null, null),
+        (1679, 'MachineSoft SRL', 'MachineSoft SRL', '1-2021', 'CF', null, null),
+        (1680, 'MACROSOFT', 'MACROSOFT', null, null, null, null),
+        (1681, 'Macross', null, null, null, null, null),
+        (1682, 'MAD SRL', 'MAD SOFT', '1-2015', null, null, null),
+        (1683, 'MAGIC', 'Manejo Global de Información Computarizada', '1-2012', null, null, null),
+        (1684, 'MagicLeague', 'MagicLeague SRL', '2-2023', 'CF', null, null),
+        (1685, 'MagicTech', 'MagicTech.SRL', '2-2021', 'CF', null, null),
+        (1686, 'Magio', 'MagioSoft SRL', '2-2018', 'DE', null, null),
+        (1687, 'MagoSoft', 'MagoSoft SRL', '1-2016', null, null, null),
+        (1688, 'MAISOFT', 'MAISOFT S.R.L.', '1-2019', 'LB', null, null),
+        (1689, 'MANAGERSOFT', null, '2-2010', null, null, null),
+        (1690, 'Manzanares', 'Manzanares SRL', '2-2018', 'LB', null, null),
+        (1691, 'Marfil SRL', null, '1-2010', null, null, null),
+        (1692, 'Marte', null, '1-2009', null, null, null),
+        (1693, 'Maveric', 'maveric system', null, null, null, null),
+        (1694, 'Maximal', 'Maximal Express S.R.L.', '1-2023', 'LB', null, null),
+        (1695, 'MBKM Soft', 'MBKM Soft', '2-2019', 'PR', null, null),
+        (1696, 'McCorvi SRL', 'McCorvi SRL', null, null, null, null),
+        (1697, 'MD Futuro Soft', null, '2-2012', null, null, null),
+        (1698, 'Mega_Soft', 'Mega_Soft', null, null, null, null),
+        (1699, 'Mercury SRL', null, '2-2019', 'CF', null, null),
+        (1700, 'MIChi - Soft', null, '1-2022', 'DE', null, null),
+        (1701, 'Milenium SC', 'Milenium SC', null, null, null, null),
+        (1702, 'MindCoding SRL', 'MindCoding SRL', '1-2021', 'CF', null, null),
+        (1703, 'MindSoft S.R.L.', null, '2-2020', 'CF', null, null),
+        (1704, 'MingSoft SRL', 'MingSoft SRL', '2-2019', 'LB', null, null),
+        (1705, 'Mirasoft', 'Mirasoft', null, null, null, null),
+        (1706, 'Miski Devs', 'Miski Devs', '1-2017', null, null, null),
+        (1707, 'Molecular Soft', 'Molecular Soft', '1-2016', null, null, null),
+        (1708, 'Monkey developers SRL', 'Monkey', '1-2020', 'LB', null, null),
+        (1709, 'Moonsoft', 'Moonsoft', '2-2019', 'PR', null, null),
+        (1710, 'Munay Technology SRL', null, '1-2022', 'DE', null, null),
+        (1711, 'Mundo Soft SRL', 'Empresa de Desarrollo de Sistemas Informáticos Mundo Soft SRL', null, null, null, null),
+        (1712, 'MythicalSoft', 'MythicalSoft.SRL', '2-2021', 'CF', null, null),
+        (1713, 'NaviSoft', 'NaviSoft SRL', '1-2019', 'CF', null, null),
+        (1714, 'Nemesis', 'Nemesis SRL', null, null, null, null),
+        (1715, 'Neolancer', 'Neolancer S.R.L.', '1-2022', 'LB', null, null),
+        (1716, 'NeoSoft SRL', 'NeoSoft SRL', '1-2020', 'CF', null, null),
+        (1717, 'Neptuno soft', 'Neptuno soft', null, null, null, null),
+        (1718, 'NerdWare SRL', 'Nerd Software Engineering Services', '2 - 2022', 'LB', null, null),
+        (1719, 'NERF DATA', 'NERF DATA S.R.L.', '1-2022', 'LB', null, null),
+        (1720, 'NETSKY', 'NETSKY SRL', '1-2015', null, null, null),
+        (1721, 'NetSoft', 'NetSoft SRL', '1-2019', 'CF', null, null),
+        (1722, 'Network', null, null, null, null, null),
+        (1723, 'Neurolink SRL', 'Neurolink SRL', null, null, null, null),
+        (1724, 'New Tech Soft', null, '1-2022', 'DE', null, null),
+        (1725, 'NEXGEN SOFT S.R.L.', 'Next Generation Software S.R.L.', '1-2024', 'DE', null, null),
+        (1726, 'Nexsis', null, null, null, null, null),
+        (1727, 'Nexus', null, '1-2009', null, null, null),
+        (1728, 'NFS', 'NFS SRL', '1-2011', null, null, null),
+        (1729, 'Notepad', 'Notepad Coders S.R.L.', '1-2021', 'LB', null, null),
+        (1730, 'Novasoft', 'Novasoft', null, null, null, null),
+        (1731, 'NSB_Soft', null, null, null, null, null),
+        (1732, 'Oasis', null, '1-2014', null, null, null),
+        (1733, 'Olimpos', 'Olimpo´s Software System Designer', null, null, null, null),
+        (1734, 'OMEGA SD', 'OMEGA Software Development', '1-2012', null, null, null),
+        (1735, 'ON SOFT', 'Camaleon Software SRL', '1-2014', null, null, null),
+        (1736, 'OnBuilding Soft', null, '1-2012', null, null, null),
+        (1737, 'OpenMind Soft', null, '1-2012', null, null, null),
+        (1738, 'Orange Soft SRL', 'Orange Soft SRL', '2-2016', null, null, null),
+        (1739, 'Oreosoft', 'OREOSOFT S.R.L.', '2-2018', 'DE', null, null),
+        (1740, 'Oriansoft', 'oriansoft', null, null, null, null),
+        (1741, 'ORION SOFT', 'ORION SOFTWARE SOLUTIONS', '1-2013', null, null, null),
+        (1742, 'Osiris', null, null, null, null, null),
+        (1743, 'Oversoft', 'oversoft desarrollando soluciones', null, null, null, null),
+        (1744, 'Padsoft', null, null, null, null, null),
+        (1745, 'Paradise', null, '2-2014', null, null, null),
+        (1746, 'Pathfinder', 'Pathfinder', null, null, null, null),
+        (1747, 'Pentamix', 'Pentamix', null, null, null, null),
+        (1748, 'Pentasoft', 'Pentasoft SRL', '1-2011', null, null, null),
+        (1749, 'PEOPLE XTREME SOFT-PXP S.R.L.', null, '1-2011', null, null, null),
+        (1750, 'PF', 'Programando el Futuro', '1-2021', 'LB', null, null),
+        (1751, 'Phalcondev', null, '1-2017', null, null, null),
+        (1752, 'Phoenix SRL.', 'Phoenix SRL.', '1-2015', null, null, null),
+        (1753, 'Phpsoft', null, '1-2009', null, null, null),
+        (1754, 'Pied S.R.L.', null, '2-2020', 'CF', null, null),
+        (1755, 'Pirasoft', null, null, null, null, null),
+        (1756, 'Programadores sin límites.Srl', null, '2-2012', null, null, null),
+        (1757, 'Propersoft', null, null, null, null, null),
+        (1758, 'Prosoft', null, null, null, null, null),
+        (1759, 'PSS', 'Prime Soft Solutions Ltda.', '2-2023', 'LB', null, null),
+        (1760, 'PUNTO CLICK SRL', null, null, null, null, null),
+        (1761, 'Puriskiri', null, '2-2012', null, null, null),
+        (1762, 'PYXIDIS', 'pyxidis solutions SRL', null, null, null, null),
+        (1763, 'Qbetagroup', null, null, null, null, null),
+        (1764, 'Quality', 'Quality', '1-2016', null, null, null),
+        (1765, 'QueIdeas Soft', null, '1-2012', null, null, null),
+        (1766, 'QuickSoftware S.R.L.', 'QuickSoftware S.R.L.', '2-2019', 'CF', null, null),
+        (1767, 'QUIRKYSOFT SRL', 'QUIRKYSOFT SRL', '1-2013', null, null, null),
+        (1768, 'Ragosoft', 'Ragosoft', null, null, null, null),
+        (1769, 'Ramon Soft', null, '1-2012', null, null, null),
+        (1770, 'Reactive Solutions.SRL', 'Reactive Solutions.SRL', '2-2017', null, null, null),
+        (1771, 'Resource Technology', null, '2-2010', null, null, null),
+        (1772, 'Revolution Software', null, null, null, null, null),
+        (1773, 'Ric_tis', 'Ric_tis', null, null, null, null),
+        (1774, 'RobSoft', 'RobSoft Corporation', '2-2023', 'LB', null, null),
+        (1775, 'Ruasun_soft', 'Ruasun_soft', null, null, null, null),
+        (1776, 'RVGC Soft', 'Roman Vargas Gonzales Chipana Soft', '1-2021', 'PR', null, null),
+        (1777, 'S-XTREMES', null, '2-2010', null, null, null),
+        (1778, 'S.R.L.', 'Consultora de Tecnologias de Ingenieria de Software', null, null, null, null),
+        (1779, 'SAADS SRL', 'SAADS SRL', '1-2015', null, null, null),
+        (1780, 'Sac', null, null, null, null, null),
+        (1781, 'Sadi', 'Servicios de Automatizacion y desarrollo industrial', null, null, null, null),
+        (1782, 'Sajom Soft', null, '2-2010', null, null, null),
+        (1783, 'SAS', 'Smart ACtion Software', '2-2022', 'PR', null, null),
+        (1784, 'SAT', 'SAT', null, null, null, null),
+        (1785, 'SCAYNET', null, '1-2011', null, null, null),
+        (1786, 'ScrumTroopers S.C.', 'ScrumTroopers Sociedad Colectiva', '1-2019', 'LB', null, null),
+        (1787, 'SDC SRL', null, null, null, null, null),
+        (1788, 'SDSC', 'Sociedad de Desarrollo de Software de Calidad', null, null, null, null),
+        (1789, 'Sed', null, '2-2009', null, null, null),
+        (1790, 'SEE', null, '2-2010', null, null, null),
+        (1791, 'SEGINFA', 'Seguridad Informática ALIENS', null, null, null, null),
+        (1792, 'Semael', null, null, null, null, null),
+        (1793, 'SER SRL', 'Software Engineering Revolution SRL', '1-2021', 'PR', null, null),
+        (1794, 'SerApps', 'SerApps SRL', '1-2023', 'CF', null, null),
+        (1795, 'Servicios Integrales en Tecnología, Información y Computacion ', 'SITIC', '1-2022', 'PR', null, null),
+        (1796, 'ServiSoft.SRL', 'ServiSoft.SRL', '2-2021', 'CF', null, null),
+        (1797, 'SETIC', 'SETIC', null, null, null, null),
+        (1798, 'Sewbs SRL', 'Sewbs SRL', '2-2014', null, null, null),
+        (1799, 'SEWS', 'Software Engineering Work Shop', null, null, null, null),
+        (1800, 'SHB', 'Software Hecho en Bolivia', null, null, null, null),
+        (1801, 'Shiba Tech', 'Shiba Tech S.R.L.', '1-2022', 'LB', null, null),
+        (1802, 'ShieldCode Soft S.R.L', 'ShieldCode Soft S.R.L', '2 - 2022', 'LB', null, null),
+        (1803, 'SHIFT SRL', null, null, null, null, null),
+        (1804, 'SHYAB', 'SHYAB', '1-2015', null, null, null),
+        (1805, 'SIAN SRL', 'SIAN SRL', null, null, null, null),
+        (1806, 'Sibosoft', null, null, null, null, null),
+        (1807, 'SICC', 'SICC', null, null, null, null),
+        (1808, 'SICESOFT SRL.', 'SOLUTIONS ICE SOFTWARE SRL', '1-2021', 'LB', null, null),
+        (1809, 'Sicomp', 'Sicomp', null, null, null, null),
+        (1810, 'SID SRL', 'SID SRL', null, null, null, null),
+        (1811, 'SIDA', 'SIDA', null, null, null, null),
+        (1812, 'SIDESOFT', null, '1-2009', null, null, null),
+        (1813, 'Sigma', null, '1-2014', null, null, null),
+        (1814, 'SimCom', 'SimCom', null, null, null, null),
+        (1815, 'Simplicity', 'Simplicity', null, null, null, null),
+        (1816, 'Simus', null, null, null, null, null),
+        (1817, 'SING', null, null, null, null, null),
+        (1818, 'SINGECORP', 'Sistemas Informaticos de Gestion Corporativa', '1-2010', null, null, null),
+        (1819, 'SINTEG', 'Solución Inteligente de Tecnologia Global S.R.L', '2-2023', 'PR', null, null),
+        (1820, 'SISCO', null, null, null, null, null),
+        (1821, 'SISNET', 'Sistemas Informáticos Seguros en Internet,', null, null, null, null),
+        (1822, 'Sispreco SRL', 'Sispreco SRL', null, null, null, null),
+        (1823, 'SISU', 'Sistemas de SOftware Unidos', '1-2013', null, null, null),
+        (1824, 'SITEC', 'SIstemas de Informacion Tecnologica', '1-2010', null, null, null),
+        (1825, 'SIWEB', null, '1-2011', null, null, null),
+        (1826, 'Sky Brians', 'Sky Brians SRL', '1-2018', null, null, null),
+        (1827, 'SKYNET', 'SKYNET', null, null, null, null),
+        (1828, 'SKYSOFT', 'SKYSOFT SRL', '1-2011', null, null, null),
+        (1829, 'SLOW CODE', 'SLOW CODE SRL', '1-2015', null, null, null),
+        (1830, 'Smart Solution', 'Smart Solution S.R.L.', '2-2019', 'DE', null, null),
+        (1831, 'Smartsoft', null, null, null, null, null),
+        (1832, 'SnoopySoft', 'SnoopySoft', null, null, null, null),
+        (1833, 'SODES SRL', 'Software Development Enterprise SRL', null, null, null, null),
+        (1834, 'SODESI SRL', 'SODESI SRL', null, null, null, null),
+        (1835, 'Soft Llajta', null, '2-2010', null, null, null),
+        (1836, 'SOFT MAGIC TOUCH', 'SOFTWARE MAGIC TOUCH', '1-2013', null, null, null),
+        (1837, 'Soft Master', 'Soft Master', null, null, null, null),
+        (1838, 'SOFT NET Ltda.', 'Empresa de desarrollo de software', null, null, null, null),
+        (1839, 'Soft Source', null, '2-2011', null, null, null),
+        (1840, 'Soft World', 'Soluciones integrales con tecnología simplificada', '1-2023', 'LB', null, null),
+        (1841, 'SOFT_LAB S.R.L.', null, '2-2019', 'CF', null, null),
+        (1842, 'SOFT_SOURCE', null, '2-2011', null, null, null),
+        (1843, 'SoftART', null, null, null, null, null),
+        (1844, 'SoftBar', null, '1-2010', null, null, null),
+        (1845, 'Softbol', 'Softbol', null, null, null, null),
+        (1846, 'SoftBox Soluciones', null, null, null, null, null),
+        (1847, 'SoftCode', 'SoftCode SRL', '2-2023', 'CF', null, null),
+        (1848, 'Softcreme', 'Softcreme SRL', '1-2019', 'LB', null, null),
+        (1849, 'SOFTDEITEL', null, '1-2012', null, null, null),
+        (1850, 'SoftInnovate Solutions', 'SoftInnovate Solutions SRL', '1-2024', 'DE', null, null),
+        (1851, 'Softelligent', 'SOFTWARE INTELIGENTE', '2-2012', null, null, null),
+        (1852, 'SOFTG', null, '2-2010', null, null, null),
+        (1853, 'SOFTIS', 'Software TIS', '2-2020', 'PR', null, null),
+        (1854, 'SoftLab S.R.L.', 'SoftLab S.R.L.', '2-2019', 'PR', null, null),
+        (1855, 'SoftMakers', null, '1-2012', null, null, null),
+        (1856, 'Softop', 'Softop', null, null, null, null),
+        (1857, 'Softquina', null, '1-2012', null, null, null),
+        (1858, 'SoftServ', 'Software Service', '2-2022', 'PR', null, null),
+        (1859, 'SoftSolutions', 'SoftSolutions SRL', '1-2019', 'CF', null, null),
+        (1860, 'SoftVision', 'The Software Vision Company', '2-2020', 'LB', null, null),
+        (1861, 'Software Development Innovation SRL', 'SDI SRL', '1-2020', 'CF', null, null),
+        (1862, 'Softwaredesigners', 'software designers SRL', null, null, null, null),
+        (1863, 'SoftWib', null, null, null, null, null),
+        (1864, 'Soinco', null, null, null, null, null),
+        (1865, 'Solid Developers SRL', null, '2-2016', null, null, null),
+        (1866, 'Solidev', 'Solidev S.R.L.', '1-2019', null, null, null),
+        (1867, 'SOLUSOFT', null, '1-2009', null, null, null),
+        (1868, 'SOLVWARE', null, '1-2019', 'PR', null, null),
+        (1869, 'SOTEA SRL', 'SOTEA SRL', '1-2020', 'CF', null, null),
+        (1870, 'SotwareEnpreneur', 'SotwareEnpreneur SRL', '1-2023', 'CF', null, null),
+        (1871, 'Source Code', 'Source Code', null, null, null, null),
+        (1872, 'Space', 'Space SRL', '2-2022', 'CF', null, null),
+        (1873, 'SPYD Software', 'Sociedad de Planificación Y Desarrollo de Software', null, null, null, null),
+        (1874, 'Sss', null, null, null, null, null),
+        (1875, 'StardustSoft', 'StardustSoft SRL', '1-2019', 'CF', null, null),
+        (1876, 'STARTSOFT', 'Empresa de Desarrollo Informatico STARTSOFT', '1-2010', null, null, null),
+        (1877, 'STARTTIS', null, '2-2010', null, null, null),
+        (1878, 'Sting Soft SRL', null, '2-2016', null, null, null),
+        (1879, 'Storm', 'StormSoft SRL', '1-2016', null, null, null),
+        (1880, 'Stragos', 'Stragos soft srl', null, null, null, null),
+        (1881, 'STS', null, '1-2017', null, null, null),
+        (1882, 'StudSoft', 'StudSoft SRL', '1-2016', null, null, null),
+        (1883, 'Sublime SRL', 'Sublime Projects SRL', '2-2019', 'LB', null, null),
+        (1884, 'SumajSoft', 'Sumajsoft S.R.L.', '2-2021', 'LB', null, null),
+        (1885, 'Summit', 'Summit SRL', '1-2011', null, null, null),
+        (1886, 'Swlink', 'Swlink', null, null, null, null),
+        (1887, 'Symphony Soft', 'Symphony Software', '2-2013', null, null, null),
+        (1888, 'Synapsis', 'Synapsis', null, null, null, null),
+        (1889, 'Synchro SRL', 'Synchro SRL', '1-2017', null, null, null),
+        (1890, 'SynergiSoft', 'SynergiSoft S.R.L', '2-2023', 'DE', null, null),
+        (1891, 'Sysdecom', null, null, null, null, null),
+        (1892, 'SystemBolDevSoft Srl', 'SystemBolDevSoft Srl', '1-2013', null, null, null),
+        (1893, 'SystemWorks', 'SystemWorks SRL', null, null, null, null),
+        (1894, 'T-SYS', null, '2-2010', null, null, null),
+        (1895, 'TALOS Dev', 'Talos Development S.R.L.', '2-2020', 'DE', null, null),
+        (1896, 'TBS', null, '1-2009', null, null, null),
+        (1897, 'TDsoft', 'TDsoft', null, null, null, null),
+        (1898, 'TeachBird', 'TeachBird SRL', '2-2023', 'CF', null, null),
+        (1899, 'Team Soft', 'Team Soft S.R.L.', '2-2019', 'DE', null, null),
+        (1900, 'TEC', 'TEC', null, null, null, null),
+        (1901, 'TECASOFT', null, '2-2010', null, null, null),
+        (1902, 'TecnoAvance', 'TecnoAvance', '1-2021', 'PR', null, null),
+        (1903, 'Tecnology', 'Tecnology soft ltda', null, null, null, null),
+        (1904, 'TeleTran', 'TeleTran', null, null, null, null),
+        (1905, 'TeraSoft', null, '1-2021', 'DE', null, null),
+        (1906, 'TH', 'Transhumant', '1-2021', 'PR', null, null),
+        (1907, 'The Code Tellers', 'The Code Tellers SRL', '1-2019', 'CF', null, null),
+        (1908, 'ThinkDSoft SRL', 'ThinkDSoft SRL', '2-2014', null, null, null),
+        (1909, 'THNS SRL', 'Technohookup Newsystems SRL', '1-2021', 'PR', null, null),
+        (1910, 'THREEFORCE DEVELOPMENT', null, '1-2011', null, null, null),
+        (1911, 'ThunderSoft', 'Thunder Software S.R.L.', '2-2020', 'DE', null, null),
+        (1912, 'TI SOLUTUONS', null, '1-2012', null, null, null),
+        (1913, 'TIM.SRL', null, null, null, null, null),
+        (1914, 'TISOFT', null, '2-2018', 'PR', null, null),
+        (1915, 'TIZEN', null, '1-2019', 'PR', null, null),
+        (1916, 'TopCoDev.SRL', 'TopCoDev.SRL', '2-2017', null, null, null),
+        (1917, 'TopSoft', 'Top Software SRL', '2-2015', null, null, null),
+        (1918, 'Totality', 'Totality', null, null, null, null),
+        (1919, 'TOTEMWORKS', 'TOTEMWORKS', '2-2021', 'PR', null, null),
+        (1920, 'Trinity Soft', 'Trinity Software Development', '2-2023', 'LB', null, null),
+        (1921, 'Trojan Soft', 'Trojan Soft', '2-2014', null, null, null),
+        (1922, 'Trust Quest SRL', 'Trust Quest SRL', '2 - 2022', 'LB', null, null),
+        (1923, 'TRY TECK S.R.L.', 'TRY TECK S.R.L.', '2 - 2022', 'LB', null, null),
+        (1924, 'TS SRL', 'Team Soft SRL', '1-2021', 'PR', null, null),
+        (1925, 'Tunari.com', 'Tunari.com', null, null, null, null),
+        (1926, 'TuringSoft.S.R.L', null, '2-2012', null, null, null),
+        (1927, 'ULTIMATE', 'ULTIMATE', null, null, null, null),
+        (1928, 'Umbrella', 'Umbrella CORP SRL', null, null, null, null),
+        (1929, 'Umbrella Code', 'Umbrella Code SRL', '1-2023', 'LB', null, null),
+        (1930, 'Unisoft', null, '2-2014', null, null, null),
+        (1931, 'Unlocking Software', 'Unlocking SRL', '1-2020', 'LB', null, null),
+        (1932, 'UNTEC', 'Undefined Technology S.R.L.', '1-2022', 'CF', null, null),
+        (1933, 'Urban Soft SRL', null, '2-2016', null, null, null),
+        (1934, 'Usoft', null, null, null, null, null),
+        (1935, 'V@gos soft SRL', 'V@gos soft SRL', null, null, null, null),
+        (1936, 'Valle Soft', 'Valle Soft  S.R.L.', '1-2020', 'DE', null, null),
+        (1937, 'VenSoft SRL', 'VenSoft SRL', '1-2021', 'CF', null, null),
+        (1938, 'venturesome', 'venturesome', null, null, null, null),
+        (1939, 'Viba', 'Viba', null, null, null, null),
+        (1940, 'VIDA SRL', 'VIDA SRL', '2-2014', null, null, null),
+        (1941, 'Virtu@l soft', 'Virtu@l soft', null, null, null, null),
+        (1942, 'VirusNot', 'VirusNot Development Soft', '2-2022', 'PR', null, null),
+        (1943, 'Waarp', null, null, null, null, null),
+        (1944, 'Wayra', null, null, null, null, null),
+        (1945, 'WebJets', 'WebJets Soluciones informaticas', '2-2013', null, null, null),
+        (1946, 'WebOn', 'WebOn SRL', '2-2023', 'CF', null, null),
+        (1947, 'WEBSOLUTIONS', 'WEBSOLUTIONS SRL', '1-2011', null, null, null),
+        (1948, 'WEsoft', 'WEsoft', null, null, null, null),
+        (1949, 'Whitehatsoft', null, '1-2014', null, null, null),
+        (1950, 'WHS SRL', 'Work at Home Soft SRL', '2-2014', null, null, null),
+        (1951, 'WieselSoft SRL', 'WieselSoft SRL', '1-2020', 'CF', null, null),
+        (1952, 'Winesoft', 'Winesoft', '2-2019', 'PR', null, null),
+        (1953, 'WinnSoft', 'WinnSoft SRL', '1-2019', 'CF', null, null),
+        (1954, 'Winsmart Soft.SRL', null, '2-2013', null, null, null),
+        (1955, 'WOLF', null, '2-2010', null, null, null),
+        (1956, 'X-SOFT', null, '2-2011', null, null, null),
+        (1957, 'XINTHEWORLD', null, '1-2011', null, null, null),
+        (1958, 'XPARSA', 'EXPANDIENDO SOFTWARE', '2-2010', null, null, null),
+        (1959, 'XPDEV', null, null, null, null, null),
+        (1960, 'Xpro', null, '2-2009', null, null, null),
+        (1961, 'Xsoft', null, '2-2011', null, null, null),
+        (1962, 'Xtreme SB SRL', 'Xtreme StormBrain SRL', null, null, null, null),
+        (1963, 'XtremeSoft', null, '1-2021', 'DE', null, null),
+        (1964, 'YAC', 'Yac ingenieria de calidad', null, null, null, null),
+        (1965, 'Yachay', 'YachayPacha Soft SRL', '2-2023', 'CF', null, null),
+        (1966, 'Yantana Soft', 'Yantana Soft', '2-2014', null, null, null),
+        (1967, 'YELADEVEL', null, '1-2019', 'PR', null, null),
+        (1968, 'Yenci Soft', 'Yenci Soft S.R.L.', '2-2019', 'DE', null, null),
+        (1969, 'YUME', null, '2-2012', 'LB', null, null),
+        (1970, 'ZEIKO', 'ZEIKO SRL', '1-2014', null, null, null),
+        (1971, 'Zeros & Ones SRL', 'Zeros & Ones SRL', null, null, null, null),
+        (1972, 'Zeus', 'ZEUS SRL', null, null, null, null),
+        (1973, 'Zion', 'Zion', '1-2013', null, null, null),
+        (1974, 'ZODIAC', 'ZODIAC S.R.L.', '2-2023', 'LB', null, null),
+        (1975, 'B.F.S.', 'Brute Force Solutions', '1-2024', 'LB', null, null),
+        (1976, 'Digital Nest', 'Digital Nest S.R.L.', '1-2024', 'LB', null, null),
+        (1977, 'Intelligence Software', 'Intelligence Software S.R.L', '1-2024', 'LB', null, null),
+        (1978, 'JaCOD', 'Jatun Code Tecnología', '1-2024', 'LB', null, null),
+        (1979, 'Llama Digital', 'Llama Digital – making life easier S.R.L.', '1-2024', 'LB', null, null),
+        (1980, 'PhilfrutSoft', 'PhilfrutSoft S.R.L.', '1-2024', 'LB', null, null),
+        (1981, 'SkynetSoft', 'Skynet Development Soft S.R.L.', '1-2024', 'LB', null, null),
+        (1982, 'Steel Code', 'Steel Code S.R.L', '1-2024', 'LB', null, null),
+        (1983, 'Zincronix', 'Zincronix Solutions S.R.L.', '1-2024', 'LB', null, null),
+        (1984, 'DevGenius', 'DevGenius SRL', '1-2024', 'CF', null, null),
+        (1985, 'DreamSoft', 'DreamSoft SRL', '1-2024', 'CF', null, null),
+        (1986, 'Eureka Solutions', 'Eureka Solutions SRL', '1-2024', 'CF', null, null),
+        (1987, 'MegaByte', 'MegaByte SRL', '1-2024', 'CF', null, null),
+        (1988, 'Purple Soft', 'Purple Soft SRL', '1-2024', 'CF', null, null),
+        (1989, 'Ada Enterprise', 'Ada Enterprise SRL', '1-2024', 'CF', null, null),
+        (1990, 'SparkCode', 'SparkCode SRL', '1-2024', 'CF', null, null),
+        (1991, 'IBM Jr', 'IBM Jr SRL', '1-2024', 'CF', null, null),
+        (1992, 'Palmer Technology', 'Palmer Technology SRL', '1-2024', 'CF', null, null),
+        (1326, 'A&D', null, null, null, null, null),
+        (1327, 'ABC', null, null, null, null, null),
+        (1328, 'ActionSoft', 'ActionSoft  S.R.L.', '1-2020', 'DE', null, null),
+        (1329, 'ADA SOFT', 'Ada Soft SRL', '2-2021', 'LB', null, null),
+        (1330, 'Addsoft', null, null, null, null, null),
+        (1331, 'Adeptus Code', 'Adeptus Code SRL', '1-2023', 'LB', null, null),
+        (1332, 'ADSysCorp', 'ADSystem Corporation', null, null, null, null),
+        (1333, 'AGAAK development SRL', 'AGAAK', '1-2020', 'LB', null, null),
+        (1334, 'AGEN', 'AgileEngineers', '2-2023', 'PR', null, null),
+        (1335, 'Agile Action', null, '1-2010', null, null, null),
+        (1336, 'AGILESOFT', 'AGILESOFT', '2-2021', 'PR', null, null),
+        (1337, 'AiraSoft', 'AiraSoft SRL', null, null, null, null),
+        (1338, 'Akira soft', 'Akira soft', null, null, null, null),
+        (1339, 'AlfaSoft', 'AlfaSoft S.R.L.', '1-2022', 'CF', null, null),
+        (1340, 'Altec SRL', 'Experiencia y alta tecnologia SRL', null, null, null, null),
+        (1341, 'ANDESOFT', 'ANDESOFT', null, null, null, null),
+        (1342, 'Angel Fire', 'Angel Fire', null, null, null, null),
+        (1343, 'ANKA SOFT', 'ANKA SOFT SRL', '1-2014', null, null, null),
+        (1344, 'Answer', null, null, null, null, null),
+        (1345, 'Ant Work', 'Ant Work SRL', '2-2018', 'LB', null, null),
+        (1346, 'Aracorp', null, null, null, null, null),
+        (1347, 'ARES', 'ARES S.R.L.', '2-2019', 'DE', null, null),
+        (1348, 'ARGOS', null, null, null, null, null),
+        (1349, 'Arkano', 'Arkano', null, null, null, null),
+        (1350, 'Aska', null, '1-2009', null, null, null),
+        (1351, 'ASSI', 'ASSI', null, null, null, null),
+        (1352, 'AT&P', 'AT&P SRL', '1-2011', null, null, null),
+        (1353, 'ATIS SRL', 'ATIS SRL', null, null, null, null),
+        (1354, 'Atiysoft', null, null, null, null, null),
+        (1355, 'Atom', 'Atom Software SRL', '2-2016', null, null, null),
+        (1356, 'Authentic Soft', null, '2-2010', null, null, null),
+        (1357, 'B.TECTIS', 'BUSSINESS TECNO TIS', '2-2021', 'PR', null, null),
+        (1358, 'B&B', null, null, null, null, null),
+        (1359, 'Bastet S.R.L.', null, '2-2020', 'CF', null, null),
+        (1360, 'BeDevs S.R.L.', 'BeDevs S-R-L.', '2-2019', 'CF', null, null),
+        (1361, 'BERSASOFT', null, '1-2019', 'PR', null, null),
+        (1362, 'BH Soft', 'Bit Hunter Soft SRL', '1-2017', null, null, null),
+        (1363, 'Binary', null, '2-2014', null, null, null),
+        (1364, 'Binarysoft', 'Binarysoft', null, null, null, null),
+        (1365, 'Bit SRL', null, '2-2009', null, null, null),
+        (1366, 'BitDevs', 'BitDevs SRL', '1-2024', 'DE', null, null),
+        (1367, 'Bittle SRL', 'Bittle SRL', '2-2014', null, null, null),
+        (1368, 'Black Cloud', 'Black Cloud S.R.L.', '2-2023', 'LB', null, null),
+        (1369, 'Blue Marlin S.R.L.', null, null, null, null, null),
+        (1370, 'BolBuilder', 'BolBuilder SRL', '2-2023', 'CF', null, null),
+        (1371, 'Bolivia soft', 'Bolivia soft', null, null, null, null),
+        (1372, 'Boost Soft', 'Boost Soft', '1-2015', null, null, null),
+        (1373, 'BOS SA', 'Build Of System S.A', null, null, null, null),
+        (1374, 'Bots'' System Teach', 'Bots'' System Teach.SRL', '2-2021', 'CF', null, null),
+        (1375, 'Boy''s Code', 'Boy''s Code SRL', '1-2018', null, null, null),
+        (1376, 'BRAIN SOFT', 'BRAIN SOFT SRL', '1-2014', null, null, null),
+        (1377, 'Brave Soft', 'Brave software solutions', '2-2013', null, null, null),
+        (1378, 'Build Solutions', 'Build Solutions SRL', '2-2022', 'CF', null, null),
+        (1379, 'Building Soft', 'Building Soft', '2-2020', 'DE', null, null),
+        (1380, 'Burgos Soft', 'BURGOS SOFT S.R.L.', '2-2019', 'DE', null, null),
+        (1381, 'BUSSINESOFT', null, '2-2010', null, null, null),
+        (1382, 'C@DSOFT SRL', 'C@DSOFT SRL', null, null, null, null),
+        (1383, 'Caesar asociados', 'Caesar asociados', null, null, null, null),
+        (1384, 'CAMEL SOFT', 'CAMEL  SOFT SRL', '2-2021', 'LB', null, null),
+        (1385, 'Canguro soft srl', 'Canguro soft srl', null, null, null, null),
+        (1386, 'CaniSoft SRL', 'CaniSoft SRL', '1-2020', 'CF', null, null),
+        (1387, 'Capsule', 'Capsule SRL', '1-2018', null, null, null),
+        (1388, 'CAS S.R.L.', 'Cochabamba Automática Soft S.R.L.', '1-2019', 'DE', null, null),
+        (1389, 'Cassiopeia', 'Cassiopeia', '2-2013', null, null, null),
+        (1390, 'Cativos', null, null, null, null, null),
+        (1391, 'CDSA SRL', 'Consultora de desarrollo de software', null, null, null, null),
+        (1392, 'CEDSI', 'CEDSI', null, null, null, null),
+        (1393, 'Cemdesoft', null, '1-2009', null, null, null),
+        (1394, 'CENTAURO', null, '2-2010', null, null, null),
+        (1395, 'Centersoft', null, null, null, null, null),
+        (1396, 'Chameleon Code', 'Chameleon Code Software S.R.L', '1-2019', 'LB', null, null),
+        (1397, 'CHR SRL', 'Compumundo Hipermega Red SRL', '2-2017', null, null, null),
+        (1398, 'Cis sa', 'Cis sa', null, null, null, null),
+        (1399, 'CISOFT', 'CISOFT SRL', '1-2011', null, null, null),
+        (1400, 'CLASSSOFT SRL', 'CLASSSOFT SRL', '1-2015', null, null, null),
+        (1401, 'Click', 'Click Soluciones Informáticas', null, null, null, null),
+        (1402, 'Clicknet', null, null, null, null, null),
+        (1403, 'ClubMorning', 'ClubMorning S.R.L.', '1-2022', 'CF', null, null),
+        (1404, 'Cochala-Soft', null, '2-2021', 'DE', null, null),
+        (1405, 'CODEBREAKER', null, '2-2018', 'PR', null, null),
+        (1406, 'CodeCraze', 'CodeCraze SRL', '1-2023', 'CF', null, null),
+        (1407, 'CodeFusion', null, null, null, null, null),
+        (1408, 'Codemaster', null, '1-2017', null, null, null),
+        (1409, 'CODESOFT', null, '1-2009', null, null, null),
+        (1410, 'Codesoft', 'Codesoft SRL', '2-2023', 'DE', null, null),
+        (1411, 'Codesoft_srl', 'Codesoft_srl', null, null, null, null),
+        (1412, 'Codigo Enigma S.R.L.', 'Codigo Enigma S.R.L.', '2-2019', 'CF', null, null),
+        (1413, 'Codigo Fuerte S.R.L.', null, '2-2020', 'CF', null, null),
+        (1414, 'COLECTIVO', 'COLECTIVO VIRTUAL SRL', '1-2014', null, null, null),
+        (1415, 'Colmena SRL', 'Colmena SRL', null, null, null, null),
+        (1416, 'comotusoft', 'Como Tu Soft SRL', null, null, null, null),
+        (1417, 'Compusoft', null, null, null, null, null),
+        (1418, 'CondeVela Soft', null, '2-2014', null, null, null),
+        (1419, 'Condor Technology', 'Condor Technology S.R.L', '1-2023', 'LB', null, null),
+        (1420, 'Conseinf', 'Conseinf', null, null, null, null),
+        (1421, 'ControlZ', 'ControlZ', '2-2019', 'PR', null, null),
+        (1422, 'Corporación de Software y Tecnología SRL', 'CST', '1-2021', 'CF', null, null),
+        (1423, 'Cosinf', 'Consultora de Servicios Informáticos', null, null, null, null),
+        (1424, 'Creasser SRL', 'Creasser SRL', null, null, null, null),
+        (1425, 'CREATIVE.SOFT777 S.R.L.', null, '1-2011', null, null, null),
+        (1426, 'CREATIVESOFT', 'SOFTWARE CREATIVO', '2-2010', null, null, null),
+        (1427, 'Cripher', 'CodeFusion SRL', '2-2023', 'CF', null, null),
+        (1428, 'Crovz', 'Crovz', null, null, null, null),
+        (1429, 'CSI', null, '1-2009', null, null, null),
+        (1430, 'Csi', null, null, null, null, null),
+        (1431, 'Csisi', 'Csisi', null, null, null, null),
+        (1432, 'Csiv', 'Csiv', null, null, null, null),
+        (1433, 'Cstidas', 'Cstidas', null, null, null, null),
+        (1434, 'ctrl_alt_soft', 'ctrl_alt_soft', null, null, null, null),
+        (1435, 'CTRLS SRL', 'Controlled Solutions SRL', '2-2019', 'LB', null, null),
+        (1436, 'Cusco_system', 'Cusco_system', null, null, null, null),
+        (1437, 'Cyber Nest', 'Cyber Nest SRL', '2-2023', 'DE', null, null),
+        (1438, 'Cyber Systems', 'Cyber Systems', null, null, null, null),
+        (1439, 'Cyborg Solutions LTD.', null, null, null, null, null),
+        (1440, 'D.A.C. S.A', 'Dream Act Create S.A.', '1-2019', 'DE', null, null),
+        (1441, 'D&D', 'Design & Development software', null, null, null, null),
+        (1442, 'DAD software', 'DAD software', null, null, null, null),
+        (1443, 'DarkSoft', 'DarkSoft S.R.L.', '1-2022', 'CF', null, null),
+        (1444, 'Dastech', 'Dastech', null, null, null, null),
+        (1445, 'Databyte', null, '1-2022', 'DE', null, null),
+        (1446, 'DDS', 'Digital Development Soft', '2-2020', 'PR', null, null),
+        (1447, 'DEBUG', null, '2-2010', null, null, null),
+        (1448, 'DecSoft', 'DecSoft SRL', '2-2016', null, null, null),
+        (1449, 'DelfiNet', 'DelfiNet', null, null, null, null),
+        (1450, 'Delfos SRL', 'Delfos Soft SRL', '2-2019', 'LB', null, null),
+        (1451, 'Demonnet', 'Demonnet', null, null, null, null),
+        (1452, 'DEPSOFT', null, '2-2010', null, null, null),
+        (1453, 'DESIGNTEC', null, '1-2011', null, null, null),
+        (1454, 'Desofin', null, '1-2014', null, null, null),
+        (1455, 'DESOFT SRL', 'DESOFT SRL', null, null, null, null),
+        (1456, 'DESOInf', null, '2-2012', null, null, null),
+        (1457, 'Dessa', 'Desarrolladora de Software Aplicado', null, null, null, null),
+        (1458, 'Dessoft ORION', 'Dessoft ORION', null, null, null, null),
+        (1459, 'Dev Solutions ISC', 'DevSolutions Innovative Software Company SRL', '1-2022', 'LB', null, null),
+        (1460, 'DevBOL', 'DevBol SRL', '1-2023', 'CF', null, null),
+        (1461, 'Developer in open source', 'Developer in open source', null, null, null, null),
+        (1462, 'DEVS', 'DEVS GROUP SRL', '1-2015', null, null, null),
+        (1463, 'DevSociety', 'Developer''s Society S.R.L', '1-2021', 'LB', null, null),
+        (1464, 'DEVSOFT SRL.', 'Developer Software SRL', '1-2016', null, null, null),
+        (1465, 'DevSol.SRL', 'DevSol.SRL', '2-2017', null, null, null),
+        (1466, 'DevSZ', 'Development Software Z', '2-2020', 'PR', null, null),
+        (1467, 'DFS SRL', 'Desarrollo de Fuertes Soluciones S.R.L.', '2-2020', 'LB', null, null),
+        (1468, 'DG', 'DevGenius S.R.L', '2-2023', 'PR', null, null),
+        (1469, 'DICOSOFT', 'diseño y consultoria de software', null, null, null, null),
+        (1470, 'Digital City', 'Digital City S.R.L.', '2-2020', 'LB', null, null),
+        (1471, 'DIGITAL CRAFTERS', 'DIGITAL CRAFTERS Inc. S.R.L.', '1-2024', 'DE', null, null),
+        (1472, 'DIGITAL SYSTEMS', null, '1-2011', null, null, null),
+        (1473, 'DigitalSoft', 'DigitalSoft SA', null, null, null, null),
+        (1474, 'Dim_soft', 'Dim_soft', null, null, null, null),
+        (1475, 'Dinasoft', null, '1-2012', null, null, null),
+        (1476, 'Dios', null, null, null, null, null),
+        (1477, 'DIS', 'DIS', null, null, null, null),
+        (1478, 'DiverNet', 'DiverNert', null, null, null, null),
+        (1479, 'DKS', 'DKS', '1-2011', null, null, null),
+        (1480, 'DOMINOSOFT SRL', 'DOMINOSOFT SRL', null, null, null, null),
+        (1481, 'Dotpoint Soft.Srl', null, '2-2012', null, null, null),
+        (1482, 'Dows', null, '1-2009', null, null, null),
+        (1483, 'Drakko', 'Drakko srl', null, null, null, null),
+        (1484, 'Dreams SRL', 'Dreams SRL', null, null, null, null),
+        (1485, 'Drsif', null, null, null, null, null),
+        (1486, 'DS', 'Digital Strategies', '2-2020', 'PR', null, null),
+        (1487, 'DSA', 'DSA', null, null, null, null),
+        (1488, 'DSAN', null, null, null, null, null),
+        (1489, 'DSI', 'DSI', null, null, null, null),
+        (1490, 'Dsisoft', null, null, null, null, null),
+        (1491, 'Dsp', null, null, null, null, null),
+        (1492, 'DTS', 'DTS', null, null, null, null),
+        (1493, 'DYANSOFT', null, '1-2009', null, null, null),
+        (1494, 'e & s SRL', 'e & s SRL', null, null, null, null),
+        (1495, 'EAGLESOFT', null, '1-2021', 'DE', null, null),
+        (1496, 'EDAS', 'EDAS', null, null, null, null),
+        (1497, 'EDESSI', 'Empresa de Desarrollo de Sistemas y Servicios Informaticos', '1-2010', null, null, null),
+        (1498, 'Editsoft', null, null, null, null, null),
+        (1499, 'EDS SA', 'Empresa de Desarrollo de Software SA', null, null, null, null),
+        (1500, 'EDSI', 'Empresa de Desarrollo de Sistemas Informáticos', '2-2016', null, null, null),
+        (1501, 'EDSIN', 'Elite en Desarrollo Soluciones Informaticas', null, null, null, null),
+        (1502, 'Edsj', null, null, null, null, null),
+        (1503, 'EDSL', 'EDSL', null, null, null, null),
+        (1504, 'EDSODIA SRL', 'Empresa de Desarrollo de Software de Implementación Actual SRL', null, null, null, null),
+        (1505, 'Edti', null, null, null, null, null),
+        (1506, 'Eficient', 'Eficient', null, null, null, null),
+        (1507, 'Egroup', 'e-group srl', null, null, null, null),
+        (1508, 'EIDS', 'EIDS', null, null, null, null),
+        (1509, 'EKEKO', null, '2-2018', 'PR', null, null),
+        (1510, 'Elysium', 'Elysium S.R.L.', '1-2022', 'CF', null, null),
+        (1511, 'Emagic', null, null, null, null, null),
+        (1512, 'Emcosis', 'emcosis srl', null, null, null, null),
+        (1513, 'emcosoft', 'Empresa Comercial de Software', null, null, null, null),
+        (1514, 'emdesoft', 'emdesoft', null, null, null, null),
+        (1515, 'Emesoft', null, '1-2012', null, null, null),
+        (1516, 'EMIS SRL', 'EMIS SRL', null, null, null, null),
+        (1517, 'EmprendeSOFT.SRL', null, '1-2012', null, null, null),
+        (1518, 'EmpujeSoft.SRL', 'EmpujeSoft.SRL', '2-2021', 'CF', null, null),
+        (1519, 'ENC', 'E.N.C. ( New Computational Empire ) S.R.L.', '2-2018', 'DE', null, null),
+        (1520, 'Enterprise software SRL', 'ENTERSOFT', '1-2022', 'PR', null, null),
+        (1521, 'Enterprise-esc', 'Enterprise Software Construction SA', null, null, null, null),
+        (1522, 'EPIC', 'EPIC SRL', '1-2018', null, null, null),
+        (1523, 'ES3', null, '1-2009', null, null, null),
+        (1524, 'ESA', 'ESA', null, null, null, null),
+        (1525, 'ESSI', 'ESSI SRL', '1-2011', null, null, null),
+        (1526, 'ETIS', 'ETIS', null, null, null, null),
+        (1527, 'ETSI', 'ETSI', null, null, null, null),
+        (1528, 'Evil Genius', 'Evil Genius S.R.L', '2-2021', 'LB', null, null),
+        (1529, 'Evil Genius SRL', 'EGENIUS', '1-2022', 'PR', null, null),
+        (1530, 'Evolutionsoft', null, null, null, null, null),
+        (1531, 'Ewebshop', null, null, null, null, null),
+        (1532, 'eXistenZ', 'eXistenZ', null, null, null, null),
+        (1533, 'Exodus', 'Exodus SRL', '1-2023', 'CF', null, null),
+        (1534, 'Extreme System', null, '2-2021', 'DE', null, null),
+        (1535, 'F01 emdes', null, null, null, null, null),
+        (1536, 'Falcon', 'Falcon Soft', '1-2017', null, null, null),
+        (1537, 'Faro Systems', 'Faro Systems', null, null, null, null),
+        (1538, 'FDS', null, '2-2010', null, null, null),
+        (1539, 'Fenix', 'Fenix', null, null, null, null),
+        (1540, 'FenrirSulven Sistems. Ingenieria y Reingenieria', 'FenrirSulven Sistems. Ingenieria y Reingenieria', null, null, null, null),
+        (1541, 'Feral Consultores.SRL', null, '2-2013', null, null, null),
+        (1542, 'Filia', null, null, null, null, null),
+        (1543, 'FJSOFT', 'FJSOFT SRL', '1-2011', null, null, null),
+        (1544, 'Flare Soft S.R.L.', 'Flare Soft S.R.L.', '2-2017', null, null, null),
+        (1545, 'Flash', 'Flash', null, null, null, null),
+        (1546, 'FocaSoft', 'FocaSoft S.R.L.', '2-2023', 'LB', null, null);
