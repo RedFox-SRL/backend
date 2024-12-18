@@ -293,7 +293,7 @@ class GroupController extends Controller
 
     public function getGroupNames()
     {
-        $groupNames = GroupName::select('short_name', 'long_name')->get();
+        $groupNames = GroupName::select('short_name', 'long_name', 'management', 'teacher')->get();
         return response()->json($groupNames);
     }
 
