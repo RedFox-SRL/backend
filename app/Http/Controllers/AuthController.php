@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerificationCodeEmail;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -99,5 +101,15 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL(),
             'role' => $role
         ]);
+    }
+
+    public function checkToken(Request $request)
+    {
+        try {
+            $user = JWTAuth::parseToken()->authenticate();
+            return response()->json(['valid' => true]);
+        } catch (JWTException $e) {
+            return response()->json(['valid' => false], 401);
+        }
     }
 }

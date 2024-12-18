@@ -6,7 +6,6 @@ use App\Http\Controllers\CronController;
 use App\Http\Controllers\CrossEvaluationController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\EvaluationTemplateController;
-use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GradeSummaryController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\InvitationController;
@@ -20,7 +19,6 @@ use App\Http\Controllers\StudentManagementController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TeacherProposalController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\WeeklyEvaluationController;
 use App\Http\Controllers\SprintEvaluationController;
 use Illuminate\Http\Request;
@@ -129,4 +127,6 @@ Route::middleware(['api'])->group(function () {
     Route::get('/managements/{managementId}/scoreStatus', [ScoreConfigurationController::class, 'checkConfigurationStatus']);
 
     Route::get('/grade-summary/{managementId}', [GradeSummaryController::class, 'getGradeSummary']);
+
+    Route::get('check-token', [AuthController::class, 'checkToken']);
 });
