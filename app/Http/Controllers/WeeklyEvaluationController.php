@@ -19,6 +19,11 @@ class WeeklyEvaluationController extends Controller
     {
         try {
             $sprint = $this->getSprintWithTasks($sprintId);
+
+            if (Carbon::now()->gt($sprint->end_date)) {
+                return $this->respondBadRequest(ApiCode::SPRINT_ENDED);
+            }
+
             $template = $this->buildEvaluationTemplate($sprint);
             return $this->respond(['template' => $template], 'Evaluation template retrieved successfully');
         } catch (ModelNotFoundException $e) {
