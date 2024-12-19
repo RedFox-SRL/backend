@@ -80,7 +80,7 @@
     <div class="content">
         <p>Lo sentimos, pero la invitación que intentas usar ha sido cancelada por el representante del grupo.</p>
         <p>Si crees que esto es un error o deseas más información, por favor contacta al representante del grupo.</p>
-        <a href="{{ url('/contact-support') }}" class="button">Contactar Soporte</a>
+        <a href="{{ env('APP_URL') }}" class="button" style="color: white;">Acceder a la plataforma</a>
     </div>
     <div class="footer">
         <p>&copy; 2024 Sistema de Gestión de Proyectos. Todos los derechos reservados.</p>

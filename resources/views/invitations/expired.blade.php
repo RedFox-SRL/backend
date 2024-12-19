@@ -80,7 +80,7 @@
     <div class="content">
         <p>Lo sentimos, pero la invitación que intentas usar ha expirado.</p>
         <p>Por favor, contacta al representante del grupo para obtener una nueva invitación si aún deseas unirte.</p>
-        <a href="{{ url('/contact-support') }}" class="button">Contactar Soporte</a>
+        <a href="{{ env('APP_URL') }}" class="button" style="color: white;">Acceder a la plataforma</a>
     </div>
     <div class="footer">
         <p>&copy; 2024 Sistema de Gestión de Proyectos. Todos los derechos reservados.</p>

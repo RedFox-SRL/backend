@@ -78,7 +78,7 @@
     <div class="content">
         <p>Has rechazado la invitación para unirte al grupo.</p>
         <p>Si cambias de opinión, por favor contacta al representante del grupo para una nueva invitación.</p>
-        <a href="{{ url('/') }}" class="button">Contactar Soporte</a>
+        <a href="{{ env('APP_URL') }}" class="button" style="color: white;">Acceder a la plataforma</a>
     </div>
     <div class="footer">
         <p>&copy; 2024 Sistema de Gestión de Proyectos. Todos los derechos reservados.</p>

@@ -78,7 +78,7 @@
     <div class="content">
         <p>¡Felicidades! Has aceptado la invitación y ahora eres parte del grupo.</p>
         <p>Puedes acceder a tu panel de control para ver más detalles sobre tu grupo y comenzar a colaborar.</p>
-        <a href="{{ url('/') }}" class="button">Ir a mi Panel de Control</a>
+        <a href="{{ env('APP_URL') }}" class="button" style="color: white;">Acceder a la plataforma</a>
     </div>
     <div class="footer">
         <p>&copy; 2024 Sistema de Gestión de Proyectos. Todos los derechos reservados.</p>
